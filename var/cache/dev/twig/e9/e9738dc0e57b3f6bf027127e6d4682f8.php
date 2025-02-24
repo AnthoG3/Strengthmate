@@ -97,23 +97,78 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+        yield "    <div class=\"container\">
+    </div>
+    <img class=\"home_wall\" src=\"";
+        // line 8
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/logo.png"), "html", null, true);
+        yield "\" alt=\"logo.accueil\">
 
-<div class=\"example-wrapper\">
-    <h1>Hello ";
-        // line 12
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
-        yield "! ✅</h1>
+    <div class=\"cards-wrapper mx-auto\" style=\"max-width: 1000px;\">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/strengthmate/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/strengthmate/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class=\"row\" style=\"margin-bottom: 200px;\">
+            <div class=\"col-md-5\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"";
+        // line 15
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/couple.jpg"), "html", null, true);
+        yield "\" alt=\"coach\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Qui sommes-nous ?</h1>
+                        <p class=\"card__description\">
+                            Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-md-5 offset-md-2\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"";
+        // line 26
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/nutri.jpg"), "html", null, true);
+        yield "\" alt=\"nutrition\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Nos suivis</h1>
+                        <p class=\"card__description\">
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=\"row\" style=\"margin-bottom: 200px;\">
+            <div class=\"col-md-5\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"";
+        // line 41
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/avis.jpg"), "html", null, true);
+        yield "\" alt=\"avis\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Témoignages</h1>
+                        <p class=\"card__description\">
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-md-5 offset-md-2\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"";
+        // line 51
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/contact.jpg"), "html", null, true);
+        yield "\" alt=\"contact\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Contact</h1>
+                        <p class=\"card__description\">
+                            Une question ou besoin d’un suivi ?
+                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -145,7 +200,7 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  159 => 51,  146 => 41,  128 => 26,  114 => 15,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -155,20 +210,63 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class=\"container\">
+    </div>
+    <img class=\"home_wall\" src=\"{{ asset('assets/image/logo.png') }}\" alt=\"logo.accueil\">
 
-<div class=\"example-wrapper\">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class=\"cards-wrapper mx-auto\" style=\"max-width: 1000px;\">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/strengthmate/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/strengthmate/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class=\"row\" style=\"margin-bottom: 200px;\">
+            <div class=\"col-md-5\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"{{ asset('assets/image/couple.jpg') }}\" alt=\"coach\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Qui sommes-nous ?</h1>
+                        <p class=\"card__description\">
+                            Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-md-5 offset-md-2\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"{{ asset('assets/image/nutri.jpg') }}\" alt=\"nutrition\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Nos suivis</h1>
+                        <p class=\"card__description\">
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=\"row\" style=\"margin-bottom: 200px;\">
+            <div class=\"col-md-5\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"{{ asset('assets/image/avis.jpg') }}\" alt=\"avis\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Témoignages</h1>
+                        <p class=\"card__description\">
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-md-5 offset-md-2\">
+                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                    <img src=\"{{ asset('assets/image/contact.jpg') }}\" alt=\"contact\">
+                    <div class=\"card__content\">
+                        <h1 class=\"card__title\">Contact</h1>
+                        <p class=\"card__description\">
+                            Une question ou besoin d’un suivi ?
+                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
 ", "home.html.twig", "/Applications/MAMP/htdocs/strengthmate/templates/home.html.twig");
     }

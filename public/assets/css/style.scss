@@ -1,0 +1,298 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto slab";
+  color: #ffffff;
+  background-image: url("../image/dark.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: auto; /* Valeur par défaut */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;  /* Largeur maximale du conteneur */
+  margin: 0 auto;     /* Centrage horizontal */
+}
+
+.home_wall {
+  position: relative;
+  width: 35vw;       /* Largeur presque égale à la largeur de la fenêtre */
+  height: auto;
+  background-attachment: fixed; /* Fixation de l'image d'arrière-plan */
+  display: block;    /* Convertit l'image en bloc */
+  margin: 0 auto;    /* Centre horizontalement l'image */
+  padding: 0;
+}
+
+/* From Uiverse.io by doniaskima */
+.btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-17 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #f8db5a;
+  background-image: none;
+  color: #000000;
+  cursor: pointer;
+  font-family: "Roboto slab";
+  font-size: 1em;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 10px;
+  mask-image: radial-gradient(circle, #000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.btn-17:disabled {
+  cursor: default;
+}
+
+.btn-17:-moz-focusring {
+  outline: auto;
+}
+
+.btn-17 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-17 [hidden] {
+  display: none;
+}
+
+.btn-17 {
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
+}
+
+.btn-17,
+.btn-17 .text-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-17 .text-container {
+  display: block;
+}
+
+.btn-17 .text {
+  display: block;
+  position: relative;
+}
+
+.btn-17:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80%);
+  }
+  51% {
+    transform: translateY(-80%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80%);
+  }
+  51% {
+    transform: translateY(-80%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.btn-17:after,
+.btn-17:before {
+  --skew: 0.2;
+  background: #fff;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.btn-17:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
+}
+
+.btn-17:hover:before {
+  --progress: 100%;
+}
+
+.btn-17:hover:after {
+  --progress: -102%;
+}
+
+/* Styles pour la barre de navigation */
+.navbar-nav {
+  display: flex;
+  align-items: center;  /* Alignement vertical des éléments */
+  background-color: transparent;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.navbar .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Espacement entre les éléments de navigation */
+.navbar-nav .nav-item {
+  margin-right: 2em;
+  align-items: center;
+}
+
+/* Styles pour les liens dans la barre de navigation */
+.nav-link {
+  display: flex;
+  align-items: center;  /* Alignement vertical des éléments */
+  font-size: 1em;
+  color: #ffffff;
+}
+
+/* Icône dans les éléments de navigation */
+.nav-icon {
+  height: 2em;
+  width: auto;
+  margin-right: 0.3em;  /* Espacement à droite de l'icône */
+}
+
+h1 {
+  text-align: center;  /* Centrer le texte */
+  font-family: "Bangers", sans-serif;
+}
+
+/* Style des cards custom déjà existantes */
+.card-custom {
+  background-color: rgba(248, 219, 90, 0.68);  /* Couleur de fond de la card */
+  color: #000000;               /* Couleur par défaut du texte */
+  border: none;                 /* Retirer la bordure par défaut */
+}
+
+.card-custom .card-title {
+  color: #000000;               /* Couleur du titre */
+}
+
+.card-custom .card-text {
+  font-size: 1rem;              /* Taille de police pour le texte */
+}
+
+/* --- Nouveau composant Card --- */
+/* From Uiverse.io by gharsh11032000 */
+.card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-color: #f8db5a;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 0 0 5px #ffffff80;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card svg {
+  width: 48px;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f8db5a;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 30px;
+  color: #333;
+  font-weight: 700;
+}
+
+.card:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 20px;
+  color: #777;
+  line-height: 1.4;
+}
+.card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+footer {
+  background-color: transparent !important; /* Suppression de la couleur de fond */
+  backdrop-filter: blur(5px); /* Optionnel : ajoute un effet de flou sur l'arrière-plan */
+  color: white; /* Assurez-vous que le texte reste visible */
+}
+

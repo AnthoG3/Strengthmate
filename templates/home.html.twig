@@ -3,18 +3,61 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container">
+    </div>
+    <img class="home_wall" src="{{ asset('assets/image/logo.png') }}" alt="logo.accueil">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="cards-wrapper mx-auto" style="max-width: 1000px;">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/strengthmate/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/strengthmate/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class="row" style="margin-bottom: 200px;">
+            <div class="col-md-5">
+                <div class="card" style="width: 450px; height: 300px;">
+                    <img src="{{ asset('assets/image/couple.jpg') }}" alt="coach">
+                    <div class="card__content">
+                        <h1 class="card__title">Qui sommes-nous ?</h1>
+                        <p class="card__description">
+                            Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-2">
+                <div class="card" style="width: 450px; height: 300px;">
+                    <img src="{{ asset('assets/image/nutri.jpg') }}" alt="nutrition">
+                    <div class="card__content">
+                        <h1 class="card__title">Nos suivis</h1>
+                        <p class="card__description">
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 200px;">
+            <div class="col-md-5">
+                <div class="card" style="width: 450px; height: 300px;">
+                    <img src="{{ asset('assets/image/avis.jpg') }}" alt="avis">
+                    <div class="card__content">
+                        <h1 class="card__title">Témoignages</h1>
+                        <p class="card__description">
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-2">
+                <div class="card" style="width: 450px; height: 300px;">
+                    <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact">
+                    <div class="card__content">
+                        <h1 class="card__title">Contact</h1>
+                        <p class="card__description">
+                            Une question ou besoin d’un suivi ?
+                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
