@@ -1245,6 +1245,6 @@ class __TwigTemplate_116dc4fd0aacdb60d0023120e713e812 extends Template
         </span>
     {%- endif -%}
 {%- endblock form_help %}
-", "bootstrap_3_layout.html.twig", "/Applications/MAMP/htdocs/strengthmate/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_3_layout.html.twig");
+", "bootstrap_3_layout.html.twig", "/Applications/MAMP/htdocs/Strengthmate/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_3_layout.html.twig");
     }
 }

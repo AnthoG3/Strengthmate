@@ -1042,6 +1042,6 @@ class __TwigTemplate_cca94883fcd0fe16eea0ef91c47f172c extends Template
         </table>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/config.html.twig", "/Applications/MAMP/htdocs/strengthmate/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
+", "@WebProfiler/Collector/config.html.twig", "/Applications/MAMP/htdocs/Strengthmate/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
     }
 }

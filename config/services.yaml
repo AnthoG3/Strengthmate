@@ -4,12 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    # Les paramètres suivants définissent des chemins relatifs aux répertoires de l'application pour le stockage de certains types de fichiers (réalisations, formules, inspirations).
-    # '%kernel.project_dir%' est une variable Symfony qui fait référence au répertoire racine de votre projet (là où se trouve le fichier composer.json).
-    # Ces répertoires sont probablement utilisés pour stocker des fichiers téléchargés ou générés par l'application.
-    realisations_directory: '%kernel.project_dir%/public/uploads/realisations'  # Chemin pour les répertoires des réalisations
-    formules_directory: '%kernel.project_dir%/public/uploads/formules'      # Chemin pour les répertoires des formules
-    inspirations_directory: '%kernel.project_dir%/public/uploads/inspirations'  # Chemin pour les répertoires des inspirations
+
 
 services:
     # Configuration par défaut pour les services dans *ce* fichier

@@ -186,6 +186,6 @@ class __TwigTemplate_21efdd8f3e865afcda1cb268a30e6698 extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/Applications/MAMP/htdocs/strengthmate/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/Applications/MAMP/htdocs/Strengthmate/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }

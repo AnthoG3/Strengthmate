@@ -99,20 +99,37 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
         yield "\" id=\"accueil\">Accueil</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Qui sommes-nous ?</a>
+                        <a class=\"nav-link\" href=\"";
+        // line 41
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_presentation_index");
+        yield "\">Qui sommes-nous ?</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Nos suivis</a>
+                        <a class=\"nav-link\" href=\"";
+        // line 44
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_suivis_index");
+        yield "\">Nos suivis</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Témoignages</a>
+                        <a class=\"nav-link\" href=\"";
+        // line 47
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temoignages_index");
+        yield "\">Témoignages</a>
                     </li>
                     <li class=\"nav-item\">
-                        <button class=\"btn-17\">
-                            <span class=\"text-container\">
-                                <span class=\"text\" type=\"submit\">Contact</span>
-                            </span>
+                        <button class=\"btn-17\" onclick=\"window.location.href='";
+        // line 50
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
+        yield "'\">
+                          <span class=\"text-container\">
+                           <span class=\"text\">Contact</span>
+                          </span>
                         </button>
+                    </li>
+
+
+
+                    </button>
                     </li>
                 </ul>
             </div>
@@ -123,9 +140,9 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
 <!-- Contenu principal -->
 <main class=\"container my-0\">
     ";
-        // line 64
+        // line 69
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 66
+        // line 71
         yield "</main>
 
 <!-- Pied de page -->
@@ -137,7 +154,7 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
                 <div class=\"up\">
                     <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\" class=\"nav-link\">
                         <img class=\"nav-icon\" src=\"";
-        // line 76
+        // line 81
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram.png"), "html", null, true);
         yield "\" alt=\"instagram\" aria-hidden=\"true\">
                         <span class=\"visually-hidden\">Instagram</span>
@@ -147,7 +164,6 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
         </div>
     </div>
 </footer>
-
 
 <!-- Script Bootstrap -->
 <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"
@@ -187,7 +203,7 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
         yield from [];
     }
 
-    // line 64
+    // line 69
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -200,7 +216,7 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 65
+        // line 70
         yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -232,7 +248,7 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  204 => 65,  191 => 64,  169 => 7,  141 => 76,  129 => 66,  127 => 64,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
+        return array (  220 => 70,  207 => 69,  185 => 7,  158 => 81,  146 => 71,  144 => 69,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -277,20 +293,25 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
                         <a class=\"nav-link\" href=\"{{ path('home') }}\" id=\"accueil\">Accueil</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Qui sommes-nous ?</a>
+                        <a class=\"nav-link\" href=\"{{ path('app_presentation_index') }}\">Qui sommes-nous ?</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Nos suivis</a>
+                        <a class=\"nav-link\" href=\"{{ path('app_suivis_index') }}\">Nos suivis</a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\">Témoignages</a>
+                        <a class=\"nav-link\" href=\"{{ path('app_temoignages_index') }}\">Témoignages</a>
                     </li>
                     <li class=\"nav-item\">
-                        <button class=\"btn-17\">
-                            <span class=\"text-container\">
-                                <span class=\"text\" type=\"submit\">Contact</span>
-                            </span>
+                        <button class=\"btn-17\" onclick=\"window.location.href='{{ path('app_contact_index') }}'\">
+                          <span class=\"text-container\">
+                           <span class=\"text\">Contact</span>
+                          </span>
                         </button>
+                    </li>
+
+
+
+                    </button>
                     </li>
                 </ul>
             </div>
@@ -320,7 +341,6 @@ class __TwigTemplate_9461086a0b969f56ec611570d391bf84 extends Template
         </div>
     </div>
 </footer>
-
 
 <!-- Script Bootstrap -->
 <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"

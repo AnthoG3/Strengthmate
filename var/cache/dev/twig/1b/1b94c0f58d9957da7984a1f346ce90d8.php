@@ -739,6 +739,6 @@ class __TwigTemplate_f0e43ecb7962082e2d99e3534cf30bc5 extends Template
 {% block form_group_class -%}
     col-sm-10
 {%- endblock form_group_class %}
-", "bootstrap_5_horizontal_layout.html.twig", "/Applications/MAMP/htdocs/strengthmate/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_5_horizontal_layout.html.twig");
+", "bootstrap_5_horizontal_layout.html.twig", "/Applications/MAMP/htdocs/Strengthmate/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_5_horizontal_layout.html.twig");
     }
 }
