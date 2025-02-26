@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'bad812ba030d03091fa12b167aefb88869e94229',
+        'reference' => 'c2b94d254a69efc2134315a125e4a20cdb6f54bf',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'bad812ba030d03091fa12b167aefb88869e94229',
+            'reference' => 'c2b94d254a69efc2134315a125e4a20cdb6f54bf',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -471,6 +471,15 @@
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'symfony/messenger' => array(
+            'pretty_version' => 'v7.2.4',
+            'version' => '7.2.4.0',
+            'reference' => '11189568a6c840cea9888c4b15bd15605dabb2dd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/messenger',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/mime' => array(
             'pretty_version' => 'v7.2.3',

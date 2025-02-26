@@ -97,23 +97,7 @@ class __TwigTemplate_962aebe9fdf7778d327fee3a8ebf121c extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class=\"example-wrapper\">
-    <h1>Hello ";
-        // line 12
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
-        yield "! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/Strengthmate/src/Controller/PresentationController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/Strengthmate/templates/presentation/index.html.twig</code></li>
-    </ul>
-</div>
+        yield "
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -145,7 +129,7 @@ class __TwigTemplate_962aebe9fdf7778d327fee3a8ebf121c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -155,20 +139,7 @@ class __TwigTemplate_962aebe9fdf7778d327fee3a8ebf121c extends Template
 {% block title %}Hello PresentationController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class=\"example-wrapper\">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/Strengthmate/src/Controller/PresentationController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/Strengthmate/templates/presentation/index.html.twig</code></li>
-    </ul>
-</div>
 {% endblock %}
 ", "presentation/index.html.twig", "/Applications/MAMP/htdocs/Strengthmate/templates/presentation/index.html.twig");
     }
