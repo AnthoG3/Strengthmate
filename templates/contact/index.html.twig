@@ -1,46 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
+
+    <!-- ✅ Message Flash bien placé juste au-dessus du formulaire -->
+    <div class="flash-container">
+        {% for label, messages in app.flashes %}
+            <div class="flash flash-{{ label }}">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="form-card1">
         <div class="form-card2">
-            <form class="form">
+            <form class="form" method="post" action="{{ path('app_contact_index') }}">
                 <h1 class="form-heading">Contact</h1>
 
                 <div class="form-field">
-                    <input required="" placeholder="Nom et prénom" class="input-field" type="text" />
+                    {{ form_widget(form.name, {'attr': {'class': 'input-field', 'placeholder': 'Nom et prénom'}}) }}
+                    <div class="error-message">{{ form_errors(form.name) }}</div>
                 </div>
 
                 <div class="form-field">
-                    <input
-                            required=""
-                            placeholder="Email"
-                            class="input-field"
-                            type="email"
-                    />
+                    {{ form_widget(form.email, {'attr': {'class': 'input-field', 'placeholder': 'Email'}}) }}
+                    <div class="error-message">{{ form_errors(form.email) }}</div>
                 </div>
 
                 <div class="form-field">
-                    <input
-                            required=""
-                            placeholder="Numéro de téléphone"
-                            class="input-field"
-                            type="tel"
-                    />
+                    {{ form_widget(form.phone, {'attr': {'class': 'input-field', 'placeholder': 'Numéro de téléphone'}}) }}
+                    <div class="error-message">{{ form_errors(form.phone) }}</div>
                 </div>
 
                 <div class="form-field">
-        <textarea
-                required=""
-                placeholder="Message"
-                cols="30"
-                rows="3"
-                class="input-field"
-        ></textarea>
+                    {{ form_widget(form.content, {'attr': {'class': 'input-field', 'placeholder': 'Message', 'cols': '30', 'rows': '3'}}) }}
+                    <div class="error-message">{{ form_errors(form.content) }}</div>
                 </div>
 
-                <button class="sendMessage-btn">Envoyer la demande de contact</button>
+                {{ form_widget(form._token) }}
+
+                <button type="submit" class="sendMessage-btn">Envoyer la demande de contact</button>
             </form>
         </div>
     </div>

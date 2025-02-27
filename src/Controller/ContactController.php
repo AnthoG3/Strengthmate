@@ -17,46 +17,37 @@ final class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact_index', methods: ['GET', 'POST'])]
     public function index(Request $request, MailerInterface $mailer, LoggerInterface $logger): Response
     {
-        // Création d'un nouvel objet Contact
         $contact = new Contact();
 
-        // Création du formulaire basé sur l'entité Contact
+        // Création du formulaire
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        // Si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $logger->info('Formulaire soumis et valide. Envoi de l\'email en cours...');
 
             try {
-                // Création de l'email à envoyer
                 $email = (new Email())
                     ->from('contact@strength.fr')
                     ->to('anthony.gevers@lapiscine.pro')
-                    ->subject('Hey ! Tu as une nouvelle demande de contact')
-                    ->text(
-                        "Nom : {$contact->getName()}\n" .
-                        "Email : {$contact->getEmail()}\n" .
-                        "Téléphone : {$contact->getPhone()}\n" .
-                        "Message : {$contact->getMessage()}"
-                    );
+                    ->subject('Nouvelle demande de contact')
+                    ->html("<h2>Nouvelle demande de contact</h2>
+                        <p><strong>Nom :</strong> {$contact->getName()}</p>
+                        <p><strong>Email :</strong> {$contact->getEmail()}</p>
+                        <p><strong>Téléphone :</strong> {$contact->getPhone()}</p>
+                        <p><strong>Message :</strong><br>{$contact->getContent()}</p>");
 
-                // Envoi de l'email via le service Mailer
                 $mailer->send($email);
                 $logger->info('Email envoyé avec succès.');
 
-                // Message flash pour indiquer le succès de l'envoi
                 $this->addFlash('success', 'Votre message a été envoyé avec succès.');
-
-                // Redirection vers la page d'accueil
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_contact_index');
 
             } catch (\Exception $e) {
                 $logger->error('Erreur lors de l\'envoi de l\'email : ' . $e->getMessage());
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi de votre message.');
+                return $this->redirectToRoute('app_contact_index');
             }
-        } else {
-            $logger->info('Le formulaire n\'a pas été soumis ou est invalide.');
         }
 
         return $this->render('contact/index.html.twig', [

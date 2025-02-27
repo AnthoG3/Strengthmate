@@ -73,7 +73,7 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Hello ContactController!";
+        yield "Contact";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -97,48 +97,56 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <div class=\"form-card1\">
-        <div class=\"form-card2\">
-            <form class=\"form\">
-                <h1 class=\"form-heading\">Contact</h1>
+        yield "    <h1>Contact</h1>
 
-                <div class=\"form-field\">
-                    <input required=\"\" placeholder=\"Nom et prénom\" class=\"input-field\" type=\"text\" />
-                </div>
+    ";
+        // line 9
+        yield "    <form method=\"POST\" action=\"";
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
+        yield "\">
+        <label for=\"name\">Nom :</label>
+        <input type=\"text\" name=\"contact[name]\" id=\"name\" required>
 
-                <div class=\"form-field\">
-                    <input
-                            required=\"\"
-                            placeholder=\"Email\"
-                            class=\"input-field\"
-                            type=\"email\"
-                    />
-                </div>
+        <label for=\"email\">Email :</label>
+        <input type=\"email\" name=\"contact[email]\" id=\"email\" required>
 
-                <div class=\"form-field\">
-                    <input
-                            required=\"\"
-                            placeholder=\"Numéro de téléphone\"
-                            class=\"input-field\"
-                            type=\"tel\"
-                    />
-                </div>
+        <label for=\"phone\">Téléphone :</label>
+        <input type=\"tel\" name=\"contact[phone]\" id=\"phone\" required>
 
-                <div class=\"form-field\">
-        <textarea
-                required=\"\"
-                placeholder=\"Message\"
-                cols=\"30\"
-                rows=\"3\"
-                class=\"input-field\"
-        ></textarea>
-                </div>
+        <label for=\"content\">Message :</label>
+        <textarea name=\"contact[content]\" id=\"content\" required></textarea>
 
-                <button class=\"sendMessage-btn\">Envoyer la demande de contact</button>
-            </form>
-        </div>
-    </div>
+        ";
+        // line 22
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), "_token", [], "any", false, false, false, 22), 'widget');
+        yield "
 
+        <button type=\"submit\">Envoyer</button>
+    </form>
+
+    ";
+        // line 28
+        yield "    <script>
+        document.addEventListener(\"DOMContentLoaded\", function() {
+            let form = document.querySelector('form');
+            if (form) {
+                console.log(\"Formulaire détecté ✅\");
+
+                form.addEventListener('submit', function(event) {
+                    console.log(\"Tentative de soumission du formulaire...\");
+
+                    if (form.getAttribute('method').toLowerCase() !== 'post') {
+                        event.preventDefault();
+                        console.warn(\"Le formulaire essayait de se soumettre en GET ! Il est corrigé en POST.\");
+                        form.setAttribute('method', 'post');
+                        form.submit();
+                    }
+                });
+            } else {
+                console.error(\"Le formulaire n'a pas été trouvé ❌\");
+            }
+        });
+    </script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -170,58 +178,59 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  129 => 28,  121 => 22,  104 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class=\"form-card1\">
-        <div class=\"form-card2\">
-            <form class=\"form\">
-                <h1 class=\"form-heading\">Contact</h1>
+    <h1>Contact</h1>
 
-                <div class=\"form-field\">
-                    <input required=\"\" placeholder=\"Nom et prénom\" class=\"input-field\" type=\"text\" />
-                </div>
+    {# FORMULAIRE MINIMAL POUR TESTER L’ENVOI EN POST #}
+    <form method=\"POST\" action=\"{{ path('app_contact_index') }}\">
+        <label for=\"name\">Nom :</label>
+        <input type=\"text\" name=\"contact[name]\" id=\"name\" required>
 
-                <div class=\"form-field\">
-                    <input
-                            required=\"\"
-                            placeholder=\"Email\"
-                            class=\"input-field\"
-                            type=\"email\"
-                    />
-                </div>
+        <label for=\"email\">Email :</label>
+        <input type=\"email\" name=\"contact[email]\" id=\"email\" required>
 
-                <div class=\"form-field\">
-                    <input
-                            required=\"\"
-                            placeholder=\"Numéro de téléphone\"
-                            class=\"input-field\"
-                            type=\"tel\"
-                    />
-                </div>
+        <label for=\"phone\">Téléphone :</label>
+        <input type=\"tel\" name=\"contact[phone]\" id=\"phone\" required>
 
-                <div class=\"form-field\">
-        <textarea
-                required=\"\"
-                placeholder=\"Message\"
-                cols=\"30\"
-                rows=\"3\"
-                class=\"input-field\"
-        ></textarea>
-                </div>
+        <label for=\"content\">Message :</label>
+        <textarea name=\"contact[content]\" id=\"content\" required></textarea>
 
-                <button class=\"sendMessage-btn\">Envoyer la demande de contact</button>
-            </form>
-        </div>
-    </div>
+        {{ form_widget(form._token) }}
 
+        <button type=\"submit\">Envoyer</button>
+    </form>
+
+    {# TESTER SI LE FORMULAIRE SE SOUMET EN `POST` #}
+    <script>
+        document.addEventListener(\"DOMContentLoaded\", function() {
+            let form = document.querySelector('form');
+            if (form) {
+                console.log(\"Formulaire détecté ✅\");
+
+                form.addEventListener('submit', function(event) {
+                    console.log(\"Tentative de soumission du formulaire...\");
+
+                    if (form.getAttribute('method').toLowerCase() !== 'post') {
+                        event.preventDefault();
+                        console.warn(\"Le formulaire essayait de se soumettre en GET ! Il est corrigé en POST.\");
+                        form.setAttribute('method', 'post');
+                        form.submit();
+                    }
+                });
+            } else {
+                console.error(\"Le formulaire n'a pas été trouvé ❌\");
+            }
+        });
+    </script>
 {% endblock %}
 ", "contact/index.html.twig", "/Applications/MAMP/htdocs/Strengthmate/templates/contact/index.html.twig");
     }

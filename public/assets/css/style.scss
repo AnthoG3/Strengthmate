@@ -210,17 +210,17 @@ h1 {
 
 /* Style des cards custom déjà existantes */
 .card-custom {
-  background-color: rgba(248, 219, 90, 0.68);  /* Couleur de fond de la card */
-  color: #000000;               /* Couleur par défaut du texte */
-  border: none;                 /* Retirer la bordure par défaut */
+  background-color: rgba(248, 219, 90, 0.68); /* Couleur de fond de la card */
+  color: #000000; /* Couleur par défaut du texte */
+  border: none; /* Retirer la bordure par défaut */
 }
 
 .card-custom .card-title {
-  color: #000000;               /* Couleur du titre */
+  color: #000000; /* Couleur du titre */
 }
 
 .card-custom .card-text {
-  font-size: 1rem;              /* Taille de police pour le texte */
+  font-size: 1rem; /* Taille de police pour le texte */
 }
 
 /* --- Nouveau composant Card --- */
@@ -236,7 +236,7 @@ h1 {
   justify-content: center;
   overflow: hidden;
   perspective: 1000px;
-  box-shadow: 0 0 0 5px #ffffff80;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5019607843);
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -286,37 +286,33 @@ h1 {
   color: #777;
   line-height: 1.4;
 }
+
 .card > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 footer {
   background-color: transparent !important; /* Suppression de la couleur de fond */
-  backdrop-filter: blur(5px); /* Optionnel : ajoute un effet de flou sur l'arrière-plan */
   color: white; /* Assurez-vous que le texte reste visible */
 }
-/* From Uiverse.io by DavidTM96 */
 .form {
   display: flex;
   flex-direction: column;
   align-self: center;
   font-family: inherit;
-  gap: 10px;
-  padding-inline: 2em;
   padding-bottom: 0.4em;
   background-color: #171717;
-  /* Correction du commentaire */
-  /* background-color: #0a192f; */
   border-radius: 20px;
-  margin-top:5em;
+  margin-top: 3em;
 }
 
 .form-heading {
   text-align: center;
-  margin: 2em;
+  margin: 1.5em;
   color: #f8db5a;
-  font-size: 1.2em;
+  font-size: 2em;
   background-color: transparent;
   align-self: center;
 }
@@ -327,27 +323,34 @@ footer {
   justify-content: center;
   gap: 0.5em;
   border-radius: 10px;
-  padding: 0.6em;
+  padding: 0.8em;
   border: none;
   outline: none;
   color: white;
   background-color: #171717;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  margin-bottom: 1.2em;
+  width: 90%; /* ✅ Réduit légèrement la largeur des champs */
+  max-width: 90%; /* ✅ Fixe une limite pour ne pas être trop larges */
+  margin-left: auto; /* ✅ Centre le champ */
+  margin-right: auto; /* ✅ Centre le champ */
 }
 
 .input-field {
   background: none;
   border: none;
   outline: none;
-  width: 100%;
+  width: 100%; /* ✅ Garde la largeur ajustée au parent `.form-field` */
   color: #ccd6f6;
-  padding-inline: 1em;
+  padding-inline: 1em; /* ✅ Ajuste l’espace interne */
 }
+
 
 .sendMessage-btn {
   cursor: pointer;
-  margin-bottom: 3em;
-  padding: 1em;
+  margin-top: 1em; /* Espacement au-dessus */
+  margin-bottom: 3em; /* Espacement en dessous */
+  padding: 0.8em 2.5em; /* 🔽 Ajustement du padding pour une largeur idéale */
   border-radius: 10px;
   border: none;
   outline: none;
@@ -356,6 +359,11 @@ footer {
   font-weight: bold;
   outline: 1px solid #f8db5a;
   transition: all ease-in-out 0.3s;
+  width: fit-content; /* ✅ Ajuste automatiquement la largeur en fonction du texte */
+  display: block; /* ✅ Permet d’utiliser margin auto pour le centrer */
+  margin-left: auto; /* ✅ Centre le bouton */
+  margin-right: auto; /* ✅ Centre le bouton */
+  text-align: center;
 }
 
 .sendMessage-btn:hover {
@@ -367,10 +375,14 @@ footer {
 }
 
 .form-card1 {
-  background-image: linear-gradient(163deg, #f8db5a 0%, #f8db5a 100%);
-  border-radius: 22px;
+background-color: #f8db5a;
+border-radius: 22px;
   transition: all 0.3s;
+  position: relative;
+  padding-top: 0;
+  margin-top: 0;
 }
+
 
 .form-card1:hover {
   box-shadow: 0px 0px 30px 1px rgb(245, 200, 39);
@@ -385,4 +397,37 @@ footer {
   transform: scale(0.98);
   border-radius: 20px;
 }
+
+.flash-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centre le message flash horizontalement */
+  align-items: center; /* Centre verticalement */
+  position: relative; /* Garde le message bien en place */
+  margin-top: 3em; /* 🔽 Augmente l’espace entre le haut et le message flash */
+  margin-bottom: 0.5em; /* 🔼 Réduit l’espace entre le message flash et le formulaire */
+}
+
+.flash {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* ✅ Centrage sans ajouter trop d’espace autour */
+}
+
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
 
