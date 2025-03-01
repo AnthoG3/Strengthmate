@@ -11,25 +11,30 @@
 
         <div class="row" style="margin-bottom: 200px;">
             <div class="col-md-5">
-                <div class="card" style="width: 450px; height: 300px;">
+                <div class="card position-relative" style="width: 450px; height: 300px;">
+                    <a href="{{ path('app_presentation_index') }}" class="stretched-link"></a>
                     <img src="{{ asset('assets/image/couple.jpg') }}" alt="coach">
                     <div class="card__content">
                         <h1 class="card__title">Qui sommes-nous ?</h1>
                         <p class="card__description">
                             Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
-                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-5 offset-md-2">
-                <div class="card" style="width: 450px; height: 300px;">
+                <div class="card position-relative" style="width: 450px; height: 300px;">
+                    <a href="{{ path('app_suivis_index') }}" class="stretched-link"></a>
                     <img src="{{ asset('assets/image/nutri.jpg') }}" alt="nutrition">
                     <div class="card__content">
                         <h1 class="card__title">Nos suivis</h1>
                         <p class="card__description">
-                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
                             vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
-                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -37,24 +42,27 @@
 
         <div class="row" style="margin-bottom: 200px;">
             <div class="col-md-5">
-                <div class="card" style="width: 450px; height: 300px;">
+                <div class="card position-relative" style="width: 450px; height: 300px;">
+                    <a href="{{ path('app_temoignages_index') }}" class="stretched-link"></a>
                     <img src="{{ asset('assets/image/avis.jpg') }}" alt="avis">
                     <div class="card__content">
                         <h1 class="card__title">Témoignages</h1>
                         <p class="card__description">
-                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 offset-md-2">
-                <div class="card" style="width: 450px; height: 300px;">
-                    <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact">
-                    <div class="card__content">
-                        <h1 class="card__title">Contact</h1>
-                        <p class="card__description">
-                            Une question ou besoin d’un suivi ?
-                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
-                    </div>
+        <div class="col-md-5 offset-md-2">
+            <div class="card position-relative" style="width: 450px; height: 300px;">
+                <a href="{{ path('app_contact_index') }}" class="stretched-link"></a>
+                <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact">
+                <div class="card__content">
+                    <h1 class="card__title">Contact</h1>
+                    <p class="card__description">
+                        Une question ou besoin d’un suivi ?
+                        Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.
+                    </p>
                 </div>
             </div>
         </div>

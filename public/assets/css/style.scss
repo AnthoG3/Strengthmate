@@ -208,7 +208,6 @@ h1 {
   font-size: 2em;
 }
 
-/* Style des cards custom déjà existantes */
 .card-custom {
   background-color: rgba(248, 219, 90, 0.68); /* Couleur de fond de la card */
   color: #000000; /* Couleur par défaut du texte */
@@ -237,13 +236,13 @@ h1 {
   overflow: hidden;
   perspective: 1000px;
   box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5019607843);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card svg {
   width: 48px;
   fill: #333;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card:hover {
@@ -262,7 +261,7 @@ h1 {
   background-color: #f8db5a;
   transform: rotateX(-90deg);
   transform-origin: bottom;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card:hover .card__content {
@@ -291,6 +290,19 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link .card {
+  transition: transform 1s ease-in-out;
+}
+
+.card-link:hover .card {
+  transform: scale(2.05);
 }
 
 footer {
@@ -404,18 +416,18 @@ border-radius: 22px;
   justify-content: center; /* Centre le message flash horizontalement */
   align-items: center; /* Centre verticalement */
   position: relative; /* Garde le message bien en place */
-  margin-top: 3em; /* 🔽 Augmente l’espace entre le haut et le message flash */
-  margin-bottom: 0.5em; /* 🔼 Réduit l’espace entre le message flash et le formulaire */
+  margin: 0; /* Supprime les marges pour un centrage optimal */
 }
 
 .flash {
   width: 90%;
   max-width: 600px;
   text-align: center;
-  padding: 1em;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   margin: 0 auto; /* ✅ Centrage sans ajouter trop d’espace autour */
+  padding: 2em 1em; /* Augmente l'espace interne pour baisser le texte */
+
 }
 
 .flash-success {
@@ -428,6 +440,10 @@ border-radius: 22px;
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
+}
+
+.flash p {
+  margin-top: 0.5em; /* Décale légèrement le texte vers le bas */
 }
 
 

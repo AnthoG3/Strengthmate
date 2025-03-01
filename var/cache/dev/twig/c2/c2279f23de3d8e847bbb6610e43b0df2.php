@@ -97,56 +97,104 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <h1>Contact</h1>
-
-    ";
+        yield "
+    <!-- ✅ Message Flash bien placé juste au-dessus du formulaire -->
+    <div class=\"flash-container\">
+        ";
         // line 9
-        yield "    <form method=\"POST\" action=\"";
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 9, $this->source); })()), "flashes", [], "any", false, false, false, 9));
+        foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
+            // line 10
+            yield "            <div class=\"flash flash-";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
+            yield "\">
+                ";
+            // line 11
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 12
+                yield "                    <p>";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+                yield "</p>
+                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 14
+            yield "            </div>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 16
+        yield "    </div>
+
+    <div class=\"form-card1\">
+        <div class=\"form-card2\">
+            <form class=\"form\" method=\"post\" action=\"";
+        // line 20
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
         yield "\">
-        <label for=\"name\">Nom :</label>
-        <input type=\"text\" name=\"contact[name]\" id=\"name\" required>
+                <h1 class=\"form-heading\">Contact</h1>
 
-        <label for=\"email\">Email :</label>
-        <input type=\"email\" name=\"contact[email]\" id=\"email\" required>
+                <div class=\"form-field\">
+                    ";
+        // line 24
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), "name", [], "any", false, false, false, 24), 'widget', ["attr" => ["class" => "input-field", "placeholder" => "Nom et prénom"]]);
+        yield "
+                    <div class=\"error-message\">";
+        // line 25
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 25, $this->source); })()), "name", [], "any", false, false, false, 25), 'errors');
+        yield "</div>
+                </div>
 
-        <label for=\"phone\">Téléphone :</label>
-        <input type=\"tel\" name=\"contact[phone]\" id=\"phone\" required>
+                <div class=\"form-field\">
+                    ";
+        // line 29
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 29, $this->source); })()), "email", [], "any", false, false, false, 29), 'widget', ["attr" => ["class" => "input-field", "placeholder" => "Email"]]);
+        yield "
+                    <div class=\"error-message\">";
+        // line 30
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 30, $this->source); })()), "email", [], "any", false, false, false, 30), 'errors');
+        yield "</div>
+                </div>
 
-        <label for=\"content\">Message :</label>
-        <textarea name=\"contact[content]\" id=\"content\" required></textarea>
+                <div class=\"form-field\">
+                    ";
+        // line 34
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 34, $this->source); })()), "phone", [], "any", false, false, false, 34), 'widget', ["attr" => ["class" => "input-field", "placeholder" => "Numéro de téléphone"]]);
+        yield "
+                    <div class=\"error-message\">";
+        // line 35
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 35, $this->source); })()), "phone", [], "any", false, false, false, 35), 'errors');
+        yield "</div>
+                </div>
 
-        ";
-        // line 22
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), "_token", [], "any", false, false, false, 22), 'widget');
+                <div class=\"form-field\">
+                    ";
+        // line 39
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 39, $this->source); })()), "content", [], "any", false, false, false, 39), 'widget', ["attr" => ["class" => "input-field", "placeholder" => "Message", "cols" => "30", "rows" => "3"]]);
+        yield "
+                    <div class=\"error-message\">";
+        // line 40
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 40, $this->source); })()), "content", [], "any", false, false, false, 40), 'errors');
+        yield "</div>
+                </div>
+
+                ";
+        // line 43
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 43, $this->source); })()), "_token", [], "any", false, false, false, 43), 'widget');
         yield "
 
-        <button type=\"submit\">Envoyer</button>
-    </form>
+                <button type=\"submit\" class=\"sendMessage-btn\">Envoyer la demande de contact</button>
+            </form>
+        </div>
+    </div>
 
-    ";
-        // line 28
-        yield "    <script>
-        document.addEventListener(\"DOMContentLoaded\", function() {
-            let form = document.querySelector('form');
-            if (form) {
-                console.log(\"Formulaire détecté ✅\");
-
-                form.addEventListener('submit', function(event) {
-                    console.log(\"Tentative de soumission du formulaire...\");
-
-                    if (form.getAttribute('method').toLowerCase() !== 'post') {
-                        event.preventDefault();
-                        console.warn(\"Le formulaire essayait de se soumettre en GET ! Il est corrigé en POST.\");
-                        form.setAttribute('method', 'post');
-                        form.submit();
-                    }
-                });
-            } else {
-                console.error(\"Le formulaire n'a pas été trouvé ❌\");
-            }
-        });
-    </script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -178,7 +226,7 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  129 => 28,  121 => 22,  104 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  190 => 43,  184 => 40,  180 => 39,  173 => 35,  169 => 34,  162 => 30,  158 => 29,  151 => 25,  147 => 24,  140 => 20,  134 => 16,  127 => 14,  118 => 12,  114 => 11,  109 => 10,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -188,49 +236,50 @@ class __TwigTemplate_8b7524f7ef6dc4a6b179c8d184106243 extends Template
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <h1>Contact</h1>
 
-    {# FORMULAIRE MINIMAL POUR TESTER L’ENVOI EN POST #}
-    <form method=\"POST\" action=\"{{ path('app_contact_index') }}\">
-        <label for=\"name\">Nom :</label>
-        <input type=\"text\" name=\"contact[name]\" id=\"name\" required>
+    <!-- ✅ Message Flash bien placé juste au-dessus du formulaire -->
+    <div class=\"flash-container\">
+        {% for label, messages in app.flashes %}
+            <div class=\"flash flash-{{ label }}\">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 
-        <label for=\"email\">Email :</label>
-        <input type=\"email\" name=\"contact[email]\" id=\"email\" required>
+    <div class=\"form-card1\">
+        <div class=\"form-card2\">
+            <form class=\"form\" method=\"post\" action=\"{{ path('app_contact_index') }}\">
+                <h1 class=\"form-heading\">Contact</h1>
 
-        <label for=\"phone\">Téléphone :</label>
-        <input type=\"tel\" name=\"contact[phone]\" id=\"phone\" required>
+                <div class=\"form-field\">
+                    {{ form_widget(form.name, {'attr': {'class': 'input-field', 'placeholder': 'Nom et prénom'}}) }}
+                    <div class=\"error-message\">{{ form_errors(form.name) }}</div>
+                </div>
 
-        <label for=\"content\">Message :</label>
-        <textarea name=\"contact[content]\" id=\"content\" required></textarea>
+                <div class=\"form-field\">
+                    {{ form_widget(form.email, {'attr': {'class': 'input-field', 'placeholder': 'Email'}}) }}
+                    <div class=\"error-message\">{{ form_errors(form.email) }}</div>
+                </div>
 
-        {{ form_widget(form._token) }}
+                <div class=\"form-field\">
+                    {{ form_widget(form.phone, {'attr': {'class': 'input-field', 'placeholder': 'Numéro de téléphone'}}) }}
+                    <div class=\"error-message\">{{ form_errors(form.phone) }}</div>
+                </div>
 
-        <button type=\"submit\">Envoyer</button>
-    </form>
+                <div class=\"form-field\">
+                    {{ form_widget(form.content, {'attr': {'class': 'input-field', 'placeholder': 'Message', 'cols': '30', 'rows': '3'}}) }}
+                    <div class=\"error-message\">{{ form_errors(form.content) }}</div>
+                </div>
 
-    {# TESTER SI LE FORMULAIRE SE SOUMET EN `POST` #}
-    <script>
-        document.addEventListener(\"DOMContentLoaded\", function() {
-            let form = document.querySelector('form');
-            if (form) {
-                console.log(\"Formulaire détecté ✅\");
+                {{ form_widget(form._token) }}
 
-                form.addEventListener('submit', function(event) {
-                    console.log(\"Tentative de soumission du formulaire...\");
+                <button type=\"submit\" class=\"sendMessage-btn\">Envoyer la demande de contact</button>
+            </form>
+        </div>
+    </div>
 
-                    if (form.getAttribute('method').toLowerCase() !== 'post') {
-                        event.preventDefault();
-                        console.warn(\"Le formulaire essayait de se soumettre en GET ! Il est corrigé en POST.\");
-                        form.setAttribute('method', 'post');
-                        form.submit();
-                    }
-                });
-            } else {
-                console.error(\"Le formulaire n'a pas été trouvé ❌\");
-            }
-        });
-    </script>
 {% endblock %}
 ", "contact/index.html.twig", "/Applications/MAMP/htdocs/Strengthmate/templates/contact/index.html.twig");
     }

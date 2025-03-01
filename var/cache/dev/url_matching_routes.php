@@ -15,6 +15,9 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/admin' => [[['_route' => 'app_admin_dashboard', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::index'], null, null, null, false, false, null]],
+        '/admin/login' => [[['_route' => 'admin_login', '_controller' => 'App\\Controller\\Admin\\AdminLoginController::login'], null, null, null, false, false, null]],
+        '/admin/logout' => [[['_route' => 'admin_logout', '_controller' => 'App\\Controller\\Admin\\AdminLoginController::logout'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact_index', '_controller' => 'App\\Controller\\ContactController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/presentation' => [[['_route' => 'app_presentation_index', '_controller' => 'App\\Controller\\PresentationController::index'], null, ['GET' => 0], null, false, false, null]],
@@ -42,6 +45,13 @@ return [
                         .')'
                     .')'
                 .')'
+                .'|/admin/([^/]++)/(?'
+                    .'|create(*:227)'
+                    .'|([^/]++)(?'
+                        .'|/edit(*:251)'
+                        .'|(*:259)'
+                    .')'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -52,8 +62,11 @@ return [
         148 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        191 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        227 => [[['_route' => 'app_admin_entity_create', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::createEntity'], ['entityType'], null, null, false, false, null]],
+        251 => [[['_route' => 'app_admin_entity_edit', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::editEntity'], ['entityType', 'id'], null, null, false, false, null]],
+        259 => [
+            [['_route' => 'app_admin_entity_show', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::showEntity'], ['entityType', 'id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

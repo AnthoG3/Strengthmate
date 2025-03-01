@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}Tableau de bord | Strengthmate{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mb-4">Dashboard Admin</h1>
+
+        <!-- Affichage des messages flash ici -->
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label == 'error' ? 'danger' : label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <!-- Bouton de déconnexion -->
+        <a href="{{ path('admin_logout') }}" class="btn btn-danger mb-3 btn-block">Se déconnecter</a>
+
+        <!-- Section Présentations -->
+        <h2 class="mb-3">Présentations</h2>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'presentation'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter une nouvelle présentation</a>
+        <div class="row">
+            {% for presentation in presentations %}
+                <div class="col-md-4 mb-4">
+                    <div class="card admin-card h-100">
+                        {% if presentation.image %}
+                            <img src="{{ asset('uploads/presentations/' ~ presentation.image) }}" class="card-img-top" alt="{{ presentation.title }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ presentation.title }}</h5>
+                            <div class="mt-auto">
+                                <a href="{{ path('app_admin_entity_show', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
+                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'presentation', 'id': presentation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette présentation ?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ presentation.id) }}">
+                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Section Suivis -->
+        <h2 class="mb-3">Suivis</h2>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'suivis'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter un nouveau suivi</a>
+        <div class="row">
+            {% for suivis in suivis %}
+                <div class="col-md-4 mb-4">
+                    <div class="card admin-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ suivis.title }}</h5>
+                            <div class="mt-auto">
+                                <a href="{{ path('app_admin_entity_show', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
+                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'suivis', 'id': suivis.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce suivi ?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ suivis.id) }}">
+                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Section Témoignages -->
+        <h2 class="mb-3">Témoignages</h2>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter un nouveau témoignage</a>
+        <div class="row">
+            {% for temoignage in temoignages %}
+                <div class="col-md-4 mb-4">
+                    <div class="card admin-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ temoignage.title }}</h5>
+                            <div class="mt-auto">
+                                <a href="{{ path('app_admin_entity_show', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
+                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'temoignages', 'id': temoignage.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ temoignage.id) }}">
+                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

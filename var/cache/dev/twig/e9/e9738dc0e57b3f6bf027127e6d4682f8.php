@@ -108,31 +108,42 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
 
         <div class=\"row\" style=\"margin-bottom: 200px;\">
             <div class=\"col-md-5\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
-                    <img src=\"";
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"";
         // line 15
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_presentation_index");
+        yield "\" class=\"stretched-link\"></a>
+                    <img src=\"";
+        // line 16
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/couple.jpg"), "html", null, true);
         yield "\" alt=\"coach\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Qui sommes-nous ?</h1>
                         <p class=\"card__description\">
                             Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
-                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class=\"col-md-5 offset-md-2\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"";
+        // line 29
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_suivis_index");
+        yield "\" class=\"stretched-link\"></a>
                     <img src=\"";
-        // line 26
+        // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/nutri.jpg"), "html", null, true);
         yield "\" alt=\"nutrition\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Nos suivis</h1>
                         <p class=\"card__description\">
-                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
                             vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
-                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -140,30 +151,39 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
 
         <div class=\"row\" style=\"margin-bottom: 200px;\">
             <div class=\"col-md-5\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"";
+        // line 46
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temoignages_index");
+        yield "\" class=\"stretched-link\"></a>
                     <img src=\"";
-        // line 41
+        // line 47
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/avis.jpg"), "html", null, true);
         yield "\" alt=\"avis\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Témoignages</h1>
                         <p class=\"card__description\">
-                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class=\"col-md-5 offset-md-2\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
-                    <img src=\"";
-        // line 51
+        <div class=\"col-md-5 offset-md-2\">
+            <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                <a href=\"";
+        // line 58
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
+        yield "\" class=\"stretched-link\"></a>
+                <img src=\"";
+        // line 59
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/contact.jpg"), "html", null, true);
         yield "\" alt=\"contact\">
-                    <div class=\"card__content\">
-                        <h1 class=\"card__title\">Contact</h1>
-                        <p class=\"card__description\">
-                            Une question ou besoin d’un suivi ?
-                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
-                    </div>
+                <div class=\"card__content\">
+                    <h1 class=\"card__title\">Contact</h1>
+                    <p class=\"card__description\">
+                        Une question ou besoin d’un suivi ?
+                        Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.
+                    </p>
                 </div>
             </div>
         </div>
@@ -200,7 +220,7 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  159 => 51,  146 => 41,  128 => 26,  114 => 15,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  179 => 59,  175 => 58,  161 => 47,  157 => 46,  138 => 30,  134 => 29,  118 => 16,  114 => 15,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -218,25 +238,30 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
 
         <div class=\"row\" style=\"margin-bottom: 200px;\">
             <div class=\"col-md-5\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"{{ path('app_presentation_index') }}\" class=\"stretched-link\"></a>
                     <img src=\"{{ asset('assets/image/couple.jpg') }}\" alt=\"coach\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Qui sommes-nous ?</h1>
                         <p class=\"card__description\">
                             Nous sommes deux passionnés de musculation et de fitness, offrant des conseils,
-                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.</p>
+                            des programmes d'entraînement et du contenu motivant pour aider chacun à atteindre ses objectifs de force et de condition physique.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class=\"col-md-5 offset-md-2\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"{{ path('app_suivis_index') }}\" class=\"stretched-link\"></a>
                     <img src=\"{{ asset('assets/image/nutri.jpg') }}\" alt=\"nutrition\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Nos suivis</h1>
                         <p class=\"card__description\">
-                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
+                            Chez Strength Mate, nous vous accompagnons avec des suivis personnalisés pour optimiser
                             vos performances. Plans d'entraînement, conseils nutritionnels et motivation :
-                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.</p>
+                            tout est conçu pour vous aider à atteindre vos objectifs efficacement.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -244,24 +269,27 @@ class __TwigTemplate_273c39d177d73b2019570d82011b13e8 extends Template
 
         <div class=\"row\" style=\"margin-bottom: 200px;\">
             <div class=\"col-md-5\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
+                <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                    <a href=\"{{ path('app_temoignages_index') }}\" class=\"stretched-link\"></a>
                     <img src=\"{{ asset('assets/image/avis.jpg') }}\" alt=\"avis\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Témoignages</h1>
                         <p class=\"card__description\">
-                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
+                            Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class=\"col-md-5 offset-md-2\">
-                <div class=\"card\" style=\"width: 450px; height: 300px;\">
-                    <img src=\"{{ asset('assets/image/contact.jpg') }}\" alt=\"contact\">
-                    <div class=\"card__content\">
-                        <h1 class=\"card__title\">Contact</h1>
-                        <p class=\"card__description\">
-                            Une question ou besoin d’un suivi ?
-                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
-                    </div>
+        <div class=\"col-md-5 offset-md-2\">
+            <div class=\"card position-relative\" style=\"width: 450px; height: 300px;\">
+                <a href=\"{{ path('app_contact_index') }}\" class=\"stretched-link\"></a>
+                <img src=\"{{ asset('assets/image/contact.jpg') }}\" alt=\"contact\">
+                <div class=\"card__content\">
+                    <h1 class=\"card__title\">Contact</h1>
+                    <p class=\"card__description\">
+                        Une question ou besoin d’un suivi ?
+                        Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.
+                    </p>
                 </div>
             </div>
         </div>

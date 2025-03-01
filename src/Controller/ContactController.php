@@ -31,11 +31,85 @@ final class ContactController extends AbstractController
                     ->from('contact@strength.fr')
                     ->to('anthony.gevers@lapiscine.pro')
                     ->subject('Nouvelle demande de contact')
-                    ->html("<h2>Nouvelle demande de contact</h2>
-                        <p><strong>Nom :</strong> {$contact->getName()}</p>
-                        <p><strong>Email :</strong> {$contact->getEmail()}</p>
-                        <p><strong>Téléphone :</strong> {$contact->getPhone()}</p>
-                        <p><strong>Message :</strong><br>{$contact->getContent()}</p>");
+                    ->html(
+                        '<html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #151515;
+                        color: #f5c827;
+                        margin: 0;
+                        padding: 0;
+                        height: 100vh;
+                        width: 100vw;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .email-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                    }
+                    .email-container {
+                        max-width: 600px;
+                        width: 100%;
+                        background-color: #151515;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgb(245,200,39);
+                        text-align: center;
+                    }
+                    h2 {
+                        color: #f5c827;
+                        text-align: center;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+                    td {
+                        padding: 10px;
+                        border-bottom: 1px solid #ddd;
+                        text-align: left;
+                    }
+                    .label {
+                        font-weight: bold;
+                        color: #f5c827;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="email-wrapper">
+                    <div class="email-container">
+                        <h2>Nouveau message de contact</h2>
+                        <table>
+                            <tr>
+                                <td class="label">Nom :</td>
+                                <td>' . htmlspecialchars($contact->getName()) . '</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Email :</td>
+                                <td>' . htmlspecialchars($contact->getEmail()) . '</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Téléphone :</td>
+                                <td>' . htmlspecialchars($contact->getPhone()) . '</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Message :</td>
+                                <td>' . nl2br(htmlspecialchars($contact->getContent())) . '</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </body>
+        </html>'
+
+            );
 
                 $mailer->send($email);
                 $logger->info('Email envoyé avec succès.');
