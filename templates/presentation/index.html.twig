@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PresentationController!{% endblock %}
+{% block metatitle %}Présentations | Strengthmate{% endblock %}
 
 {% block body %}
-
+    <div class="container mt-5">
+        <div class="row">
+            {% for presentation in presentations %}
+                <div class="col-md-4 mb-4">
+                    <div class="card admin-card h-100 w-100">
+                        {% if presentation.image %}
+                            <img src="{{ asset('uploads/presentations/' ~ presentation.image) }}" class="card-img-top" alt="{{ presentation.title }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ presentation.title }}</h5>
+                            <p class="card-text">{{ presentation.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center">Aucune présentation disponible pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

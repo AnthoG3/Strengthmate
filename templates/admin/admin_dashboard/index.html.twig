@@ -21,7 +21,7 @@
 
         <!-- Section Présentations -->
         <h2 class="mb-3">Présentations</h2>
-        <a href="{{ path('app_admin_entity_create', {'entityType': 'presentation'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter une nouvelle présentation</a>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'presentation'}) }}" class="btn btn-warning mb-3 btn-block">Ajouter une nouvelle présentation</a>
         <div class="row">
             {% for presentation in presentations %}
                 <div class="col-md-4 mb-4">
@@ -32,12 +32,14 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ presentation.title }}</h5>
                             <div class="mt-auto">
-                                <a href="{{ path('app_admin_entity_show', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
-                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
-                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'presentation', 'id': presentation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette présentation ?');" style="display: inline-block;">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ presentation.id) }}">
-                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
-                                </form>
+                                {% if presentation.id %}
+                                    <a href="{{ path('app_admin_entity_show', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-warning mb-2 btn-block voir-plus">Voir plus</a>
+                                    <a href="{{ path('app_admin_entity_edit', {'entityType': 'presentation', 'id': presentation.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                    <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'presentation', 'id': presentation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette présentation ?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ presentation.id) }}">
+                                        <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -47,7 +49,7 @@
 
         <!-- Section Suivis -->
         <h2 class="mb-3">Suivis</h2>
-        <a href="{{ path('app_admin_entity_create', {'entityType': 'suivis'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter un nouveau suivi</a>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'suivis'}) }}" class="btn btn-warning mb-3 btn-block">Ajouter un nouveau suivi</a>
         <div class="row">
             {% for suivis in suivis %}
                 <div class="col-md-4 mb-4">
@@ -55,12 +57,14 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ suivis.title }}</h5>
                             <div class="mt-auto">
-                                <a href="{{ path('app_admin_entity_show', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
-                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
-                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'suivis', 'id': suivis.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce suivi ?');" style="display: inline-block;">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ suivis.id) }}">
-                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
-                                </form>
+                                {% if suivis.id %}
+                                    <a href="{{ path('app_admin_entity_show', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-warning mb-2 btn-block voir-plus">Voir plus</a>
+                                    <a href="{{ path('app_admin_entity_edit', {'entityType': 'suivis', 'id': suivis.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                    <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'suivis', 'id': suivis.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce suivi ?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ suivis.id) }}">
+                                        <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -70,7 +74,7 @@
 
         <!-- Section Témoignages -->
         <h2 class="mb-3">Témoignages</h2>
-        <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-primary mb-3 btn-block">Ajouter un nouveau témoignage</a>
+        <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-warning mb-3 btn-block">Ajouter un nouveau témoignage</a>
         <div class="row">
             {% for temoignage in temoignages %}
                 <div class="col-md-4 mb-4">
@@ -78,12 +82,14 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ temoignage.title }}</h5>
                             <div class="mt-auto">
-                                <a href="{{ path('app_admin_entity_show', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-primary mb-2 btn-block voir-plus">Voir plus</a>
-                                <a href="{{ path('app_admin_entity_edit', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
-                                <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'temoignages', 'id': temoignage.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?');" style="display: inline-block;">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ temoignage.id) }}">
-                                    <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
-                                </form>
+                                {% if temoignage.id %}
+                                    <a href="{{ path('app_admin_entity_show', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-warning mb-2 btn-block voir-plus">Voir plus</a>
+                                    <a href="{{ path('app_admin_entity_edit', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-secondary mb-2 btn-block">Modifier</a>
+                                    <form method="post" action="{{ path('app_admin_entity_delete', {'entityType': 'temoignages', 'id': temoignage.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ temoignage.id) }}">
+                                        <button type="submit" class="btn btn-danger mb-2 btn-block">Supprimer</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

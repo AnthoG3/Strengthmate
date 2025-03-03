@@ -1,30 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block metatitle %}Ajouter | Strengthmate{% endblock %}
+{% block metatitle %}Ajouter un article | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h1>{{ title|default('Ajouter') }}</h1>
-            </div>
+        <h1 class="mb-4 text-center">Ajouter un article</h1>
+
+        <!-- Affichage des messages flash (erreurs/succès) -->
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label == 'error' ? 'danger' : label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <!-- Formulaire dans une grande carte -->
+        <div class="card card-large">
             <div class="card-body">
+                <h2 class="text-center mb-4">Nouveau {{ entity_type | capitalize }}</h2>
                 {{ form_start(form) }}
-                {% for field in form %}
-                    {% if field.vars.name != '_token' %}
-                        <div class="mb-3">
-                            {{ form_label(field) }}
-                            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(field) }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-success">Enregistrer</button>
-                <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">Annuler</a>
+                <div class="mb-3">
+                    {{ form_label(form.title, 'Titre de l\'article', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.content, 'Contenu', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '6'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.image, 'Image', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3">Enregistrer</button>
                 {{ form_end(form) }}
             </div>
+        </div>
+
+        <!-- Bouton retour au dashboard -->
+        <div class="text-center mt-4">
+            <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
         </div>
     </div>
 {% endblock %}

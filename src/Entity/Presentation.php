@@ -19,7 +19,7 @@ class Presentation
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     public function getId(): ?int
@@ -30,7 +30,6 @@ class Presentation
     public function setId(int $id): static
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -42,7 +41,6 @@ class Presentation
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -54,7 +52,6 @@ class Presentation
     public function setContent(string $content): static
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -63,10 +60,9 @@ class Presentation
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
-
         return $this;
     }
 }

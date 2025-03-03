@@ -305,6 +305,90 @@ h1 {
   transform: scale(2.05);
 }
 
+.card-large {
+  width: 80%; /* Augmente la largeur de la carte */
+  max-width: 800px; /* Définit une largeur maximale */
+  height: auto; /* Permet une hauteur dynamique */
+  min-height: 400px; /* Assure une certaine hauteur minimale */
+  padding: 20px; /* Ajoute un peu d’espace intérieur */
+  margin: 20px auto; /* Centre la carte horizontalement */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour du relief */
+}
+
+.card-large .card-body {
+  padding: 30px; /* Augmente l'espace à l'intérieur du corps de la carte */
+}
+
+/* Style pour agrandir la carte de connexion */
+.admin-login-card {
+  width: 7vh; /* Largeur ajustée */
+  height: auto;
+  padding: 2rem; /* Espacement interne */
+  background-color: rgba(248, 219, 90, 0.9); /* Couleur similaire au formulaire de contact */
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Centre la carte au milieu de la page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120vh; /* Hauteur de la page */
+  width: 100vw;
+}
+
+/* Ajustement des champs */
+.admin-login-card .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.admin-login-card input {
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+/* Bouton de connexion stylisé */
+.admin-login-card button {
+  width: 100%;
+  padding: 0.8rem;
+  font-weight: bold;
+  background-color: #000;
+  color: #f8db5a;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.admin-login-card button:hover {
+  background-color: #f8db5a;
+  color: #000;
+}
+
+/* Style général des boutons */
+.admin-dashboard .btn {
+  background-color: #f8db5a !important; /* Jaune */
+  color: #000 !important; /* Texte en noir */
+  border: none !important;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Effet au survol */
+.admin-dashboard .btn:hover {
+  background-color: #e5c14d !important; /* Jaune plus foncé */
+  color: #000 !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Boutons en plein écran (si besoin) */
+.admin-dashboard .btn-block {
+  width: 100%;
+}
+
 footer {
   background-color: transparent !important; /* Suppression de la couleur de fond */
   color: white; /* Assurez-vous que le texte reste visible */

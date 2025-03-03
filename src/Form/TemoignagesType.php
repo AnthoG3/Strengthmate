@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Temoignages;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class TemoignagesType extends AbstractType
 {
@@ -14,8 +16,18 @@ class TemoignagesType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('image')
-        ;
+            ->add('image', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Image',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'],
+                        'mimeTypesMessage' => 'Veuillez uploader une image valide (JPG, PNG, GIF)',
+                    ])
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
