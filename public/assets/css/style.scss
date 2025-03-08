@@ -1,35 +1,43 @@
+/* ==========================================================================
+   Général
+   ========================================================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: "Roboto slab";
+  font-family: "Roboto slab", sans-serif;
   color: #ffffff;
   background-image: url("../image/dark.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  image-rendering: auto; /* Valeur par défaut */
+  image-rendering: auto;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;  /* Largeur maximale du conteneur */
-  margin: 0 auto;     /* Centrage horizontal */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .home_wall {
   position: relative;
-  width: 35vw;       /* Largeur presque égale à la largeur de la fenêtre */
+  width: 35vw;
   height: auto;
-  background-attachment: fixed; /* Fixation de l'image d'arrière-plan */
-  display: block;    /* Convertit l'image en bloc */
-  margin: 0 auto;    /* Centre horizontalement l'image */
+  background-attachment: fixed;
+  display: block;
+  margin: 0 auto;
   padding: 0;
 }
 
-/* From Uiverse.io by doniaskima */
+/* ==========================================================================
+   Boutons
+   ========================================================================== */
+
 .btn-17,
 .btn-17 *,
 .btn-17 :after,
@@ -163,10 +171,13 @@ body {
   --progress: -102%;
 }
 
-/* Styles pour la barre de navigation */
+/* ==========================================================================
+   Barre de navigation
+   ========================================================================== */
+
 .navbar-nav {
   display: flex;
-  align-items: center;  /* Alignement vertical des éléments */
+  align-items: center;
   background-color: transparent;
 }
 
@@ -181,49 +192,56 @@ body {
   padding-right: 0;
 }
 
-/* Espacement entre les éléments de navigation */
 .navbar-nav .nav-item {
   margin-right: 2em;
   align-items: center;
 }
 
-/* Styles pour les liens dans la barre de navigation */
 .nav-link {
   display: flex;
-  align-items: center;  /* Alignement vertical des éléments */
+  align-items: center;
   font-size: 1em;
   color: #ffffff;
 }
 
-/* Icône dans les éléments de navigation */
 .nav-icon {
   height: 2em;
   width: auto;
-  margin-right: 0.3em;  /* Espacement à droite de l'icône */
+  margin-right: 0.3em;
 }
+
+/* ==========================================================================
+   Titres
+   ========================================================================== */
 
 h1 {
-  text-align: center;  /* Centrer le texte */
+  text-align: center;
   font-family: "Bangers", sans-serif;
   font-size: 2em;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
+/* ==========================================================================
+   Cartes
+   ========================================================================== */
+
+/* Styles pour la carte personnalisée */
 .card-custom {
-  background-color: rgba(248, 219, 90, 0.68); /* Couleur de fond de la card */
-  color: #000000; /* Couleur par défaut du texte */
-  border: none; /* Retirer la bordure par défaut */
+  background-color: rgba(248, 219, 90, 0.68);
+  color: #000000;
+  border: none;
 }
 
 .card-custom .card-title {
-  color: #000000; /* Couleur du titre */
+  color: #000000;
 }
 
 .card-custom .card-text {
-  font-size: 1rem; /* Taille de police pour le texte */
+  font-size: 1rem;
 }
 
-/* --- Nouveau composant Card --- */
-/* From Uiverse.io by gharsh11032000 */
+/* Styles pour la nouvelle carte */
 .card {
   position: relative;
   width: 300px;
@@ -292,6 +310,7 @@ h1 {
   object-fit: cover;
 }
 
+/* Styles pour le lien de la carte */
 .card-link {
   text-decoration: none;
   color: inherit;
@@ -304,39 +323,41 @@ h1 {
 .card-link:hover .card {
   transform: scale(2.05);
 }
+
+/* Styles pour la carte large */
 .card-large {
-  width: 80%; /* Augmente la largeur de la carte */
-  max-width: 800px; /* Définit une largeur maximale */
-  height: auto; /* Permet une hauteur dynamique */
-  min-height: 400px; /* Assure une certaine hauteur minimale */
-  padding: 20px; /* Ajoute un peu d’espace intérieur */
-  margin: 20px auto; /* Centre la carte horizontalement */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour du relief */
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  min-height: 400px;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card-large .card-body {
-  padding: 30px; /* Augmente l'espace à l'intérieur du corps de la carte */
+  padding: 30px;
 }
-/* Style pour agrandir la carte de connexion */
+
+/* Styles pour la carte de connexion admin */
 .admin-login-card {
-  width: 7vh;  /* Largeur ajustée */
+  width: 7vh;
   height: auto;
-  padding: 2rem; /* Espacement interne */
-  background-color: rgba(248, 219, 90, 0.9); /* Couleur similaire au formulaire de contact */
+  padding: 2rem;
+  background-color: rgba(248, 219, 90, 0.9);
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Centre la carte au milieu de la page */
+/* Conteneur de connexion */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120vh; /* Hauteur de la page */
+  height: 120vh;
   width: 100vw;
 }
 
-/* Ajustement des champs */
 .admin-login-card .form-group {
   margin-bottom: 1.5rem;
 }
@@ -347,7 +368,6 @@ h1 {
   font-size: 1rem;
 }
 
-/* Bouton de connexion stylisé */
 .admin-login-card button {
   width: 100%;
   padding: 0.8rem;
@@ -362,12 +382,39 @@ h1 {
 .admin-login-card button:hover {
   background-color: #f8db5a;
   color: #000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Style général des boutons */
+/* ==========================================================================
+   Tableau de bord admin
+   ========================================================================== */
+
+.admin-dashboard {
+  background-color: transparent !important;
+  color: #020202;
+  padding: 20px;
+}
+
+.admin-dashboard .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-dashboard h1, .admin-dashboard h2 {
+  color: #F8DB5AFF;
+}
+
+.admin-dashboard .table {
+  color: #F8DB5AFF;
+}
+
 .admin-dashboard .btn {
-  background-color: #f8db5a !important; /* Jaune */
-  color: #000 !important; /* Texte en noir */
+  background-color: #F8DB5AFF !important;
+  color: #030303FF !important;
   border: none !important;
   font-weight: bold;
   padding: 10px 15px;
@@ -375,24 +422,30 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
-/* Effet au survol */
 .admin-dashboard .btn:hover {
-  background-color: #e5c14d !important; /* Jaune plus foncé */
-  color: #000 !important;
+  background-color: #e5c14d !important;
+  color: #030303FF !important;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Boutons en plein écran (si besoin) */
 .admin-dashboard .btn-block {
   width: 100%;
 }
 
-
+/* ==========================================================================
+   Pied de page
+   ========================================================================== */
 
 footer {
-  background-color: transparent !important; /* Suppression de la couleur de fond */
-  color: white; /* Assurez-vous que le texte reste visible */
+  background-color: transparent !important;
+  color: white;
 }
+
+/* ==========================================================================
+   Formulaires
+   ========================================================================== */
+
+/* Styles généraux du formulaire */
 .form {
   display: flex;
   flex-direction: column;
@@ -426,27 +479,27 @@ footer {
   background-color: #171717;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
   margin-bottom: 1.2em;
-  width: 90%; /* ✅ Réduit légèrement la largeur des champs */
-  max-width: 90%; /* ✅ Fixe une limite pour ne pas être trop larges */
-  margin-left: auto; /* ✅ Centre le champ */
-  margin-right: auto; /* ✅ Centre le champ */
+  width: 90%;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .input-field {
   background: none;
   border: none;
   outline: none;
-  width: 100%; /* ✅ Garde la largeur ajustée au parent `.form-field` */
+  width: 100%;
   color: #ccd6f6;
-  padding-inline: 1em; /* ✅ Ajuste l’espace interne */
+  padding-inline: 1em;
 }
 
-
+/* Styles pour le bouton d'envoi de message */
 .sendMessage-btn {
   cursor: pointer;
-  margin-top: 1em; /* Espacement au-dessus */
-  margin-bottom: 3em; /* Espacement en dessous */
-  padding: 0.8em 2.5em; /* 🔽 Ajustement du padding pour une largeur idéale */
+  margin-top: 1em;
+  margin-bottom: 3em;
+  padding: 0.8em 2.5em;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -455,10 +508,10 @@ footer {
   font-weight: bold;
   outline: 1px solid #f8db5a;
   transition: all ease-in-out 0.3s;
-  width: fit-content; /* ✅ Ajuste automatiquement la largeur en fonction du texte */
-  display: block; /* ✅ Permet d’utiliser margin auto pour le centrer */
-  margin-left: auto; /* ✅ Centre le bouton */
-  margin-right: auto; /* ✅ Centre le bouton */
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
@@ -470,15 +523,15 @@ footer {
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
+/* Styles pour les cartes de formulaire */
 .form-card1 {
-background-color: #f8db5a;
-border-radius: 22px;
+  background-color: #f8db5a;
+  border-radius: 22px;
   transition: all 0.3s;
   position: relative;
   padding-top: 0;
   margin-top: 0;
 }
-
 
 .form-card1:hover {
   box-shadow: 0px 0px 30px 1px rgb(245, 200, 39);
@@ -494,13 +547,17 @@ border-radius: 22px;
   border-radius: 20px;
 }
 
+/* ==========================================================================
+   Messages Flash
+   ========================================================================== */
+
 .flash-container {
   width: 100%;
   display: flex;
-  justify-content: center; /* Centre le message flash horizontalement */
-  align-items: center; /* Centre verticalement */
-  position: relative; /* Garde le message bien en place */
-  margin: 0; /* Supprime les marges pour un centrage optimal */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
 }
 
 .flash {
@@ -509,9 +566,8 @@ border-radius: 22px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* ✅ Centrage sans ajouter trop d’espace autour */
-  padding: 2em 1em; /* Augmente l'espace interne pour baisser le texte */
-
+  margin: 0 auto;
+  padding: 2em 1em;
 }
 
 .flash-success {
@@ -527,7 +583,185 @@ border-radius: 22px;
 }
 
 .flash p {
-  margin-top: 0.5em; /* Décale légèrement le texte vers le bas */
+  margin-top: 0.5em;
 }
 
+/* ==========================================================================
+   Témoignages
+   ========================================================================== */
 
+#wall_avis {
+  margin-left: 13em;
+  width: 50em;
+  height: auto;
+}
+
+/* Carrousel de témoignages */
+.slider-temoignages {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  padding: 50px 0;
+}
+
+.list-temoignages {
+  display: flex;
+  gap: 15px;
+  width: fit-content;
+  animation: slideTemoignages 30s linear infinite;
+}
+
+.item-temoignage {
+  flex: 0 0 auto;
+  width: 250px;
+  height: auto;
+  background-color: #f8db5a;
+  color: #030303;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 50px;
+  text-align: center;
+}
+
+.card-temoignage img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+@keyframes slideTemoignages {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slider-temoignages:hover .list-temoignages {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   Étoiles d'évaluation
+   ========================================================================== */
+
+/* Styles pour le formulaire d'évaluation */
+.rating {
+  display: inline-block;
+  direction: rtl; /* Pour que les étoiles soient en ordre inverse */
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.rating input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #f5c827;
+}
+
+/* Correction du style des étoiles */
+.rating input:checked + label:hover,
+.rating input:checked ~ label:hover,
+.rating label:hover ~ input:checked ~ label,
+.rating input:checked ~ label:hover ~ label {
+  color: #f5c827;
+}
+
+/* Styles pour l'affichage des étoiles dans le dashboard et la page des témoignages */
+.stars svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: #f5c827;
+}
+
+.stars svg:not(:last-child) {
+  margin-right: 0.25rem;
+}
+
+/* NOUVEAUX STYLES POUR LE BLOCK TEMOIGNAGE (Uiverse.io) */
+.block-temoignage {
+  background-color: rgba(47, 47, 47, 0.79);
+  padding: 2rem;
+  max-width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 20px 30px -20px rgb(245, 200, 39);
+  margin: 10px;
+  text-align: center;
+}
+
+.block-temoignage .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.block-temoignage .image {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  background-image: url("../image/logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0.5rem;
+}
+
+.block-temoignage .stars {
+  display: flex;
+  justify-content: center;
+  grid-gap: 0.125rem;
+  gap: 0.125rem;
+  color: #f5c827;
+}
+
+.block-temoignage .stars svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.block-temoignage .name {
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(245, 200, 39);
+}
+
+.block-temoignage .message {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  margin-top: 1rem;
+  color: rgba(107, 114, 128, 1);
+}
+
+/* correction pour centrer les étoiles */
+.block-temoignage .stars {
+  display: flex;
+  justify-content: center;
+}
+
+.block-temoignage .stars svg {
+  height: 1em;
+  width: 1em;
+  margin: 0 2px;
+}

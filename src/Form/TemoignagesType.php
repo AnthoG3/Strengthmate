@@ -4,30 +4,31 @@ namespace App\Form;
 
 use App\Entity\Temoignages;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
 
 class TemoignagesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('content')
-            ->add('image', FileType::class, [
-                'mapped' => false,
-                'required' => false,
-                'label' => 'Image',
-                'constraints' => [
-                    new File([
-                        'maxSize' => '5M',
-                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'],
-                        'mimeTypesMessage' => 'Veuillez uploader une image valide (JPG, PNG, GIF)',
-                    ])
-                ],
-            ]);
+            ->add('title', TextType::class, [
+                'label' => 'Titre'
+            ])
+            ->add('content', TextareaType::class, [
+                'label' => 'Contenu'
+            ])
+            ->add('rating', IntegerType::class, [
+                'label' => 'Note',
+                'attr' => [
+                    'min' => 1,
+                    'max' => 5
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

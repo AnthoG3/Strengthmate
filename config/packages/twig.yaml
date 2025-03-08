@@ -3,6 +3,8 @@ twig:
     # Par défaut, Twig chargera uniquement les fichiers dont le nom correspond à ce modèle.
     # Ici, tous les fichiers avec l'extension ".twig" seront pris en compte.
     file_name_pattern: '*.twig'
+    debug: false
+
 
 when@test:
     twig:

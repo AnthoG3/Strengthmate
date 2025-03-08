@@ -14,9 +14,8 @@ class AdminLoginController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
         if ($this->getUser()) {
-            dd('Connecté en tant que : ', $this->getUser());
+            return $this->redirectToRoute('app_admin_dashboard');
         }
-
 
         // Gestion des erreurs d'authentification
         $error = $authenticationUtils->getLastAuthenticationError();

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block metatitle %}Strength mate{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -8,7 +8,6 @@
     <img class="home_wall" src="{{ asset('assets/image/logo.png') }}" alt="logo.accueil">
 
     <div class="cards-wrapper mx-auto" style="max-width: 1000px;">
-
         <div class="row" style="margin-bottom: 200px;">
             <div class="col-md-5">
                 <div class="card position-relative" style="width: 450px; height: 300px;">
@@ -53,19 +52,19 @@
                     </div>
                 </div>
             </div>
-        <div class="col-md-5 offset-md-2">
-            <div class="card position-relative" style="width: 450px; height: 300px;">
-                <a href="{{ path('app_contact_index') }}" class="stretched-link"></a>
-                <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact">
-                <div class="card__content">
-                    <h1 class="card__title">Contact</h1>
-                    <p class="card__description">
-                        Une question ou besoin d’un suivi ?
-                        Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.
-                    </p>
+            <div class="col-md-5 offset-md-2">
+                <div class="card position-relative" style="width: 450px; height: 300px;">
+                    <a href="{{ path('app_contact_index') }}" class="stretched-link"></a>
+                    <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact">
+                    <div class="card__content">
+                        <h1 class="card__title">Contact</h1>
+                        <p class="card__description">
+                            Une question ou besoin d'un suivi ?
+                            Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 {% endblock %}

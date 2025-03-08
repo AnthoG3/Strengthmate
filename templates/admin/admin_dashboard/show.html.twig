@@ -14,7 +14,7 @@
 
         <div class="card form-card1 p-3">
             {% if entity.image %}
-                <img src="{{ asset('uploads/' ~ (entity_type is defined ? entity_type ~ 's/' : '') ~ entity.image) }}"
+                <img src="{{ asset('uploads/' ~ entity_type ~ 's/' ~ entity.image) }}"
                      class="card-img-top rounded mx-auto d-block"
                      style="max-width: 100%; height: auto;"
                      alt="{{ entity.title }}">
@@ -23,10 +23,12 @@
                 <h5 class="card-title text-center">{{ entity.title }}</h5>
                 <p class="card-text formatted-content">{{ entity.content|raw }}</p>
 
-                {% if entity.createdAt is defined and entity.createdAt %}
-                    <p class="card-text">
-                        <small class="text-muted">Créé le : {{ entity.createdAt|date('d/m/Y') }}</small>
-                    </p>
+                {% if entity_type == 'temoignages' %}
+                    <div class="rating text-center">
+                        {% for i in 1..5 %}
+                            <span class="star {% if i <= entity.rating %}filled{% endif %}">★</span>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             </div>
         </div>

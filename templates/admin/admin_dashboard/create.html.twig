@@ -1,49 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block metatitle %}Ajouter un article | Strengthmate{% endblock %}
+{% block metatitle %}Ajouter un {{ entity_type }} | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 class="mb-4 text-center">Ajouter un article</h1>
+        <h1 class="mb-4 text-center">Ajouter un {{ entity_type }}</h1>
 
-        <!-- Affichage des messages flash (erreurs/succès) -->
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label == 'error' ? 'danger' : label }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endfor %}
-
-        <!-- Formulaire dans une grande carte -->
-        <div class="card card-large">
+        <!-- Conteneur noir -->
+        <div class="card card-large bg-dark text-white">
             <div class="card-body">
-                <h2 class="text-center mb-4">Nouveau {{ entity_type | capitalize }}</h2>
+                <h2 class="text-center mb-4">Nouveau {{ entity_type }}</h2>
                 {{ form_start(form) }}
+
+                <!-- Champ Titre -->
                 <div class="mb-3">
-                    {{ form_label(form.title, 'Titre de l\'article', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
                     {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                 </div>
 
+                <!-- Champ Contenu -->
                 <div class="mb-3">
                     {{ form_label(form.content, 'Contenu', {'label_attr': {'class': 'form-label'}}) }}
                     {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '6'}}) }}
                 </div>
 
+                <!-- Champ Évaluation (Étoiles) -->
                 <div class="mb-3">
-                    {{ form_label(form.image, 'Image', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                    <div class="rating-container">
+                        <div class="rating">
+                            {% for i in 5..1 %}
+                                <input value="{{ i }}"
+                                       name="{{ form.rating.vars.full_name }}"
+                                       id="star{{ i }}"
+                                       type="radio"
+                                       {% if form.rating.vars.value is defined and form.rating.vars.value == i %}checked{% endif %}>
+                                <label for="star{{ i }}"></label>
+                            {% endfor %}
+                        </div>
+                        {{ form_widget(form.rating, { 'attr': {'id': 'rating-value', 'class': 'd-none'} }) }}
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mt-3">Enregistrer</button>
+                <!-- Bouton Enregistrer -->
+                <button type="submit" class="btn btn-warning w-100 mt-3">Enregistrer</button>
                 {{ form_end(form) }}
             </div>
         </div>
-
-        <!-- Bouton retour au dashboard -->
-        <div class="text-center mt-4">
-            <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
-        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ratingInputs = document.querySelectorAll('.rating input');
+            const hiddenRating = document.getElementById('rating-value');
+
+            ratingInputs.forEach(input => {
+                input.addEventListener("change", function () {
+                    hiddenRating.value = this.value;
+                });
+            });
+        });
+    </script>
 {% endblock %}

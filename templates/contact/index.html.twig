@@ -3,8 +3,6 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-
-    <!-- ✅ Message Flash bien placé juste au-dessus du formulaire -->
     <div class="flash-container">
         {% for label, messages in app.flashes %}
             <div class="flash flash-{{ label }}">
@@ -46,5 +44,4 @@
             </form>
         </div>
     </div>
-
 {% endblock %}

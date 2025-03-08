@@ -16,22 +16,15 @@ class Temoignages
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $rating = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -39,10 +32,9 @@ class Temoignages
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -51,22 +43,20 @@ class Temoignages
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getRating(): ?int
     {
-        return $this->image;
+        return $this->rating;
     }
 
-    public function setImage(string $image): static
+    public function setRating(?int $rating): self
     {
-        $this->image = $image;
-
+        $this->rating = $rating;
         return $this;
     }
 }
