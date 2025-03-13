@@ -3,46 +3,54 @@
 {% block metatitle %}Détails - {{ entity.title }} | Strengthmate{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">
-            {{ entity_type is defined ? entity_type|capitalize : 'Élément' }} - {{ entity.title }}
-        </h1>
+    <div class="container">
+        <h1 class="mb-4 text-center">Détails du {{ entity_type }}</h1>
 
-        <div class="text-center mb-4">
-            <a href="{{ path('app_admin_dashboard') }}" class="btn btn-warning">Retour au tableau de bord</a>
-        </div>
-
-        <div class="card form-card1 p-3">
-            {% if entity.image %}
-                <img src="{{ asset('uploads/' ~ entity_type ~ 's/' ~ entity.image) }}"
-                     class="card-img-top rounded mx-auto d-block"
-                     style="max-width: 100%; height: auto;"
-                     alt="{{ entity.title }}">
-            {% endif %}
+        <div class="card card-large bg-dark text-white">
             <div class="card-body">
-                <h5 class="card-title text-center">{{ entity.title }}</h5>
-                <p class="card-text formatted-content">{{ entity.content|raw }}</p>
+                <h2 class="text-center mb-4">{{ entity.title }}</h2>
+
+                {% if entity_type != 'temoignages' and entity is defined and attribute(entity, 'image') is defined %}
+                    <img src="{{ asset('uploads/' ~ entity_type ~ 's/' ~ attribute(entity, 'image')) }}"
+                         class="card-img-top rounded mx-auto d-block mb-4"
+                         style="max-width: 100%; height: auto;"
+                         alt="{{ entity.title }}">
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label">Titre</label>
+                    <input type="text" class="form-control" value="{{ entity.title }}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contenu</label>
+                    <div class="form-control" style="white-space: pre-line;" readonly>{{ entity.content }}</div>
+                </div>
 
                 {% if entity_type == 'temoignages' %}
-                    <div class="rating text-center">
-                        {% for i in 1..5 %}
-                            <span class="star {% if i <= entity.rating %}filled{% endif %}">★</span>
-                        {% endfor %}
+                    <div class="mb-3 rating-container">
+                        <label class="form-label">Note</label>
+                        <div class="rating-dashboard">
+                            {% for i in 1..5 %}
+                                <span class="star {% if i <= entity.rating %}filled{% endif %}">★</span>
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endif %}
-            </div>
-        </div>
 
-        <div class="d-flex justify-content-center mt-4 gap-3">
-            <a href="{{ path('app_admin_entity_edit', {'entityType': entity_type, 'id': entity.id}) }}" class="btn btn-primary">
-                Modifier
-            </a>
-            <form action="{{ path('app_admin_entity_delete', {'entityType': entity_type, 'id': entity.id}) }}" method="post" style="display:inline;">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entity.id) }}">
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
-                    Supprimer
-                </button>
-            </form>
+                <div class="d-flex justify-content-around mt-4">
+                    <a href="{{ path('app_admin_entity_edit', {'entityType': entity_type, 'id': entity.id}) }}" class="btn btn-warning mx-3">Modifier</a>
+
+                    <form action="{{ path('app_admin_entity_delete', {'entityType': entity_type, 'id': entity.id}) }}" method="post"
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entity.id) }}">
+                        <button class="btn btn-danger mx-3">Supprimer</button>
+                    </form>
+
+                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mx-3">Retour au tableau de bord</a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -7,49 +7,8 @@
         <div class="container mt-5">
             <h1 class="text-center mb-4">Tableau de bord administrateur</h1>
 
-            <!-- Section Témoignages -->
-            <h2 class="mb-3">Témoignages</h2>
-            <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-success mb-3">Ajouter un témoignage</a>
-            <table class="table table-dark table-striped">
-                <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Contenu</th>
-                    <th class="align-middle text-center">Note</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for temoignage in temoignages %}
-                    <tr>
-                        <td>{{ temoignage.title }}</td>
-                        <td>{{ temoignage.content|slice(0, 50) }}...</td>
-                        <td class="text-center">
-                            <div class="rating-dashboard">
-                                {% for i in 1..5 %}
-                                    <span class="star {{ i <= temoignage.rating ? 'filled' : '' }}">★</span>
-                                {% endfor %}
-                            </div>
-                        </td>
-                        <td>
-                            <a href="{{ path('app_admin_entity_show', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-sm btn-info">Voir</a>
-                            <a href="{{ path('app_admin_entity_edit', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
-                            <form action="{{ path('app_admin_entity_delete', {'entityType': 'temoignages', 'id': temoignage.id}) }}" method="post" style="display:inline;">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ temoignage.id) }}">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?');">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="text-center">Aucun témoignage disponible.</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
             <!-- Section Présentations -->
-            <h2 class="mt-5 mb-3">Présentations</h2>
+            <h2 class="mb-3 text-start">Présentations</h2>
             <a href="{{ path('app_admin_entity_create', {'entityType': 'presentation'}) }}" class="btn btn-success mb-3">Ajouter une présentation</a>
             <table class="table table-dark table-striped">
                 <thead>
@@ -82,7 +41,7 @@
             </table>
 
             <!-- Section Suivis -->
-            <h2 class="mt-5 mb-3">Suivis</h2>
+            <h2 class="mt-5 mb-3 text-start">Suivis</h2>
             <a href="{{ path('app_admin_entity_create', {'entityType': 'suivis'}) }}" class="btn btn-success mb-3">Ajouter un suivi</a>
             <table class="table table-dark table-striped">
                 <thead>
@@ -109,6 +68,48 @@
                 {% else %}
                     <tr>
                         <td colspan="3" class="text-center">Aucun suivi disponible.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Section Témoignages -->
+            <h2 class="mt-5 mb-3 text-start">Témoignages</h2>
+            <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-success mb-3">Ajouter un témoignage</a>
+            <table class="table table-dark table-striped">
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th class="align-middle text-center">Note</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for temoignage in temoignages %}
+                    <tr>
+                        <td>{{ temoignage.title }}</td>
+                        <td>{{ temoignage.content|slice(0, 50) }}...</td>
+                        <td class="text-center">
+                            <div class="rating">
+                                {% for i in 5..1 %}
+                                    <input type="radio" id="star{{ temoignage.id }}_{{ i }}" name="rating[{{ temoignage.id }}]" value="{{ i }}" {% if i == temoignage.rating %}checked{% endif %} disabled/>
+                                    <label for="star{{ temoignage.id }}_{{ i }}" title="{{ i }} stars">★</label>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{{ path('app_admin_entity_show', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-sm btn-info">Voir</a>
+                            <a href="{{ path('app_admin_entity_edit', {'entityType': 'temoignages', 'id': temoignage.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                            <form action="{{ path('app_admin_entity_delete', {'entityType': 'temoignages', 'id': temoignage.id}) }}" method="post" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ temoignage.id) }}">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?');">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">Aucun témoignage disponible.</td>
                     </tr>
                 {% endfor %}
                 </tbody>

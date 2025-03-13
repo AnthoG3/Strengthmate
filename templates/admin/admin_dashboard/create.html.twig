@@ -1,19 +1,15 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block metatitle %}Ajouter un {{ entity_type }} | Strengthmate{% endblock %}
+{% set entity_type_display = entity_type is defined ? entity_type : 'Entité' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-{% endblock %}
+{% block metatitle %}Créer - {{ entity_type_display }} | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 class="mb-4 text-center">Ajouter un {{ entity_type }}</h1>
+        <h1 class="mb-4 text-center">Créer {{ entity_type_display }}</h1>
 
         <div class="card card-large bg-dark text-white">
             <div class="card-body">
-                <h2 class="text-center mb-4">Nouveau {{ entity_type }}</h2>
-
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
                 <div class="mb-3">
@@ -33,15 +29,13 @@
                         <label class="form-label">Note</label>
                         <div class="rating">
                             {% for i in 5..1 %}
-                                <input type="radio" id="star{{ i }}" name="temoignages[rating]" value="{{ i }}">
-                                <label for="star{{ i }}">{{ i }} ★</label>
+                                <input type="radio" id="star{{ i }}" name="{{ form.rating.vars.full_name }}" value="{{ i }}" {% if form.rating.vars.value == i %}checked{% endif %} class="rating-input">
+                                <label for="star{{ i }}" class="rating-star">★</label>
                             {% endfor %}
                         </div>
                     </div>
                     {% do form.rating.setRendered() %}
                 {% endif %}
-
-
 
                 {% if entity_type in ["presentation", "suivis"] %}
                     <div class="mb-3">
@@ -56,7 +50,10 @@
                     </div>
                 {% endif %}
 
-                <button type="submit" class="btn btn-warning w-100 mt-3">Enregistrer</button>
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-create mx-2">Créer</button>
+                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mx-2">Retour au tableau de bord</a>
+                </div>
 
                 {{ form_end(form) }}
             </div>
@@ -66,5 +63,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/rating.js') }}"></script>
 {% endblock %}

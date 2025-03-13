@@ -126,11 +126,6 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
                           </span>
                         </button>
                     </li>
-
-
-
-                    </button>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -140,9 +135,42 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
 <!-- Contenu principal -->
 <main class=\"container my-0\">
     ";
-        // line 69
+        // line 64
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 64, $this->source); })()), "flashes", [], "any", false, false, false, 64));
+        foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
+            // line 65
+            yield "        ";
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 66
+                yield "            <div class=\"alert alert-";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
+                yield " alert-dismissible fade show\" role=\"alert\">
+                ";
+                // line 67
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+                yield "
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+            </div>
+        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 71
+            yield "    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 72
+        yield "
+    ";
+        // line 73
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 71
+        // line 75
         yield "</main>
 
 <!-- Pied de page -->
@@ -154,7 +182,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
                 <div class=\"up\">
                     <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\" class=\"nav-link\">
                         <img class=\"nav-icon\" src=\"";
-        // line 81
+        // line 85
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram.png"), "html", null, true);
         yield "\" alt=\"instagram\" aria-hidden=\"true\">
                         <span class=\"visually-hidden\">Instagram</span>
@@ -169,6 +197,18 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
 <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"
         integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\"
         crossorigin=\"anonymous\"></script>
+
+<!-- Script pour faire disparaître les messages flash -->
+<script>
+    // Fait disparaître les messages flash après 5 secondes
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        });
+    }, 5000);
+</script>
 </body>
 </html>
 ";
@@ -203,7 +243,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         yield from [];
     }
 
-    // line 69
+    // line 73
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -216,7 +256,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 70
+        // line 74
         yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -248,7 +288,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  220 => 70,  207 => 69,  185 => 7,  158 => 81,  146 => 71,  144 => 69,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
+        return array (  260 => 74,  247 => 73,  225 => 7,  186 => 85,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
     }
 
     public function getSourceContext(): Source

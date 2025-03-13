@@ -37,6 +37,31 @@ body {
 /* ==========================================================================
    Boutons
    ========================================================================== */
+/*General Button Styling*/
+.btn {
+  display: inline-block;
+  font-family: "Roboto slab", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/*Specific Style for Create Button*/
+.btn-create {
+  background-color: #f8db5a;
+  color: #000000;
+  border: none;
+}
+
+.btn-create:hover {
+  background-color: #e5c14d;
+}
+
+/*Button style for the navbar*/
 .btn-17,
 .btn-17 *,
 .btn-17 :after,
@@ -213,7 +238,16 @@ h1 {
   text-align: center;
   font-family: "Bangers", sans-serif;
   font-size: 2em;
-  margin: 6rem;
+  margin-top: 4rem; /* Garde la marge en haut comme souhaité */
+  margin-bottom: 6rem; /* Augmente la marge en bas */
+}
+
+h2 {
+  text-align: center;
+  font-family: "Bangers", sans-serif;
+  font-size: 2em;
+  margin-bottom: 2rem; /* Garde la marge en bas */
+  margin-top: 2rem; /* Garde la marge en haut */
 }
 
 /* ==========================================================================
@@ -319,11 +353,10 @@ h1 {
 
 /* Styles pour la carte large */
 .card-large {
-  width: 80%;
-  max-width: 800px;
+  width: 90%;
+  max-width: 1000px;
   height: auto;
   min-height: 400px;
-  padding: 20px;
   margin: 20px auto;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -361,6 +394,22 @@ h1 {
   font-size: 1rem;
 }
 
+/* Specific styling for the rating input labels */
+.rating label {
+  cursor: pointer;
+  color: #ccc;
+  font-size: 24px;
+  transition: color 0.3s;
+  vertical-align: middle;
+}
+
+/* Specific styling for the rating input when checked, and the hover effect */
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+}
+
 .admin-login-card button {
   width: 100%;
   padding: 0.8rem;
@@ -385,6 +434,29 @@ h1 {
   background-color: transparent !important;
   color: #020202;
   padding: 20px;
+}
+
+/* Style spécifique pour le bouton "Créer" dans le formulaire de création */
+.admin-dashboard .card .card-body .d-flex .btn-create {
+  background-color: #f8db5a;
+  color: #000000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  margin: 0 1rem;
+}
+
+/* Style pour espacer les boutons dans le formulaire de création */
+.admin-dashboard .card .card-body .d-flex {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Augmenter l'espacement entre les boutons */
+.admin-dashboard .card .card-body .d-flex > * {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .admin-dashboard .container {
@@ -608,7 +680,7 @@ footer {
 .block-temoignage {
   flex: 0 0 auto;
   width: 25em;
-  height: 25em; /* Hauteur et largeur fixes pour uniformiser les cartes */
+  height: 25em;
   background-color: #f8db5a;
   color: #f5c827;
   border-radius: 10px;
@@ -645,7 +717,7 @@ footer {
 .block-temoignage {
   flex: 0 0 auto;
   width: 25em;
-  height: 25em; /* Hauteur et largeur fixes pour uniformiser les cartes */
+  height: 25em;
   background-color: #f8db5a;
   color: #f5c827;
   border-radius: 10px;
@@ -667,12 +739,12 @@ footer {
   text-align: center;
   font-size: 14px;
   line-height: 1.4;
-  height: 150px; /* Fixe une hauteur précise */
-  max-height: 150px; /* Empêche l'expansion de la carte */
+  height: 150px;
+  max-height: 150px;
   display: block;
   padding: 5px;
   scrollbar-width: thin;
-  scrollbar-color: #888 #f8db5a; /* Couleur de la scrollbar personnalisée */
+  scrollbar-color: #888 #f8db5a;
   position: relative;
 }
 
@@ -730,52 +802,17 @@ footer {
   animation: slideTemoignages 30s linear infinite;
 }
 
-.temoignage-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.rating {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-}
-
-.rating .star {
-  font-size: 20px;
-  color: gold;
-}
-
-.rating .star.filled {
-  color: gray;
-}
-
-@keyframes slideTemoignages {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-.list-temoignages {
-  display: flex;
-  animation: slideTemoignages 30s linear infinite;
-}
-
 /* ==========================================================================
    Étoiles d'évaluation
    ========================================================================== */
 .rating-container {
   display: flex;
-  align-items: center; /* Aligne le texte et les étoiles sur la même ligne */
-  gap: 10px; /* Espace entre "Note" et les étoiles */
+  align-items: center;
+  gap: 10px;
 }
 
 .rating-container .form-label {
-  margin-bottom: 0; /* Supprime l'espacement vertical du label */
+  margin-bottom: 0;
   display: flex;
   align-items: center;
 }
@@ -784,24 +821,7 @@ footer {
   display: flex;
   flex-direction: row-reverse;
   gap: 5px;
-  align-items: center; /* Aligne les étoiles avec le texte */
-}
-
-.rating-dashboard {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap: 3px;
-}
-
-.rating-dashboard .star {
-  font-size: 24px; /* Ajustement pour correspondre à la taille initiale */
-  color: gray;
-}
-
-.rating-dashboard .star.filled {
-  color: gold;
 }
 
 .rating input {
@@ -813,95 +833,77 @@ footer {
   color: #ccc;
   font-size: 24px;
   transition: color 0.3s;
-  vertical-align: middle; /* Abaisse légèrement les étoiles */
+  vertical-align: middle;
 }
 
 .rating input:checked ~ label,
 .rating label:hover,
 .rating label:hover ~ label {
-  color: #f5c827;
+  color: gold;
 }
 
-/* NOUVEAUX STYLES POUR LE BLOCK TEMOIGNAGE (Uiverse.io) */
-.block-temoignage {
-  background-color: rgba(47, 47, 47, 0.79);
-  padding: 2rem;
-  max-width: 320px;
-  border-radius: 10px;
-  box-shadow: 0 20px 30px -20px rgb(245, 200, 39);
-  margin: 10px;
-  text-align: center;
-}
-
-.block-temoignage .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.block-temoignage .image {
-  height: 4rem;
-  width: 4rem;
-  border-radius: 9999px;
-  object-fit: cover;
-  background-image: url("../image/logo.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin-bottom: 0.5rem;
-}
-
-/* correction pour centrer les étoiles */
-.block-temoignage .stars {
-  display: flex;
-  justify-content: center;
-}
-
-.block-temoignage .stars svg {
-  height: 1em;
-  width: 1em;
-  margin: 0 2px;
-}
-
-.block-temoignage .name {
-  margin-top: 0.25rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-  --tw-text-opacity: 1;
-  color: rgb(245, 200, 39);
-}
-
-.block-temoignage .message {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  margin-top: 1rem;
-  color: rgb(107, 114, 128);
-}
-
-.custom-file-upload {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 2px dashed #f8db5a;
+/* ==========================================================================
+   Admin Dashboard Specific Styles
+   ========================================================================== */
+.admin-dashboard {
+  background-color: transparent !important;
+  color: #020202;
   padding: 20px;
+}
+
+.admin-dashboard .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
   border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.custom-file-upload:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.custom-file-label span {
-  font-size: 1.2rem;
-  font-weight: bold;
+.admin-dashboard h1,
+.admin-dashboard h2 {
   color: #f8db5a;
-  cursor: pointer;
+}
+
+.admin-dashboard .table {
+  color: #f8db5a;
+}
+
+/* Apply the "Create" button style globally */
+.btn-create {
+  background-color: #f8db5a !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: bold !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+}
+
+.admin-dashboard .btn:hover {
+  background-color: #e5c14d !important;
+  color: #030303 !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admin-dashboard .btn-block {
+  width: 100%;
+}
+
+/* Style spécifique pour le bouton "Créer" dans le formulaire de création */
+.admin-dashboard .card .card-body .d-flex .btn-create {
+  margin: 0 1rem;
+}
+
+/* Style pour espacer les boutons dans le formulaire de création */
+.admin-dashboard .card .card-body .d-flex {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Augmenter l'espacement entre les boutons */
+.admin-dashboard .card .card-body .d-flex > * {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

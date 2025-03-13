@@ -15,7 +15,7 @@ use Twig\Template;
 use Twig\TemplateWrapper;
 
 /* admin/admin_dashboard/show.html.twig */
-class __TwigTemplate_1453957071396bbbbcc9b070ec54fdff extends Template
+class __TwigTemplate_8cc1f31b854b09f3cfcbfe024b101299 extends Template
 {
     private Source $source;
     /**
@@ -238,6 +238,6 @@ class __TwigTemplate_1453957071396bbbbcc9b070ec54fdff extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("", "admin/admin_dashboard/show.html.twig", "/Applications/MAMP/htdocs/Strengthmate/templates/admin/admin_dashboard/show.html.twig");
+        return new Source("", "admin/admin_dashboard/show.html.twig", "/Applications/MAMP/htdocs/strengthmate/templates/admin/admin_dashboard/show.html.twig");
     }
 }

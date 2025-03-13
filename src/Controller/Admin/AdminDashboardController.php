@@ -44,24 +44,14 @@ class AdminDashboardController extends AbstractController
         $entity = new $entityClass();
         $form = $this->createForm($formClass, $entity);
 
-        // Gérer la requête HTTP et remplir le formulaire
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                // Persister l'entité si le formulaire est valide
-                $entityManager->persist($entity);
-                $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($entity);
+            $entityManager->flush();
 
-                // Ajouter un message flash et rediriger
-                $this->addFlash('success', ucfirst($entityType) . " ajouté avec succès.");
-                return $this->redirectToRoute('app_admin_dashboard');
-            } else {
-                // Ajouter des messages flash pour chaque erreur
-                foreach ($form->getErrors(true) as $error) {
-                    $this->addFlash('error', $error->getMessage());
-                }
-            }
+            $this->addFlash('success', ucfirst($entityType) . " ajouté avec succès.");
+            return $this->redirectToRoute('app_admin_dashboard');
         }
 
         return $this->render('admin/admin_dashboard/create.html.twig', [
@@ -69,6 +59,9 @@ class AdminDashboardController extends AbstractController
             'entity_type' => $entityType,
         ]);
     }
+
+
+
 
     #[Route('/{entityType}/{id}', name: 'app_admin_entity_show', methods: ['GET'])]
     public function showEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
@@ -154,7 +147,7 @@ class AdminDashboardController extends AbstractController
             $entityManager->flush();
 
             // Ajouter un message flash et rediriger vers le tableau de bord
-            $this->addFlash('success', ucfirst($entityType) . " supprimé avec succès.");
+            $this->addFlash('danger', ucfirst($entityType) . " supprimé avec succès.");
         }
 
         return $this->redirectToRoute('app_admin_dashboard');

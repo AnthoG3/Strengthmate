@@ -135,7 +135,7 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
         // line 18
         yield "
                     <div class=\"row\">
-                        <h1 class=\"text-center\">Connexion Admin</h1>
+                        <h2 class=\"text-center\">Connexion Admin</h2>
                         <div class=\"col\">
                             <form method=\"post\">
                                 <div class=\"form-group\">

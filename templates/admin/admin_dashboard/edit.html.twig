@@ -1,41 +1,57 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block metatitle %}Modifier un {{ entity_type }} | Strengthmate{% endblock %}
+{% block metatitle %}Modifier - {{ entity.title }} | Strengthmate{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Modifier un {{ entity_type }}</h1>
+    <div class="container">
+        <h1 class="mb-5 text-center">Modifier {{ entity_type }}</h1>
 
-        {{ form_start(form) }}
+        <div class="card card-large bg-dark text-white">
+            <div class="card-body">
+                <h2 class="text-center mb-4">{{ entity.title }}</h2>
 
-        <div class="mb-3">
-            {{ form_label(form.title, "Titre", {'label_attr': {'class': "form-label"}}) }}
-            {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
-            {{ form_errors(form.title) }}
-        </div>
+                {% if entity_type != 'temoignages' and entity is defined and attribute(entity, 'image') is defined %}
+                    <img src="{{ asset('uploads/' ~ entity_type ~ 's/' ~ attribute(entity, 'image')) }}"
+                         class="card-img-top rounded mx-auto d-block mb-4"
+                         style="max-width: 100%; height: auto;"
+                         alt="{{ entity.title }}">
+                {% endif %}
 
-        <div class="mb-3">
-            {{ form_label(form.content, "Contenu", {'label_attr': {'class': "form-label"}}) }}
-            {{ form_widget(form.content, {'attr': {'class': "form-control", "rows": 6}}) }}
-            {{ form_errors(form.content) }}
-        </div>
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-        {% if entity_type == "temoignages" %}
-            <div class="mb-3">
-                <label class="form-label">Note</label>
-                <div class="star-rating">
-                    {% for i in 1..5 %}
-                        <span class="star" data-value="{{ i }}">★</span>
-                    {% endfor %}
+                <div class="mb-3">
+                    {{ form_label(form.title, "Titre", {'label_attr': {'class': "form-label"}}) }}
+                    {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
+                    {{ form_errors(form.title) }}
                 </div>
-                {{ form_widget(form.rating, {'attr': {'class': 'd-none'}}) }}
-                {{ form_errors(form.rating) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.content, "Contenu", {'label_attr': {'class': "form-label"}}) }}
+                    {{ form_widget(form.content, {'attr': {'class': "form-control", "rows": 6}}) }}
+                    {{ form_errors(form.content) }}
+                </div>
+
+                {% if entity_type == "temoignages" %}
+                    <div class="mb-3 rating-container">
+                        <label class="form-label">Note</label>
+                        <div class="rating">
+                            {% for i in 5..1 %}
+                                <input type="radio" id="star{{ i }}" name="{{ form.rating.vars.full_name }}" value="{{ i }}" {% if form.rating.vars.value == i %}checked{% endif %} class="rating-input">
+                                <label for="star{{ i }}" class="rating-star">★</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% do form.rating.setRendered() %}
+                {% endif %}
+
+                <div class="d-flex justify-content-around mt-4">
+                    <button type="submit" class="btn btn-warning" style="margin-right: 1em;">Mettre à jour</button>
+                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary" style="margin-left: 1em;">Retour au tableau de bord</a>
+                </div>
+
+                {{ form_end(form) }}
             </div>
-        {% endif %}
-
-        <button type="submit" class="btn btn-primary w-100 mt-3">Mettre à jour</button>
-
-        {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}
 
