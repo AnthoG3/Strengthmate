@@ -19,7 +19,7 @@ class Temoignages
     #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'integer')]
     private ?int $rating = null;
 
     public function getId(): ?int

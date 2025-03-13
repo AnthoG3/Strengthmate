@@ -1,44 +1,25 @@
 framework:
     # Définition du secret de l'application.
-    # Ce secret est utilisé par Symfony pour des tâches telles que le hachage des mots de passe ou la génération de jetons CSRF.
     secret: '%env(APP_SECRET)%'
 
     # Configuration de la session
     session:
-        # La gestion des sessions est activée par défaut.
         enabled: true
-
-        # Utilise le gestionnaire de session par défaut de Symfony (exemple : stockage en fichiers).
         handler_id: null
-
-        # Configure si les cookies de session doivent être marqués comme sécurisés en fonction de la présence de HTTPS.
         cookie_secure: auto
-
-        # Empêche l'accès aux cookies via JavaScript pour limiter les risques d'attaques XSS (Cross-Site Scripting).
         cookie_httponly: true
-
-        # Définit la politique SameSite pour les cookies :
-        # - `lax` autorise l'envoi de cookies lors de navigations provenant du même site ou dans certaines requêtes GET intersites (plus sécurisé que `none`).
         cookie_samesite: 'lax'
-
-        # Temps maximal avant que la session soit considérée comme expirée côté serveur (en secondes).
         gc_maxlifetime: 1200  # 20 minutes.
-
-        # Durée de vie du cookie de session côté client (en secondes).
-        # Après cette durée, le cookie expirera et l'utilisateur sera déconnecté.
         cookie_lifetime: 1200  # 20 minutes.
-
-        # Chemin de sauvegarde des fichiers de session :
-        # Les sessions sont stockées dans le répertoire `var/sessions/` avec un sous-dossier propre à l'environnement (par ex., dev, prod, test).
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
 
-# Configuration spécifique pour l'environnement de test
+    # Activer la validation (annotations activées automatiquement si doctrine/annotations est installé)
+    validation:
+        auto_mapping:
+            App\Entity\: [] # Active la validation automatique pour les entités
+
 when@test:
     framework:
-        # Active le mode de test du framework, utilisé pour les tests automatisés.
         test: true
-
-        # Utilise un gestionnaire de stockage de session spécifique pour les tests :
-        # Le `mock_file` stocke les sessions dans des fichiers temporaires, ce qui est pratique pour isoler les tests.
         session:
             storage_factory_id: session.storage.factory.mock_file

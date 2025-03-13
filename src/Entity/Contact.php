@@ -22,6 +22,9 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
+    #[ORM\Column(length: 255)]
+    private $suivi = null ;
+
     #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
@@ -63,6 +66,15 @@ class Contact
         return $this;
     }
 
+    public function getSuivi(): ?string
+    {
+        return $this->suivi;
+    }
+    public function setSuivi(string $suivi): static
+    {
+        $this->suivi = $suivi;
+        return $this;
+    }
     public function getContent(): ?string
     {
         return $this->content;

@@ -13,10 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin')]
-#[IsGranted('ROLE_ADMIN')]
 class AdminDashboardController extends AbstractController
 {
     private const ENTITY_MAP = [
@@ -35,7 +33,7 @@ class AdminDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{entityType}/create', name: 'app_admin_entity_create')]
+    #[Route('/{entityType}/create', name: 'app_admin_entity_create', methods: ['GET', 'POST'])]
     public function createEntity(string $entityType, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
@@ -46,13 +44,24 @@ class AdminDashboardController extends AbstractController
         $entity = new $entityClass();
         $form = $this->createForm($formClass, $entity);
 
+        // Gérer la requête HTTP et remplir le formulaire
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($entity);
-            $entityManager->flush();
 
-            $this->addFlash('success', ucfirst($entityType) . " ajouté avec succès.");
-            return $this->redirectToRoute('app_admin_dashboard');
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // Persister l'entité si le formulaire est valide
+                $entityManager->persist($entity);
+                $entityManager->flush();
+
+                // Ajouter un message flash et rediriger
+                $this->addFlash('success', ucfirst($entityType) . " ajouté avec succès.");
+                return $this->redirectToRoute('app_admin_dashboard');
+            } else {
+                // Ajouter des messages flash pour chaque erreur
+                foreach ($form->getErrors(true) as $error) {
+                    $this->addFlash('error', $error->getMessage());
+                }
+            }
         }
 
         return $this->render('admin/admin_dashboard/create.html.twig', [
@@ -61,7 +70,7 @@ class AdminDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{entityType}/{id}', name: 'app_admin_entity_show')]
+    #[Route('/{entityType}/{id}', name: 'app_admin_entity_show', methods: ['GET'])]
     public function showEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
@@ -81,7 +90,7 @@ class AdminDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{entityType}/{id}/edit', name: 'app_admin_entity_edit')]
+    #[Route('/{entityType}/{id}/edit', name: 'app_admin_entity_edit', methods: ['GET', 'POST'])]
     public function editEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
@@ -95,12 +104,22 @@ class AdminDashboardController extends AbstractController
             throw $this->createNotFoundException("Entité non trouvée.");
         }
 
+        // Créer et gérer le formulaire pour l'édition
         $form = $this->createForm($formClass, $entity);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && !$form->isValid()) {
+            foreach ($form->getErrors(true) as $error) {
+                // Ajouter des messages flash pour chaque erreur
+                $this->addFlash('error', $error->getMessage());
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Mettre à jour l'entité et sauvegarder dans la base de données
             $entityManager->flush();
 
+            // Ajouter un message flash et rediriger vers la page de détail
             $this->addFlash('success', ucfirst($entityType) . " mis à jour avec succès.");
             return $this->redirectToRoute('app_admin_entity_show', [
                 'entityType' => $entityType,
@@ -115,8 +134,8 @@ class AdminDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{entityType}/{id}/delete', name: 'app_admin_entity_delete')]
-    public function deleteEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
+    #[Route('/{entityType}/{id}/delete', name: 'app_admin_entity_delete', methods: ['POST'])]
+    public function deleteEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
             throw $this->createNotFoundException("Type d'entité invalide.");
@@ -129,10 +148,15 @@ class AdminDashboardController extends AbstractController
             throw $this->createNotFoundException("Entité non trouvée.");
         }
 
-        $entityManager->remove($entity);
-        $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete'.$id, (string)$request->request->get('_token'))) {
+            // Supprimer l'entité et sauvegarder dans la base de données
+            $entityManager->remove($entity);
+            $entityManager->flush();
 
-        $this->addFlash('success', ucfirst($entityType) . " supprimé avec succès.");
+            // Ajouter un message flash et rediriger vers le tableau de bord
+            $this->addFlash('success', ucfirst($entityType) . " supprimé avec succès.");
+        }
+
         return $this->redirectToRoute('app_admin_dashboard');
     }
 }

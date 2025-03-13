@@ -34,6 +34,11 @@
                 </div>
 
                 <div class="form-field">
+                    {{ form_widget(form.suivi, {'attr': {'class': 'input-field', 'placeholder': 'Type de suivi'}}) }}
+                    <div class="error-message">{{ form_errors(form.suivi) }}</div>
+                </div>
+
+                <div class="form-field">
                     {{ form_widget(form.content, {'attr': {'class': 'input-field', 'placeholder': 'Message', 'cols': '30', 'rows': '3'}}) }}
                     <div class="error-message">{{ form_errors(form.content) }}</div>
                 </div>

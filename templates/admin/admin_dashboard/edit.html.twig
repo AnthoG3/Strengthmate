@@ -1,38 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block metatitle %}Modifier {{ entity_type }} - {{ entity.title }} | Strengthmate{% endblock %}
+{% block metatitle %}Modifier un {{ entity_type }} | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Modifier {{ entity_type }} - {{ entity.title }}</h1>
+        <h1 class="text-center mb-4">Modifier un {{ entity_type }}</h1>
 
         {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-primary">Mettre à jour</button>
-        {{ form_end(form) }}
 
-        <a href="{{ path('app_admin_entity_show', {'entityType': entity_type, 'id': entity.id}) }}" class="btn btn-secondary mt-3">Retour aux détails</a>
+        <div class="mb-3">
+            {{ form_label(form.title, "Titre", {'label_attr': {'class': "form-label"}}) }}
+            {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.content, "Contenu", {'label_attr': {'class': "form-label"}}) }}
+            {{ form_widget(form.content, {'attr': {'class': "form-control", "rows": 6}}) }}
+            {{ form_errors(form.content) }}
+        </div>
+
+        {% if entity_type == "temoignages" %}
+            <div class="mb-3">
+                <label class="form-label">Note</label>
+                <div class="star-rating">
+                    {% for i in 1..5 %}
+                        <span class="star" data-value="{{ i }}">★</span>
+                    {% endfor %}
+                </div>
+                {{ form_widget(form.rating, {'attr': {'class': 'd-none'}}) }}
+                {{ form_errors(form.rating) }}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Mettre à jour</button>
+
+        {{ form_end(form) }}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ratingInputs = document.querySelectorAll('.rating input');
-            ratingInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    const rating = this.value;
-                    const stars = this.closest('.rating').querySelectorAll('label');
-                    stars.forEach((star, index) => {
-                        if (index < rating) {
-                            star.classList.add('filled');
-                        } else {
-                            star.classList.remove('filled');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/rating.js') }}"></script>
 {% endblock %}

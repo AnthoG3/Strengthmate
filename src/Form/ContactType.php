@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,6 +35,19 @@ class ContactType extends AbstractType
                         'message' => 'Veuillez entrer un numéro de téléphone valide.',
                     ]),
                 ],
+            ])
+            ->add('suivi', ChoiceType::class, [
+                'label' => 'Type de suivi',
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'form-label'],
+                'choices' => [
+                    'Choisissez une option' => '',
+                    'Suivi mensuel' => 'mensuel',
+                    'Suivi hebdomadaire' => 'hebdomadaire',
+                    'Suivi à définir' => 'indefini',
+                ],
+                'constraints' => [new NotBlank(['message' => 'La formule ne peut pas être vide.'])],
+                'required' => true,
             ])
             ->add('content', TextareaType::class, [
                 'label' => false,

@@ -218,8 +218,7 @@ h1 {
   text-align: center;
   font-family: "Bangers", sans-serif;
   font-size: 2em;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin:6rem;
 }
 
 /* ==========================================================================
@@ -404,7 +403,8 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.admin-dashboard h1, .admin-dashboard h2 {
+.admin-dashboard h1,
+.admin-dashboard h2 {
   color: #F8DB5AFF;
 }
 
@@ -490,7 +490,7 @@ footer {
   border: none;
   outline: none;
   width: 100%;
-  color: #ccd6f6;
+  color: #646363;
   padding-inline: 1em;
 }
 
@@ -605,53 +605,218 @@ footer {
   padding: 50px 0;
 }
 
+.slider-temoignages:hover .list-temoignages {
+  animation-play-state: paused;
+}
+
+
 .list-temoignages {
   display: flex;
   gap: 15px;
-  width: fit-content;
+  width: max-content;
   animation: slideTemoignages 30s linear infinite;
 }
 
-.item-temoignage {
+.block-temoignage {
   flex: 0 0 auto;
-  width: 250px;
-  height: auto;
+  width: 25em;
+  height: 25em; /* Hauteur et largeur fixes pour uniformiser les cartes */
   background-color: #f8db5a;
-  color: #030303;
+  color: #f5c827;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 15px;
-  margin: 50px;
+  margin: 0 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-.card-temoignage img {
-  max-width: 100%;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-@keyframes slideTemoignages {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+/* Carrousel de témoignages */
+.slider-temoignages {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  padding: 50px 0;
 }
 
 .slider-temoignages:hover .list-temoignages {
   animation-play-state: paused;
 }
 
+.list-temoignages {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+  animation: slideTemoignages 30s linear infinite;
+}
+
+.block-temoignage {
+  flex: 0 0 auto;
+  width: 25em;
+  height: 25em; /* Hauteur et largeur fixes pour uniformiser les cartes */
+  background-color: #f8db5a;
+  color: #f5c827;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 0 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.block-temoignage .message {
+  flex-grow: 1;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+  white-space: normal;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  height: 150px; /* Fixe une hauteur précise */
+  max-height: 150px; /* Empêche l'expansion de la carte */
+  display: block;
+  padding: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f8db5a; /* Couleur de la scrollbar personnalisée */
+  position: relative;
+}
+
+.block-temoignage .message::-webkit-scrollbar {
+  width: 8px;
+}
+
+.block-temoignage .message::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.block-temoignage .message::-webkit-scrollbar-track {
+  background: #f8db5a;
+}
+
+.block-temoignage:hover .message {
+  overflow-y: auto;
+}
+
+.temoignage-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.rating .star {
+  font-size: 20px;
+  color: gold;
+}
+
+.rating .star.filled {
+  color: gray;
+}
+
+@keyframes slideTemoignages {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.list-temoignages {
+  display: flex;
+  animation: slideTemoignages 30s linear infinite;
+}
+
+
+
+.temoignage-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.rating .star {
+  font-size: 20px;
+  color: gold;
+}
+
+.rating .star.filled {
+  color: gray;
+}
+
+@keyframes slideTemoignages {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.list-temoignages {
+  display: flex;
+  animation: slideTemoignages 30s linear infinite;
+}
+
 /* ==========================================================================
    Étoiles d'évaluation
    ========================================================================== */
+.rating-container {
+  display: flex;
+  align-items: center; /* Aligne le texte et les étoiles sur la même ligne */
+  gap: 10px; /* Espace entre "Note" et les étoiles */
+}
 
-/* Styles pour le formulaire d'évaluation */
+.rating-container .form-label {
+  margin-bottom: 0; /* Supprime l'espacement vertical du label */
+  display: flex;
+  align-items: center;
+}
+
 .rating {
-  display: inline-block;
-  direction: rtl; /* Pour que les étoiles soient en ordre inverse */
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  align-items: center; /* Aligne les étoiles avec le texte */
+}
+.rating-dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.rating-dashboard .star {
+  font-size: 24px; /* Ajustement pour correspondre à la taille initiale */
+  color: gray;
+}
+
+.rating-dashboard .star.filled {
+  color: gold;
 }
 
 .rating input {
@@ -659,40 +824,17 @@ footer {
 }
 
 .rating label {
-  float: right;
   cursor: pointer;
   color: #ccc;
+  font-size: 24px;
   transition: color 0.3s;
-}
-
-.rating label:before {
-  content: '\2605';
-  font-size: 30px;
+  vertical-align: middle; /* Abaisse légèrement les étoiles */
 }
 
 .rating input:checked ~ label,
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
+.rating label:hover,
+.rating label:hover ~ label {
   color: #f5c827;
-}
-
-/* Correction du style des étoiles */
-.rating input:checked + label:hover,
-.rating input:checked ~ label:hover,
-.rating label:hover ~ input:checked ~ label,
-.rating input:checked ~ label:hover ~ label {
-  color: #f5c827;
-}
-
-/* Styles pour l'affichage des étoiles dans le dashboard et la page des témoignages */
-.stars svg {
-  height: 1.5rem;
-  width: 1.5rem;
-  fill: #f5c827;
-}
-
-.stars svg:not(:last-child) {
-  margin-right: 0.25rem;
 }
 
 /* NOUVEAUX STYLES POUR LE BLOCK TEMOIGNAGE (Uiverse.io) */
@@ -724,17 +866,16 @@ footer {
   margin-bottom: 0.5rem;
 }
 
+/* correction pour centrer les étoiles */
 .block-temoignage .stars {
   display: flex;
   justify-content: center;
-  grid-gap: 0.125rem;
-  gap: 0.125rem;
-  color: #f5c827;
 }
 
 .block-temoignage .stars svg {
-  height: 1rem;
-  width: 1rem;
+  height: 1em;
+  width: 1em;
+  margin: 0 2px;
 }
 
 .block-temoignage .name {
@@ -753,15 +894,26 @@ footer {
   margin-top: 1rem;
   color: rgba(107, 114, 128, 1);
 }
-
-/* correction pour centrer les étoiles */
-.block-temoignage .stars {
+.custom-file-upload {
   display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #f8db5a;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.block-temoignage .stars svg {
-  height: 1em;
-  width: 1em;
-  margin: 0 2px;
+.custom-file-upload:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-file-label span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f8db5a;
+  cursor: pointer;
 }

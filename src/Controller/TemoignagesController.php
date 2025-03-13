@@ -13,13 +13,8 @@ class TemoignagesController extends AbstractController
     #[Route('/temoignages', name: 'app_temoignages_index', methods: ['GET'])]
     public function index(TemoignagesRepository $temoignagesRepository): Response
     {
-        $temoignages = $temoignagesRepository->findBy([], ['id' => 'DESC']);
-
-        // Pas besoin de filtrer les témoignages avec une note nulle
-        // car nous avons modifié l'entité pour accepter les valeurs nulles
-
         return $this->render('temoignages/index.html.twig', [
-            'temoignages' => $temoignages,
+            'temoignages' => $temoignagesRepository->findBy([], ['id' => 'DESC']),
         ]);
     }
 }
