@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 #[Route('/admin')]
 class AdminDashboardController extends AbstractController
@@ -34,7 +36,7 @@ class AdminDashboardController extends AbstractController
     }
 
     #[Route('/{entityType}/create', name: 'app_admin_entity_create', methods: ['GET', 'POST'])]
-    public function createEntity(string $entityType, Request $request, EntityManagerInterface $entityManager): Response
+    public function createEntity(string $entityType, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
             throw $this->createNotFoundException("Type d'entité invalide.");
@@ -47,6 +49,27 @@ class AdminDashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($entityType === 'presentation') {
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                    try {
+                        $imageFile->move(
+                            $this->getParameter('uploads_presentation_dir'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                        return $this->redirectToRoute('app_admin_entity_create', ['entityType' => $entityType]);
+                    }
+
+                    $entity->setImage('uploads/presentations/' . $newFilename);
+                }
+            }
+
             $entityManager->persist($entity);
             $entityManager->flush();
 
@@ -59,9 +82,6 @@ class AdminDashboardController extends AbstractController
             'entity_type' => $entityType,
         ]);
     }
-
-
-
 
     #[Route('/{entityType}/{id}', name: 'app_admin_entity_show', methods: ['GET'])]
     public function showEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
@@ -84,7 +104,7 @@ class AdminDashboardController extends AbstractController
     }
 
     #[Route('/{entityType}/{id}/edit', name: 'app_admin_entity_edit', methods: ['GET', 'POST'])]
-    public function editEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager): Response
+    public function editEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         if (!isset(self::ENTITY_MAP[$entityType])) {
             throw $this->createNotFoundException("Type d'entité invalide.");
@@ -97,22 +117,39 @@ class AdminDashboardController extends AbstractController
             throw $this->createNotFoundException("Entité non trouvée.");
         }
 
-        // Créer et gérer le formulaire pour l'édition
         $form = $this->createForm($formClass, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && !$form->isValid()) {
             foreach ($form->getErrors(true) as $error) {
-                // Ajouter des messages flash pour chaque erreur
                 $this->addFlash('error', $error->getMessage());
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Mettre à jour l'entité et sauvegarder dans la base de données
+            if ($entityType === 'presentation') {
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                    try {
+                        $imageFile->move(
+                            $this->getParameter('uploads_presentation_dir'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                        return $this->redirectToRoute('app_admin_entity_edit', ['entityType' => $entityType, 'id' => $id]);
+                    }
+
+                    $entity->setImage('uploads/presentations/' . $newFilename);
+                }
+            }
+
             $entityManager->flush();
 
-            // Ajouter un message flash et rediriger vers la page de détail
             $this->addFlash('success', ucfirst($entityType) . " mis à jour avec succès.");
             return $this->redirectToRoute('app_admin_entity_show', [
                 'entityType' => $entityType,
@@ -142,11 +179,9 @@ class AdminDashboardController extends AbstractController
         }
 
         if ($this->isCsrfTokenValid('delete'.$id, (string)$request->request->get('_token'))) {
-            // Supprimer l'entité et sauvegarder dans la base de données
             $entityManager->remove($entity);
             $entityManager->flush();
 
-            // Ajouter un message flash et rediriger vers le tableau de bord
             $this->addFlash('danger', ucfirst($entityType) . " supprimé avec succès.");
         }
 

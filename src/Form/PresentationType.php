@@ -17,7 +17,7 @@ class PresentationType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('image', FileType::class, [
-                'mapped' => false,
+                'mapped' => true, // Assurez-vous que mapped est à true
                 'required' => false,
                 'label' => 'Image',
                 'constraints' => [
@@ -29,6 +29,7 @@ class PresentationType extends AbstractType
                 ]
             ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

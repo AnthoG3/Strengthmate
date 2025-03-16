@@ -1,14 +1,12 @@
 parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads'
+    uploads_presentation_dir: '%kernel.project_dir%/public/uploads/presentations'
 
 services:
-    # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true
+        autoconfigure: true
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/'
         exclude:

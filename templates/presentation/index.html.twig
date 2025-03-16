@@ -4,22 +4,35 @@
 
 {% block body %}
     <div class="container mt-5">
-        <div class="row">
-            {% for presentation in presentations %}
-                <div class="col-md-4 mb-4">
-                    <div class="card admin-card h-100 w-100">
+        <h1 class="text-center mb-5">Nos Présentations</h1>
+        <div class="presentation-container">
+            {% if presentations is empty %}
+                <p class="text-center">Aucune présentation disponible pour le moment.</p>
+            {% else %}
+                {% for presentation in presentations %}
+                    <div class="presentation-card mb-5">
                         {% if presentation.image %}
-                            <img src="{{ asset('uploads/presentations/' ~ presentation.image) }}" class="card-img-top" alt="{{ presentation.title }}">
+                            <div class="presentation-image">
+                                <p>Chemin de l'image : {{ asset(presentation.image) }}</p>
+                                <img src="{{ asset(presentation.image) }}"
+                                     alt="{{ presentation.title }}"
+                                     class="img-fluid rounded">
+                            </div>
+                        {% else %}
+                            <p class="text-center py-3">Pas d'image pour cette présentation</p>
                         {% endif %}
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ presentation.title }}</h5>
-                            <p class="card-text">{{ presentation.content }}</p>
+                        <div class="presentation-content">
+                            <h2 class="presentation-title">{{ presentation.title }}</h2>
+                            <p class="presentation-text">{{ presentation.content }}</p>
                         </div>
                     </div>
-                </div>
-            {% else %}
-                <p class="text-center">Aucune présentation disponible pour le moment.</p>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/presentation.css') }}">
 {% endblock %}

@@ -10,8 +10,8 @@
 
 body {
   font-family: "Roboto slab", sans-serif;
-  color: #ffffff;
-  background-image: url("../image/dark.jpg");
+  color: #ffffff; /* Couleur par défaut du texte */
+  background-image: url("../image/dark.jpg"); /* Conserver l'image de fond */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -32,6 +32,14 @@ body {
   display: block;
   margin: 0 auto;
   padding: 0;
+}
+
+/* Spécifique pour le container des présentations */
+.presentation-container {
+  background-color: transparent; /* Fond transparent */
+  padding: 20px; /* Ajoute un peu d'espace autour des cartes */
+  border: 1px solid #888; /* Bordure grise */
+  border-radius: 10px; /* Bordures arrondies */
 }
 
 /* ==========================================================================
@@ -370,6 +378,36 @@ h2 {
   padding: 30px;
 }
 
+/* Styles spécifiques pour la carte de présentation */
+.presentation-card {
+  width: 95%; /* Presque toute la page */
+  max-width: 1200px; /* Ajustez si nécessaire */
+  background-color: rgba(136,136,136, 0.3); /* Fond légèrement plus clair que le body */
+  color: #f8db5a; /* Écriture jaune */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.presentation-card .card-title {
+  color: #f8db5a; /* Titres jaunes */
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.presentation-card .card-text {
+  font-size: 1.2em;
+  line-height: 1.6;
+  padding: 1em;
+}
+
+.presentation-card img {
+  width: 100%;
+  max-height: 500px; /* Ajustez la hauteur maximale de l'image */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 /* Styles pour la carte de connexion admin */
 .admin-login-card {
   width: 7vh;
@@ -662,7 +700,8 @@ footer {
    ========================================================================== */
 
 #wall_avis {
-  margin-left: 13em;
+  margin-left: 12em;
+  margin-top: -5em;
   width: 50em;
   height: auto;
 }
@@ -691,44 +730,7 @@ footer {
   flex: 0 0 auto;
   width: 25em;
   height: 25em;
-  background-color: #f8db5a;
-  color: #f5c827;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  margin: 0 15px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
-
-/* Carrousel de témoignages */
-.slider-temoignages {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  position: relative;
-  padding: 50px 0;
-}
-
-.slider-temoignages:hover .list-temoignages {
-  animation-play-state: paused;
-}
-
-.list-temoignages {
-  display: flex;
-  gap: 15px;
-  width: max-content;
-  animation: slideTemoignages 30s linear infinite;
-}
-
-.block-temoignage {
-  flex: 0 0 auto;
-  width: 25em;
-  height: 25em;
-  background-color: #f8db5a;
+  background-color: rgba(45, 45, 45, 0.76);
   color: #f5c827;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -768,7 +770,7 @@ footer {
 }
 
 .block-temoignage .message::-webkit-scrollbar-track {
-  background: #f8db5a;
+  background: #363636;
 }
 
 .block-temoignage:hover .message {
@@ -847,72 +849,41 @@ footer {
   vertical-align: middle;
 }
 
+/* Specific styling for the rating input when checked, and the hover effect */
 .rating input:checked ~ label,
 .rating label:hover,
 .rating label:hover ~ label {
   color: gold;
 }
 
-/* ==========================================================================
-   Admin Dashboard Specific Styles
-   ========================================================================== */
-.admin-dashboard {
-  background-color: transparent !important;
-  color: #020202;
-  padding: 20px;
+.admin-login-card button {
+  width: 100%;
+  padding: 0.8rem;
+  font-weight: bold;
+  background-color: #000;
+  color: #f8db5a;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
 }
 
-.admin-dashboard .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.admin-dashboard h1,
-.admin-dashboard h2 {
-  color: #F8DB5AFF;
-}
-
-.admin-dashboard .table {
-  color: #F8DB5AFF;
-}
-
-/* Apply the "Create" button style globally */
-.btn-create {
-  background-color: #f8db5a !important;
-  color: #000000 !important;
-  border: none !important;
-  font-weight: bold !important;
-  padding: 10px 15px !important;
-  border-radius: 8px !important;
-}
-
-.admin-dashboard .btn:hover {
-  background-color: #e5c14d !important;
-  color: #030303FF !important;
+.admin-login-card button:hover {
+  background-color: #f8db5a;
+  color: #000;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.admin-dashboard .btn-block {
+/* Correction pour les images */
+.presentation-card img {
   width: 100%;
+  max-height: 500px;
+  object-fit: cover;
 }
 
-/* Style spécifique pour le bouton "Créer" dans le formulaire de création */
-.admin-dashboard .card .card-body .d-flex .btn-create {
-  margin: 0 1rem;
+.presentation-container {
+  background-color: transparent; /* Fond transparent */
+  padding: 20px;
+  border: none; /* Supprime toute bordure */
 }
 
-/* Style pour espacer les boutons dans le formulaire de création */
-.admin-dashboard .card .card-body .d-flex {
-  justify-content: center;
-  align-items: center;
-}
 
-/* Augmenter l'espacement entre les boutons */
-.admin-dashboard .card .card-body .d-flex > * {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}

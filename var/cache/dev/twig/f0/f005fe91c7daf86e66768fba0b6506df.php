@@ -183,7 +183,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
                     <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\" class=\"nav-link\">
                         <img class=\"nav-icon\" src=\"";
         // line 85
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram.png"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram-new.png"), "html", null, true);
         yield "\" alt=\"instagram\" aria-hidden=\"true\">
                         <span class=\"visually-hidden\">Instagram</span>
                     </a>

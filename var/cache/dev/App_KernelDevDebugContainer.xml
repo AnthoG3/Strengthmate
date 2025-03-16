@@ -54,6 +54,7 @@
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="uploads_directory">/Applications/MAMP/htdocs/Strengthmate/public/uploads</parameter>
+    <parameter key="uploads_presentation_dir">/Applications/MAMP/htdocs/Strengthmate/public/uploads/presentations</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -397,7 +398,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Zy6w9tI"/>
+      <argument type="service" id=".service_locator.U6YV0l5"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2120,7 +2121,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Zy6w9tI"/>
+      <argument type="service" id=".service_locator.U6YV0l5"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver">
       <call method="addLoader">
@@ -6028,11 +6029,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::createEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.mqZqLk1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="slugger" type="service_closure" id="slugger"/>
+      </argument>
+    </service>
+    <service id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::createEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminDashboardController::createEntity()"/>
       <argument>App\Controller\Admin\AdminDashboardController::createEntity()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.egipcEH" method="withContext"/>
+      <factory service=".service_locator.mqZqLk1" method="withContext"/>
     </service>
     <service id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::showEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminDashboardController::showEntity()"/>
@@ -6040,11 +6048,11 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::editEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::editEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminDashboardController::editEntity()"/>
       <argument>App\Controller\Admin\AdminDashboardController::editEntity()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.egipcEH" method="withContext"/>
+      <factory service=".service_locator.mqZqLk1" method="withContext"/>
     </service>
     <service id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::deleteEntity()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminDashboardController::deleteEntity()"/>
@@ -6107,7 +6115,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator..8ErHJI" method="withContext"/>
     </service>
-    <service id=".service_locator.Zy6w9tI" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.U6YV0l5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -6115,9 +6123,9 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\Admin\AdminDashboardController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::index()"/>
-        <argument key="App\Controller\Admin\AdminDashboardController::createEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::createEntity()"/>
+        <argument key="App\Controller\Admin\AdminDashboardController::createEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::createEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController::showEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::showEntity()"/>
-        <argument key="App\Controller\Admin\AdminDashboardController::editEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::editEntity()"/>
+        <argument key="App\Controller\Admin\AdminDashboardController::editEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::editEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController::deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::deleteEntity()"/>
         <argument key="App\Controller\Admin\AdminLoginController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\Admin\AdminLoginController::login()"/>
         <argument key="App\Controller\ContactController::index" type="service_closure" id=".service_locator.HrQxEjs.App\Controller\ContactController::index()"/>
@@ -6127,9 +6135,9 @@
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\Admin\AdminDashboardController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::index()"/>
-        <argument key="App\Controller\Admin\AdminDashboardController:createEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::createEntity()"/>
+        <argument key="App\Controller\Admin\AdminDashboardController:createEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::createEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController:showEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::showEntity()"/>
-        <argument key="App\Controller\Admin\AdminDashboardController:editEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::editEntity()"/>
+        <argument key="App\Controller\Admin\AdminDashboardController:editEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::editEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController:deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::deleteEntity()"/>
         <argument key="App\Controller\Admin\AdminLoginController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\Admin\AdminLoginController::login()"/>
         <argument key="App\Controller\ContactController:index" type="service_closure" id=".service_locator.HrQxEjs.App\Controller\ContactController::index()"/>
@@ -7609,7 +7617,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Zy6w9tI"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.U6YV0l5"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
@@ -7628,6 +7636,7 @@
     <service id=".service_locator.GIuJv7e" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
+    <service id=".service_locator.cK72C9G" alias=".service_locator.mqZqLk1"/>
     <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
     <service id=".service_locator.lcZeO_T" alias=".service_locator.HrQxEjs"/>
     <service id=".service_locator.b8Q_TO0" alias=".service_locator.hU4fyru"/>

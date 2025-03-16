@@ -105,7 +105,7 @@ class __TwigTemplate_6c5f06af0c06455d07780d94190f7b4e extends Template
         if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["temoignages"]) || array_key_exists("temoignages", $context) ? $context["temoignages"] : (function () { throw new RuntimeError('Variable "temoignages" does not exist.', 9, $this->source); })())) > 0)) {
             // line 10
             yield "            <img id=\"wall_avis\" src=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/avis.jpg"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/notes.svg"), "html", null, true);
             yield "\" alt=\"avis\">
         ";
         }

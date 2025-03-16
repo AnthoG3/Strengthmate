@@ -157,7 +157,7 @@ class __TwigTemplate_40fe9e71253e57f7fb9f4bbc1560e34b extends Template
         yield "\" class=\"stretched-link\"></a>
                     <img src=\"";
         // line 46
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/avis.jpg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/notes.svg"), "html", null, true);
         yield "\" alt=\"avis\">
                     <div class=\"card__content\">
                         <h1 class=\"card__title\">Témoignages</h1>
