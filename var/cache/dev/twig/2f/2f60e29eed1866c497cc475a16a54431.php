@@ -192,7 +192,7 @@ class __TwigTemplate_0098f819ac4cd24dda5804f35c261379 extends Template
         yield "
                 ";
         // line 40
-        if (CoreExtension::inFilter((isset($context["entity_type"]) || array_key_exists("entity_type", $context) ? $context["entity_type"] : (function () { throw new RuntimeError('Variable "entity_type" does not exist.', 40, $this->source); })()), ["presentation", "suivis"])) {
+        if ((((isset($context["entity_type"]) || array_key_exists("entity_type", $context) ? $context["entity_type"] : (function () { throw new RuntimeError('Variable "entity_type" does not exist.', 40, $this->source); })()) == "suivis") && CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "children", [], "any", false, true, false, 40), "image", [], "array", true, true, false, 40))) {
             // line 41
             yield "                    <div class=\"mb-3\">
                         <label class=\"form-label\">Image</label>

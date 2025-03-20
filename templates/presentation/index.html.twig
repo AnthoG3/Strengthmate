@@ -3,28 +3,17 @@
 {% block metatitle %}Présentations | Strengthmate{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1 class="text-center mb-5">Nos Présentations</h1>
+    <div class="container-fluid mt-5">
+        <h1 class="text-center mb-5">Qui sommes-nous ?</h1>
+        <img id="wall-presentation" src="{{ asset('assets/image/couple.jpg') }}" alt="avis">
         <div class="presentation-container">
             {% if presentations is empty %}
                 <p class="text-center">Aucune présentation disponible pour le moment.</p>
             {% else %}
                 {% for presentation in presentations %}
                     <div class="presentation-card mb-5">
-                        {% if presentation.image %}
-                            <div class="presentation-image">
-                                <p>Chemin de l'image : {{ asset(presentation.image) }}</p>
-                                <img src="{{ asset(presentation.image) }}"
-                                     alt="{{ presentation.title }}"
-                                     class="img-fluid rounded">
-                            </div>
-                        {% else %}
-                            <p class="text-center py-3">Pas d'image pour cette présentation</p>
-                        {% endif %}
-                        <div class="presentation-content">
-                            <h2 class="presentation-title">{{ presentation.title }}</h2>
-                            <p class="presentation-text">{{ presentation.content }}</p>
-                        </div>
+                        <h2 class="presentation-title">{{ presentation.title }}</h2>
+                        <p class="presentation-text">{{ presentation.content }}</p>
                     </div>
                 {% endfor %}
             {% endif %}
