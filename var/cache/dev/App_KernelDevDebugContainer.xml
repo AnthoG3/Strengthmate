@@ -105,11 +105,11 @@
     <parameter key="session.metadata.storage_key">_sf2_meta</parameter>
     <parameter key="session.storage.options" type="collection">
       <parameter key="cache_limiter" type="string">0</parameter>
-      <parameter key="cookie_lifetime">1200</parameter>
+      <parameter key="cookie_lifetime">3600</parameter>
       <parameter key="cookie_secure">auto</parameter>
       <parameter key="cookie_httponly">true</parameter>
       <parameter key="cookie_samesite">lax</parameter>
-      <parameter key="gc_maxlifetime">1200</parameter>
+      <parameter key="gc_maxlifetime">3600</parameter>
     </parameter>
     <parameter key="session.save_path">/Applications/MAMP/htdocs/Strengthmate/var/sessions/dev</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
