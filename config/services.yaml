@@ -1,6 +1,8 @@
 parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads'
     uploads_presentation_dir: '%kernel.project_dir%/public/uploads/presentations'
+    uploads_suivis_dir: '%kernel.project_dir%/public/uploads/suivis'
+
 
 services:
     _defaults:

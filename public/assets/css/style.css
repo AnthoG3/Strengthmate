@@ -373,36 +373,6 @@ h2 {
   padding: 30px;
 }
 
-/* Styles spécifiques pour la carte de présentation */
-.presentation-card {
-  width: 95%; /* Presque toute la page */
-  max-width: 1200px; /* Ajustez si nécessaire */
-  background-color: rgba(136, 136, 136, 0.3); /* Fond légèrement plus clair que le body */
-  color: #f8db5a; /* Écriture jaune */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.presentation-card .card-title {
-  color: #f8db5a; /* Titres jaunes */
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.presentation-card .card-text {
-  font-size: 1.2em;
-  line-height: 1.6;
-  padding: 1em;
-}
-
-.presentation-card img {
-  width: 100%;
-  max-height: 500px; /* Ajustez la hauteur maximale de l'image */
-  object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
 /* Styles pour la carte de connexion admin */
 .admin-login-card {
   width: 7vh;
@@ -702,6 +672,7 @@ footer {
   margin-bottom: 2em;
   width: 50em;
   height: auto;
+  border-radius: 0.8em;
 }
 
 /* Carrousel de témoignages */
@@ -910,6 +881,88 @@ footer {
   .presentation-text {
     font-size: 14px;
   }
+}
+/* ==========================================================================
+   Cartes - SUIVIS
+   ========================================================================== */
+.suivi-card {
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(248, 219, 90, 0.55); /* Couleur de fond */
+  color: #000000; /* Couleur du texte */
+  text-align: center;
+  border: none; /* Suppression de la bordure */
+}
+
+.suivi-card .card-body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Conteneur défilable pour le titre */
+.scrollable-title {
+  max-height: 50px; /* Hauteur maximale pour le titre */
+  overflow-y: auto; /* Barre de défilement verticale si nécessaire */
+  padding-right: 10px; /* Ajout d'espace pour éviter que le texte touche la barre de défilement */
+}
+
+.scrollable-title::-webkit-scrollbar {
+  width: 8px; /* Largeur de la barre de défilement */
+}
+
+.scrollable-title::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Couleur de la barre de défilement */
+  border-radius: 4px; /* Arrondi des bords */
+}
+
+.scrollable-title::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa; /* Couleur au survol */
+}
+
+.suivi-card .card-text {
+  flex-grow: 1; /* Prend le reste de l'espace vertical */
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.suivi-card .btn-primary {
+  margin-top: 20px;
+  background-color: #181818; /* Couleur du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Suppression de la bordure du bouton */
+  padding: 10px 20px; /* Ajustement de la taille du bouton */
+  border-radius: 5px; /* Bordures arrondies */
+}
+
+.suivi-card .card-img-top {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* Hauteur maximale pour l'image */
+  object-fit: cover; /* Ajuste l'image pour couvrir l'espace, peut rogner */
+}
+
+/* Styles pour le contenu scrollable */
+.scrollable-content {
+  max-height: 200px; /* Ajustez selon vos besoins */
+  overflow-y: auto;
+  padding-right: 10px; /* Pour éviter que le texte ne touche la scrollbar */
+}
+
+/* Personnalisation de la scrollbar (facultatif) */
+.scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
 }
 
 /*# sourceMappingURL=style.css.map */

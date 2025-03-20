@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Suivis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -15,11 +16,13 @@ class SuivisType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
-            ->add('image', FileType::class, [
+            ->add('content', TextareaType::class, [
+                'label' => 'Contenu',
+            ])
+        ->add('image', FileType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Image',
+                'label' => 'Image (optionnelle)',
                 'constraints' => [
                     new File([
                         'maxSize' => '5M',

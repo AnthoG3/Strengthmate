@@ -3,18 +3,27 @@
 {% block title %}Suivis{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Suivis</h1>
-        <ul>
-            {% for suivi in suivis %}
-                <li>
-                    <h2>{{ suivi.title }}</h2>
-                    <p>{{ suivi.content }}</p>
-                    {% if suivi.image %}
-                        <img src="{{ asset('uploads/suivis/' ~ suivi.image) }}" alt="{{ suivi.title }}">
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Suivis</h1>
+
+        {% for suivi in suivis %}
+            <div class="card mt-4 suivi-card">
+                {% if suivi.image %}
+                    <img src="{{ asset(suivi.image) }}" class="card-img-top" alt="{{ suivi.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <!-- Conteneur défilable pour le titre -->
+                    <div class="scrollable-title">
+                        <h5 class="card-title">{{ suivi.title }}</h5>
+                    </div>
+                    <!-- Contenu principal -->
+                    <div class="scrollable-content">
+                        <p class="card-text formatted-content">{{ suivi.content|raw }}</p>
+                    </div>
+                    </div>
+            </div>
+        {% else %}
+            <p class="text-center mt-4">Aucun suivi disponible pour le moment.</p>
+        {% endfor %}
     </div>
 {% endblock %}

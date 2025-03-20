@@ -47,12 +47,10 @@ return [
                 .')'
                 .'|/admin/([^/]++)/(?'
                     .'|create(*:227)'
-                    .'|([^/]++)(?'
-                        .'|(*:246)'
-                        .'|/(?'
-                            .'|edit(*:262)'
-                            .'|delete(*:276)'
-                        .')'
+                    .'|([^/]++)/(?'
+                        .'|show(*:251)'
+                        .'|edit(*:263)'
+                        .'|delete(*:277)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -67,9 +65,9 @@ return [
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         227 => [[['_route' => 'app_admin_entity_create', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::createEntity'], ['entityType'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        246 => [[['_route' => 'app_admin_entity_show', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::showEntity'], ['entityType', 'id'], ['GET' => 0], null, false, true, null]],
-        262 => [[['_route' => 'app_admin_entity_edit', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::editEntity'], ['entityType', 'id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        276 => [
+        251 => [[['_route' => 'app_admin_entity_show', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::showEntity'], ['entityType', 'id'], ['GET' => 0], null, false, false, null]],
+        263 => [[['_route' => 'app_admin_entity_edit', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::editEntity'], ['entityType', 'id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        277 => [
             [['_route' => 'app_admin_entity_delete', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::deleteEntity'], ['entityType', 'id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

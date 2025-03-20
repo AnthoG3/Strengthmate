@@ -12,6 +12,7 @@ framework:
         gc_maxlifetime: 1200  # 20 minutes.
         cookie_lifetime: 1200  # 20 minutes.
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        metadata_update_threshold: 0  # Mise à jour des métadonnées à chaque requête
 
     # Activer la validation (annotations activées automatiquement si doctrine/annotations est installé)
     validation:
