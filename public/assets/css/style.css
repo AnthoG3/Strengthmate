@@ -526,6 +526,7 @@ footer {
   background-color: #171717;
   border-radius: 20px;
   margin-top: 3em;
+  color: white;
 }
 
 .form-heading {
@@ -546,7 +547,7 @@ footer {
   padding: 0.8em;
   border: none;
   outline: none;
-  color: white;
+  color: #ffffff;
   background-color: #171717;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
   margin-bottom: 1.2em;
@@ -556,12 +557,16 @@ footer {
   margin-right: auto;
 }
 
+.input-field::placeholder {
+  color: #ffffff;
+}
+
 .input-field {
   background: none;
   border: none;
   outline: none;
   width: 100%;
-  color: #646363;
+  color: #ffffff;
   padding-inline: 1em;
 }
 
@@ -963,6 +968,87 @@ footer {
 
 .scrollable-content::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
+}
+
+/* ==========================================================================
+    HOME PAGE (Styles spécifiques à la page d'accueil)
+   ========================================================================== */
+.home-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.home-content-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.home-reverse {
+  flex-direction: row-reverse;
+}
+
+.home-image-container {
+  flex: 0 0 30%;
+  padding: 1rem;
+  order: 1; /* Place l'image after text by default */
+}
+
+.home-round-image {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.home-text-container {
+  flex: 0 0 70%;
+  padding: 1rem 2rem;
+}
+
+.home-text-container h2 {
+  color: #f8db5a;
+  margin-bottom: 1rem;
+}
+
+.home-text-container p {
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.home-btn-primary {
+  background-color: #f8db5a;
+  color: #000000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.home-btn-primary:hover {
+  background-color: #e5c14d;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .home-content-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .home-image-container,
+  .home-text-container {
+    flex: 0 0 100%;
+    padding: 1rem;
+    text-align: center;
+    order: unset; /* Reset order on mobile */
+  }
+  .home-reverse .home-image-container {
+    order: unset;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

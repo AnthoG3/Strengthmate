@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerGIuRKW9\App_KernelDevDebugContainer([
     'container.build_hash' => 'GIuRKW9',
-    'container.build_id' => '5d1bdaa3',
-    'container.build_time' => 1742512152,
+    'container.build_id' => '7f1a6f88',
+    'container.build_time' => 1742573713,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerGIuRKW9');
