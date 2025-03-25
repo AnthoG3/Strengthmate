@@ -131,14 +131,14 @@ class __TwigTemplate_63f11c74dbc7d6d416b990ef4691e351 extends Template
         // line 14
         yield "    </div>
 
+    <h1 class=\"contact-heading\">Contact</h1>
+
     <div class=\"form-card1\">
         <div class=\"form-card2\">
             <form class=\"form\" method=\"post\" action=\"";
-        // line 18
+        // line 20
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
         yield "\">
-                <h1 class=\"form-heading\">Contact</h1>
-
                 <div class=\"form-field\">
                     ";
         // line 22
@@ -234,7 +234,7 @@ class __TwigTemplate_63f11c74dbc7d6d416b990ef4691e351 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  199 => 46,  193 => 43,  189 => 42,  182 => 38,  178 => 37,  171 => 33,  167 => 32,  160 => 28,  156 => 27,  149 => 23,  145 => 22,  138 => 18,  132 => 14,  125 => 12,  116 => 10,  112 => 9,  107 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  199 => 46,  193 => 43,  189 => 42,  182 => 38,  178 => 37,  171 => 33,  167 => 32,  160 => 28,  156 => 27,  149 => 23,  145 => 22,  140 => 20,  132 => 14,  125 => 12,  116 => 10,  112 => 9,  107 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source

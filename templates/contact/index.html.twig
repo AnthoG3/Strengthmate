@@ -13,11 +13,11 @@
         {% endfor %}
     </div>
 
+    <h1 class="contact-heading">Contact</h1>
+
     <div class="form-card1">
         <div class="form-card2">
             <form class="form" method="post" action="{{ path('app_contact_index') }}">
-                <h1 class="form-heading">Contact</h1>
-
                 <div class="form-field">
                     {{ form_widget(form.name, {'attr': {'class': 'input-field', 'placeholder': 'Nom et prénom'}}) }}
                     <div class="error-message">{{ form_errors(form.name) }}</div>

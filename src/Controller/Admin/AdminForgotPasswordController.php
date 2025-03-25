@@ -27,10 +27,6 @@ class AdminForgotPasswordController extends AbstractController
                 $em->flush();
 
                 $resetUrl = $this->generateUrl('admin_reset_password', ['token' => $token], 0);
-
-                // ✅ Pour tester sans envoyer d'email (temporairement) :
-                 dd($resetUrl);
-
                 // ✅ Envoi de l'email (prod)
                 $emailMessage = (new Email())
                     ->from('no-reply@tonsite.fr')

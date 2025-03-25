@@ -100,44 +100,46 @@ class __TwigTemplate_7a968cf32b03a74396d02c659aba7373 extends Template
         // line 6
         yield "    <div class=\"container-fluid mt-5\">
         <h1 class=\"text-center mb-5\">Qui sommes-nous ?</h1>
-        <img id=\"wall-presentation\" src=\"";
-        // line 8
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/couple.jpg"), "html", null, true);
-        yield "\" alt=\"avis\">
         <div class=\"presentation-container\">
-            ";
-        // line 10
-        if (Twig\Extension\CoreExtension::testEmpty((isset($context["presentations"]) || array_key_exists("presentations", $context) ? $context["presentations"] : (function () { throw new RuntimeError('Variable "presentations" does not exist.', 10, $this->source); })()))) {
-            // line 11
-            yield "                <p class=\"text-center\">Aucune présentation disponible pour le moment.</p>
-            ";
-        } else {
-            // line 13
-            yield "                ";
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["presentations"]) || array_key_exists("presentations", $context) ? $context["presentations"] : (function () { throw new RuntimeError('Variable "presentations" does not exist.', 13, $this->source); })()));
-            foreach ($context['_seq'] as $context["_key"] => $context["presentation"]) {
-                // line 14
-                yield "                    <div class=\"presentation-card mb-5\">
-                        <h2 class=\"presentation-title\">";
-                // line 15
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["presentation"], "title", [], "any", false, false, false, 15), "html", null, true);
-                yield "</h2>
-                        <p class=\"presentation-text\">";
-                // line 16
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["presentation"], "content", [], "any", false, false, false, 16), "html", null, true);
-                yield "</p>
-                    </div>
+            <img id=\"wall-presentation\" src=\"";
+        // line 9
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/couple.jpg"), "html", null, true);
+        yield "\" alt=\"Présentation\">
+            <div class=\"presentation-content\">
                 ";
+        // line 11
+        if (Twig\Extension\CoreExtension::testEmpty((isset($context["presentations"]) || array_key_exists("presentations", $context) ? $context["presentations"] : (function () { throw new RuntimeError('Variable "presentations" does not exist.', 11, $this->source); })()))) {
+            // line 12
+            yield "                    <p class=\"text-center\">Aucune présentation disponible pour le moment.</p>
+                ";
+        } else {
+            // line 14
+            yield "                    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["presentations"]) || array_key_exists("presentations", $context) ? $context["presentations"] : (function () { throw new RuntimeError('Variable "presentations" does not exist.', 14, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["presentation"]) {
+                // line 15
+                yield "                        <div class=\"presentation-card mb-5\">
+                            <h2 class=\"presentation-title\">";
+                // line 16
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["presentation"], "title", [], "any", false, false, false, 16), "html", null, true);
+                yield "</h2>
+                            <p class=\"presentation-text\">";
+                // line 17
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["presentation"], "content", [], "any", false, false, false, 17), "html", null, true);
+                yield "</p>
+                        </div>
+                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['presentation'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 19
-            yield "            ";
+            // line 20
+            yield "                ";
         }
-        // line 20
-        yield "        </div>
+        // line 21
+        yield "            </div>
+        </div>
     </div>
 ";
         
@@ -149,7 +151,7 @@ class __TwigTemplate_7a968cf32b03a74396d02c659aba7373 extends Template
         yield from [];
     }
 
-    // line 24
+    // line 26
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -162,12 +164,12 @@ class __TwigTemplate_7a968cf32b03a74396d02c659aba7373 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 25
+        // line 27
         yield "    ";
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
     <link rel=\"stylesheet\" href=\"";
-        // line 26
+        // line 28
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/presentation.css"), "html", null, true);
         yield "\">
 ";
@@ -201,7 +203,7 @@ class __TwigTemplate_7a968cf32b03a74396d02c659aba7373 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  171 => 26,  166 => 25,  153 => 24,  140 => 20,  137 => 19,  128 => 16,  124 => 15,  121 => 14,  116 => 13,  112 => 11,  110 => 10,  105 => 8,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  173 => 28,  168 => 27,  155 => 26,  141 => 21,  138 => 20,  129 => 17,  125 => 16,  122 => 15,  117 => 14,  113 => 12,  111 => 11,  106 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source

@@ -7,6 +7,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+html, body {
+  height: 100%; /* Force le html et le body à prendre toute la hauteur de l'écran */
+  margin: 0; /* Supprime les marges par défaut */
+  padding: 0;
+}
 
 body {
   font-family: "Roboto slab", sans-serif;
@@ -16,6 +21,38 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   image-rendering: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-attachment: fixed; /* Garde l'image de fond fixe */
+
+}
+/* ==========================================================================
+   Titres
+   ========================================================================== */
+h1 {
+  text-align: center;
+  font-family: "Bangers", sans-serif;
+  font-size: 2em;
+  margin-top: 4rem; /* Garde la marge en haut comme souhaité */
+  margin-bottom: 6rem; /* Augmente la marge en bas */
+}
+
+h2 {
+  text-align: center;
+  font-family: "Bangers", sans-serif;
+  font-size: 2em;
+  margin-bottom: 2rem; /* Garde la marge en bas */
+  margin-top: 2rem; /* Garde la marge en haut */
+}
+
+/* ==========================================================================
+   Pied de page
+   ========================================================================== */
+
+footer {
+  background-color: transparent !important;
+  color: white;
 }
 
 .container {
@@ -258,25 +295,6 @@ body {
   height: 2em;
   width: auto;
   margin-right: 0.3em;
-}
-
-/* ==========================================================================
-   Titres
-   ========================================================================== */
-h1 {
-  text-align: center;
-  font-family: "Bangers", sans-serif;
-  font-size: 2em;
-  margin-top: 4rem; /* Garde la marge en haut comme souhaité */
-  margin-bottom: 6rem; /* Augmente la marge en bas */
-}
-
-h2 {
-  text-align: center;
-  font-family: "Bangers", sans-serif;
-  font-size: 2em;
-  margin-bottom: 2rem; /* Garde la marge en bas */
-  margin-top: 2rem; /* Garde la marge en haut */
 }
 
 /* ==========================================================================
@@ -528,15 +546,56 @@ h2 {
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .admin-dashboard .table {
+    font-size: 0.85em; /* Réduire la taille de la police dans les tables */
+  }
+
+  .admin-dashboard .d-flex {
+    flex-direction: column; /* Empiler les éléments en colonne */
+    align-items: stretch; /* Étirer les éléments pour remplir la largeur */
+  }
+
+  /* Augmenter l'espacement entre les boutons et les aligner */
+  .admin-dashboard .d-flex > * {
+    margin: 1rem 0; /* Espacement vertical */
+    text-align: center; /* Centrer le texte des boutons */
+  }
+
+  .admin-dashboard .btn {
+    width: 100%; /* Les boutons prennent toute la largeur */
+    padding: 0.75rem; /* Ajuster le padding */
+    margin-top: 0.5rem;
+    font-size: 0.9em; /* Réduire la taille de la police des boutons */
+  }
+}
 /* ==========================================================================
-   Pied de page
+   Tableau de bord admin - Responsive
    ========================================================================== */
 
-footer {
-  background-color: transparent !important;
-  color: white;
-}
+@media (max-width: 1024px) {
+  .admin-dashboard .table {
+    font-size: 0.85em;
+  }
 
+  .admin-dashboard .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Augmenter l'espacement entre les boutons et les aligner */
+  .admin-dashboard .d-flex > * {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .admin-dashboard .btn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+  }
+}
 /* ==========================================================================
    Formulaires
    ========================================================================== */
@@ -575,11 +634,16 @@ footer {
   color: #ffffff;
   background-color: #171717;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-  margin-bottom: 1.2em;
   width: 90%;
   max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 3em;
+}
+@media (max-width: 767px) {
+  .form-field {
+    margin-top: 1.5em;
+  }
 }
 .input-field::placeholder {
   color: #ffffff;
@@ -596,7 +660,6 @@ footer {
 /* Styles pour le bouton d'envoi de message */
 .sendMessage-btn {
   cursor: pointer;
-  margin-top: 1em;
   margin-bottom: 3em;
   padding: 0.8em 2.5em;
   border-radius: 10px;
@@ -612,6 +675,8 @@ footer {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  margin-top: 2em;
+
 }
 
 .sendMessage-btn:hover {
@@ -631,9 +696,9 @@ footer {
   padding-top: 0;
   margin-top: 0;
 }
-
 .form-card1:hover {
   box-shadow: 0px 0px 30px 1px rgb(245, 200, 39);
+  flex: 1;
 }
 
 .form-card2 {
@@ -645,6 +710,82 @@ footer {
   transform: scale(0.98);
   border-radius: 20px;
 }
+@media (max-width: 768px) {
+  .contact-heading {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+    .sendMessage-btn {
+      margin-top: 3em; /* Ajustement pour maintenir la cohérence */
+      margin-bottom: 3em; /* Maintient l'espacement en bas */
+    }
+  }
+  .form-field {
+    margin-bottom: 1.5em; /* Réduit l'espacement sur mobile */
+    margin-top: 1.5em; /* Même espacement que sur tablette */
+
+}
+
+/* ==========================================================================
+   Formulaires - Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .card-large {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .card-large .card-body {
+    padding: 20px;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .d-flex > * {
+    margin: 1rem 0;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 0.9em; /* Réduire la taille de la police des boutons */
+  }
+
+  .rating-container {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card-large {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .card-large .card-body {
+    padding: 20px;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .d-flex > * {
+    margin: 1rem 0;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 0.9em;
+  }
+
+  .rating-container {
+    text-align: center;
+  }
+}
+
 
 /* ==========================================================================
    Messages Flash
@@ -829,6 +970,130 @@ footer {
   display: flex;
   animation: slideTemoignages 30s linear infinite;
 }
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+/* Styles généraux pour le carrousel (appliqués par défaut) */
+.slider-temoignages {
+  width: 100%;
+  height: auto;
+  overflow: hidden; /* Important pour cacher les éléments hors de la vue */
+  position: relative;
+  padding: 50px 0;
+}
+
+.slider-temoignages:hover .list-temoignages {
+  animation-play-state: paused;
+}
+
+.list-temoignages {
+  display: flex;
+  gap: 15px;
+  width: max-content; /* Ajuste la largeur au contenu */
+  animation: slideTemoignages 30s linear infinite; /* Active l'animation */
+}
+
+.block-temoignage {
+  flex: 0 0 auto;
+  width: 25em;
+  height: 25em;
+  background-color: rgba(45, 45, 45, 0.76);
+  color: #f5c827;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 0 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Mobile (jusqu'à 767px) - Ajustements pour la page Témoignages */
+@media (max-width: 767px) {
+  .container {
+    margin-top: 2rem;
+  }
+
+  #wall_avis {
+    display: block;
+    margin: 1rem auto;
+    max-width: 80%;
+    height: auto;
+  }
+
+  .slider-temoignages {
+    overflow: auto; /* Permet le défilement si le contenu est trop grand */
+    padding: 20px 0;
+  }
+
+  .list-temoignages {
+    display: flex; /* Garde l'affichage en ligne */
+    animation: none; /* Désactive l'animation sur mobile */
+    width: auto; /* Largeur automatique */
+    overflow-x: auto; /* Active le défilement horizontal si nécessaire */
+    scroll-snap-type: x mandatory; /* Force le défilement par cartes */
+    padding: 0 10px; /* Ajoute un peu d'espace sur les côtés */
+  }
+
+  .block-temoignage {
+    flex: 0 0 80%; /* Ajuste la largeur des cartes (80% de l'écran) */
+    width: auto;
+    height: auto;
+    font-size: 0.8em;
+    margin: 1rem 5px; /* Réduit les marges */
+    scroll-snap-align: start; /* Alignement pour le scroll snap */
+  }
+
+  .block-temoignage .message {
+    font-size: 12px;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* Tablette (768px à 992px) - Ajustements pour la page Témoignages */
+@media (min-width: 768px) and (max-width: 992px) {
+  .container {
+    margin-top: 3rem;
+  }
+
+  #wall_avis {
+    display: block;
+    margin: 2rem auto;
+    max-width: 60%;
+    height: auto;
+  }
+
+  .slider-temoignages {
+    padding: 30px 0;
+  }
+
+  .list-temoignages {
+    display: flex;
+    animation: slideTemoignages 30s linear infinite; /* Réactive l'animation */
+    width: max-content;
+  }
+
+  .block-temoignage {
+    width: 20em;
+    height: 20em;
+  }
+}
+
+/* Animation pour le carrousel */
+@keyframes slideTemoignages {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-25em * 5)); /* Nombre de block-temoignage */
+  }
+}
+
 
 /* ==========================================================================
    Étoiles d'évaluation
@@ -930,6 +1195,60 @@ footer {
 
   .presentation-text {
     font-size: 14px;
+  }
+
+  .presentation-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #wall-presentation {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-right: 10em;
+  }
+
+  .presentation-content {
+    width: 100%;
+  }
+}
+/* Styles spécifiques pour la partie présentation sur tablette (768px - 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+  .presentation-container {
+    display: flex;
+    flex-direction: column; /* Empile l'image et le contenu */
+    align-items: flex-start; /* Aligne le contenu à gauche */
+  }
+
+  #wall-presentation {
+    width: 100%; /* Ajustez la largeur de l'image */
+    max-width: none; /* Supprime la contrainte de largeur maximale */
+    height: auto;
+    margin-left: 0; /* Supprime la marge gauche existante */
+    margin-right: auto; /* Pousse l'image vers la gauche en utilisant la marge droite */
+    margin-bottom: 20px;
+    border-radius: 0.8em;
+  }
+
+  .presentation-content {
+    width: 100%; /* Le contenu prend toute la largeur */
+  }
+}
+@media (max-width: 991px) {
+  .admin-login-card {
+    width: 95% !important; /* Utilisation de 95% pour laisser un peu de marge */
+    max-width: none !important; /* Supprime la largeur maximale définie ailleurs */
+  }
+
+  .admin-login-card .card-body {
+    padding: 1.5rem !important; /* Ajuster le padding intérieur si nécessaire */
   }
 }
 /* ==========================================================================
@@ -1158,4 +1477,128 @@ footer {
   outline: none;
   box-shadow: none;
   border: none;
+}
+@media (max-width: 991px) {
+  .container.mt-5 {
+    margin-top: 1rem !important; /* Réduit la marge supérieure pour un meilleur affichage */
+  }
+
+  form.w-50.mx-auto {
+    width: 90% !important; /* Prend 90% de la largeur de l'écran */
+    margin-left: auto !important; /* Centre le formulaire */
+    margin-right: auto !important; /* Centre le formulaire */
+  }
+
+  .form-group.mb-3 {
+    margin-bottom: 1rem !important; /* Réduit la marge inférieure des groupes de formulaire */
+  }
+}
+.btn.btn-success.mt-3 {
+  background-color: #f8db5a; /* jaune style Bootstrap */
+  color: #000000; /* texte noir */
+  border: none; /* Supprime la bordure si nécessaire */
+}
+
+.btn.btn-success.mt-3:hover {
+  background-color: #e5c14d; /* Jaune légèrement plus foncé au survol */
+  color: #000000; /* Garde le texte noir au survol */
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9em; /* Réduire la taille de la police par défaut */
+  }
+
+  h1 {
+    font-size: 1.8em; /* Ajuster la taille des titres */
+    margin-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    margin-bottom: 1.5rem;
+  }
+
+  .container {
+    padding: 10px; /* Réduire le padding du conteneur */
+  }
+}
+/* ==========================================================================
+   Témoignages - Responsive (Spécifique au Formulaire)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Cibler spécifiquement le formulaire de témoignages */
+  .admin-dashboard .table tr td:nth-child(1), /* Titre */
+  .admin-dashboard .table tr td:nth-child(2) { /* Contenu */
+    max-width: 20vw; /* Ajuster la largeur maximale */
+    word-break: break-word; /* Forcer le texte à passer à la ligne */
+    overflow: hidden; /* Cacher le texte qui dépasse */
+  }
+
+  .admin-dashboard .table tr td:nth-child(3) { /* Note */
+    text-align: center; /* Centrer la note */
+    padding: 0.5em; /* Ajouter un peu de padding */
+  }
+
+  /* MODIFICATION: Aligner les boutons verticalement */
+  .admin-dashboard .table tr td:nth-child(4) { /* Actions */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Étirer les boutons pour qu'ils aient la même largeur */
+    white-space: nowrap; /* Empêcher les boutons de passer à la ligne */
+  }
+
+  /* MODIFICATION: Ajouter un espacement entre les boutons */
+  .admin-dashboard .table tr td:nth-child(4) > *:not(:last-child) {
+    margin-bottom: 0.5em; /* Espacement vertical entre les boutons, sauf le dernier */
+  }
+
+  /* Ajuster la taille des boutons d'action */
+  .admin-dashboard .table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75em;
+    width: 100%; /* MODIFICATION: S'assurer que les boutons occupent toute la largeur disponible */
+    margin-bottom: 0; /* Supprimer la marge en bas des boutons */
+  }
+  .admin-dashboard .table tr td:nth-child(4) > *:last-child {
+    margin-bottom: 0; /* Supprimer la marge en bas du dernier élément */
+  }
+}
+@media (max-width: 1024px) {
+  /* Cibler spécifiquement le formulaire de témoignages */
+  .admin-dashboard .table tr td:nth-child(1), /* Titre */
+  .admin-dashboard .table tr td:nth-child(2) { /* Contenu */
+    max-width: 20vw; /* Ajuster la largeur maximale */
+    word-break: break-word; /* Forcer le texte à passer à la ligne */
+    overflow: hidden; /* Cacher le texte qui dépasse */
+  }
+
+  .admin-dashboard .table tr td:nth-child(3) { /* Note */
+    text-align: center; /* Centrer la note */
+    padding: 0.5em; /* Ajouter un peu de padding */
+  }
+
+  /* MODIFICATION: Aligner les boutons verticalement */
+  .admin-dashboard .table tr td:nth-child(4) { /* Actions */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Étirer les boutons pour qu'ils aient la même largeur */
+    white-space: nowrap; /* Empêcher les boutons de passer à la ligne */
+  }
+
+  /* MODIFICATION: Ajouter un espacement entre les boutons */
+  .admin-dashboard .table tr td:nth-child(4) > *:not(:last-child) {
+    margin-bottom: 0.5em; /* Espacement vertical entre les boutons, sauf le dernier */
+  }
+
+  /* Ajuster la taille des boutons d'action */
+  .admin-dashboard .table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75em;
+    width: 100%; /* MODIFICATION: S'assurer que les boutons occupent toute la largeur disponible */
+    margin-bottom: 0; /* Supprimer la marge en bas des boutons */
+  }
+  .admin-dashboard .table tr td:nth-child(4) > *:last-child {
+    margin-bottom: 0; /* Supprimer la marge en bas du dernier élément */
+  }
 }
