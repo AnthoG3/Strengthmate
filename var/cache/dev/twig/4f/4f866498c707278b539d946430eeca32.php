@@ -84,10 +84,10 @@ class __TwigTemplate_d8c0a897564d40a03ae37efe7cb15abf extends Template
 <header>
     <nav class=\"navbar navbar-expand-lg navbar-dark bg-transparent\">
         <div class=\"container-fluid\">
-            <!-- Bouton burger pour petits écrans -->
+            <!-- Bouton burger animé pour petits écrans -->
             <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\"
                     aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-                <span class=\"navbar-toggler-icon\"></span>
+                <div class=\"animated-icon\"><span></span><span></span><span></span></div>
             </button>
             <!-- Menu de navigation -->
             <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
@@ -208,6 +208,16 @@ class __TwigTemplate_d8c0a897564d40a03ae37efe7cb15abf extends Template
             bsAlert.close();
         });
     }, 5000);
+
+    // Script pour l'animation du menu burger
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const animatedIcon = document.querySelector('.animated-icon');
+
+        navbarToggler.addEventListener('click', function() {
+            animatedIcon.classList.toggle('open');
+        });
+    });
 </script>
 </body>
 </html>
@@ -288,7 +298,7 @@ class __TwigTemplate_d8c0a897564d40a03ae37efe7cb15abf extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  260 => 74,  247 => 73,  225 => 7,  186 => 85,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
+        return array (  270 => 74,  257 => 73,  235 => 7,  186 => 85,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
     }
 
     public function getSourceContext(): Source

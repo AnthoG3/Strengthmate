@@ -4,17 +4,20 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mb-4 text-center">Détails du {{ entity_type }}</h1>
+        <h1 class="mb-4 text-center">Détails de {{ entity_type }}</h1>
 
-        <div class="card card-large bg-dark text-white">
+        <div class="card card-large bg-dark text-white card-no-hover">
             <div class="card-body">
                 <h2 class="text-center mb-4">{{ entity.title }}</h2>
 
-                {% if entity_type != 'temoignages' and entity is defined and attribute(entity, 'image') is defined %}
-                    <img src="{{ asset('uploads/' ~ entity_type ~ 's/' ~ attribute(entity, 'image')) }}"
-                         class="card-img-top rounded mx-auto d-block mb-4"
-                         style="max-width: 100%; height: auto;"
-                         alt="{{ entity.title }}">
+                {% if entity_type == 'suivis' %}
+                    {% if entity.image and image_exists %}
+                        <img src="{{ asset(entity.image) }}"
+                             class="card-img-top rounded mx-auto d-block mb-4"
+                             style="max-width: 100%; height: auto;">
+                    {% else %}
+                        <p class="text-center fst-italic text-muted mb-4">Aucune image disponible.</p>
+                    {% endif %}
                 {% endif %}
 
                 <div class="mb-3">

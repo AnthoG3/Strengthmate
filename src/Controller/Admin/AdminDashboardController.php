@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Doctrine\DBAL\Exception\DriverException;
-use Symfony\Component\Security\Http\Attribute\IsGranted; // Importez DriverException
+use Symfony\Component\Filesystem\Filesystem;
 
 #[Route('/admin')]
 class AdminDashboardController extends AbstractController
@@ -87,8 +87,6 @@ class AdminDashboardController extends AbstractController
                 } else {
                     $this->addFlash('error', 'Une erreur est survenue lors de la création de ' . $entityType . '.');
                 }
-                // Log the error for detailed tracking
-                // $this->logger->error($e->getMessage(), ['exception' => $e]);
 
                 return $this->redirectToRoute('app_admin_dashboard');
             }
@@ -114,9 +112,22 @@ class AdminDashboardController extends AbstractController
             throw $this->createNotFoundException("Entité non trouvée.");
         }
 
+        // Vérification de l'existence physique de l'image (pour les suivis uniquement)
+        $imageExists = false;
+        if ($entityType === 'suivis' && method_exists($entity, 'getImage')) {
+            $image = $entity->getImage();
+            if ($image) {
+                $filesystem = new Filesystem();
+                $projectDir = $this->getParameter('kernel.project_dir');
+                $imagePath = $projectDir . '/public/' . $image;
+                $imageExists = $filesystem->exists($imagePath);
+            }
+        }
+
         return $this->render('admin/admin_dashboard/show.html.twig', [
             'entity_type' => $entityType,
             'entity' => $entity,
+            'image_exists' => $imageExists,
         ]);
     }
 
@@ -150,14 +161,12 @@ class AdminDashboardController extends AbstractController
                     'entityType' => $entityType,
                     'id' => $id
                 ]);
-            }  catch (DriverException $e) {
+            } catch (DriverException $e) {
                 if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
                     $this->addFlash('error', 'Le contenu est trop long pour être enregistré.');
                 } else {
                     $this->addFlash('error', 'Une erreur est survenue lors de la modification de ' . $entityType . '.');
                 }
-                // Log the error for detailed tracking
-                // $this->logger->error($e->getMessage(), ['exception' => $e]);
 
                 return $this->redirectToRoute('app_admin_dashboard');
             }
@@ -198,7 +207,6 @@ class AdminDashboardController extends AbstractController
     #[Route('/logout', name: 'admin_logout', methods: ['GET'])]
     public function logout(): Response
     {
-        // La gestion de la déconnexion est prise en charge par le firewall de Symfony
         throw new \Exception('This should never be reached!');
     }
 }

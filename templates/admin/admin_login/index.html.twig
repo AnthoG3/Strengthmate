@@ -7,6 +7,7 @@
         <div class="card admin-login-card p-4 w-50">
             <div class="card-body">
                 <div class="container">
+                    {# Afficher les messages flash ici #}
                     {% for label, messages in app.flashes %}
                         {% for message in messages %}
                             <div class="alert alert-{{ label == 'error' ? 'danger' : label }} alert-dismissible fade show" role="alert">
@@ -36,6 +37,10 @@
                                 <button type="submit" class="btn btn-primary d-block mx-auto mt-3">
                                     Se connecter
                                 </button>
+                                <div class="text-center mt-3">
+                                    <a href="{{ path('admin_forgot_password') }}" class="text-dark">Mot de passe oublié ?</a>
+                                </div>
+
                             </form>
                         </div>
                     </div>

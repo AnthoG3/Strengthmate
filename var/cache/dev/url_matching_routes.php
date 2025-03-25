@@ -16,6 +16,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'app_admin_dashboard', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::index'], null, null, null, false, false, null]],
+        '/admin/forgot-password' => [[['_route' => 'admin_forgot_password', '_controller' => 'App\\Controller\\Admin\\AdminForgotPasswordController::forgotPassword'], null, null, null, false, false, null]],
         '/admin/login' => [[['_route' => 'admin_login', '_controller' => 'App\\Controller\\Admin\\AdminLoginController::login'], null, null, null, false, false, null]],
         '/admin/logout' => [[['_route' => 'admin_logout', '_controller' => 'App\\Controller\\Admin\\AdminLoginController::logout'], null, ['GET' => 0], null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact_index', '_controller' => 'App\\Controller\\ContactController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
@@ -45,13 +46,16 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/admin/([^/]++)/(?'
-                    .'|create(*:227)'
+                .'|/admin/(?'
                     .'|([^/]++)/(?'
-                        .'|show(*:251)'
-                        .'|edit(*:263)'
-                        .'|delete(*:277)'
+                        .'|create(*:230)'
+                        .'|([^/]++)/(?'
+                            .'|show(*:254)'
+                            .'|edit(*:266)'
+                            .'|delete(*:280)'
+                        .')'
                     .')'
+                    .'|reset\\-password/([^/]++)(*:314)'
                 .')'
             .')/?$}sDu',
     ],
@@ -64,11 +68,12 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        227 => [[['_route' => 'app_admin_entity_create', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::createEntity'], ['entityType'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        251 => [[['_route' => 'app_admin_entity_show', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::showEntity'], ['entityType', 'id'], ['GET' => 0], null, false, false, null]],
-        263 => [[['_route' => 'app_admin_entity_edit', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::editEntity'], ['entityType', 'id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        277 => [
-            [['_route' => 'app_admin_entity_delete', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::deleteEntity'], ['entityType', 'id'], ['POST' => 0], null, false, false, null],
+        230 => [[['_route' => 'app_admin_entity_create', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::createEntity'], ['entityType'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        254 => [[['_route' => 'app_admin_entity_show', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::showEntity'], ['entityType', 'id'], ['GET' => 0], null, false, false, null]],
+        266 => [[['_route' => 'app_admin_entity_edit', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::editEntity'], ['entityType', 'id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        280 => [[['_route' => 'app_admin_entity_delete', '_controller' => 'App\\Controller\\Admin\\AdminDashboardController::deleteEntity'], ['entityType', 'id'], ['POST' => 0], null, false, false, null]],
+        314 => [
+            [['_route' => 'admin_reset_password', '_controller' => 'App\\Controller\\Admin\\AdminForgotPasswordController::resetPassword'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

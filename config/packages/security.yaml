@@ -9,27 +9,41 @@ security:
                 property: email
 
     firewalls:
+        # Pas de sécurité sur les assets de dev (profiler, css, js, etc.)
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        # Pare-feu pour toute la partie admin
         admin:
             lazy: true
             provider: app_admin_provider
+
             form_login:
-                login_path: admin_login
-                check_path: admin_login
-                default_target_path: app_admin_dashboard
+                login_path: admin_login             # Route vers le formulaire de connexion
+                check_path: admin_login             # Route où les identifiants sont envoyés
+                default_target_path: app_admin_dashboard  # Redirection après connexion
                 username_parameter: email
                 password_parameter: password
+
             logout:
                 path: admin_logout
                 target: admin_login
+
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800
+                lifetime: 604800   # 7 jours
                 path: /
 
     access_control:
+        # Autoriser l'accès public à la page de connexion
         - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+
+        # ✅ Autoriser l'accès public à la page "Mot de passe oublié"
+        - { path: ^/admin/forgot-password, roles: PUBLIC_ACCESS }
+
+        # ✅ Autoriser l'accès public à la page "Réinitialiser le mot de passe"
+        - { path: ^/admin/reset-password, roles: PUBLIC_ACCESS }
+
+        # Tout le reste de /admin nécessite ROLE_ADMIN
         - { path: ^/admin, roles: ROLE_ADMIN }

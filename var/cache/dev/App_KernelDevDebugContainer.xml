@@ -298,6 +298,13 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\Admin\AdminDashboardController"/>
       </call>
     </service>
+    <service id="App\Controller\Admin\AdminForgotPasswordController" class="App\Controller\Admin\AdminForgotPasswordController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\Admin\AdminForgotPasswordController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\AdminLoginController" class="App\Controller\Admin\AdminLoginController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -399,7 +406,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.U6YV0l5"/>
+      <argument type="service" id=".service_locator.WjLeZ9M"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -527,6 +534,7 @@
         <argument key="mailer.message_logger_listener" type="service" id="mailer.message_logger_listener" on-invalid="ignore_uninitialized"/>
         <argument key="debug.stopwatch" type="service" id="debug.stopwatch" on-invalid="ignore_uninitialized"/>
         <argument key="debug.event_dispatcher" type="service" id="debug.event_dispatcher" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.rate_limiter" type="service" id="cache.rate_limiter" on-invalid="ignore_uninitialized"/>
         <argument key="session_listener" type="service" id="session_listener" on-invalid="ignore_uninitialized"/>
         <argument key="form.choice_list_factory.cached" type="service" id="form.choice_list_factory.cached" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
@@ -579,6 +587,9 @@
           <argument>reset</argument>
         </argument>
         <argument key="debug.event_dispatcher" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.rate_limiter" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="session_listener" type="collection">
@@ -796,6 +807,7 @@
         <argument>cache.serializer</argument>
         <argument>cache.property_info</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.rate_limiter</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -844,6 +856,7 @@
         <argument>cache.serializer</argument>
         <argument>cache.property_info</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.rate_limiter</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -869,6 +882,7 @@
         <argument>cache.serializer</argument>
         <argument>cache.property_info</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.rate_limiter</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -1392,6 +1406,7 @@
       <argument type="collection">
         <argument key="cache.app" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.rate_limiter" type="service" id="cache.rate_limiter" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.system_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1417,6 +1432,7 @@
         <argument key="cache.serializer" type="service" id="cache.serializer" on-invalid="ignore_uninitialized"/>
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.rate_limiter" type="service" id="cache.rate_limiter" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.result" type="service" id="cache.doctrine.orm.default.result" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
@@ -2122,7 +2138,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.U6YV0l5"/>
+      <argument type="service" id=".service_locator.WjLeZ9M"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver">
       <call method="addLoader">
@@ -2341,6 +2357,16 @@
       <tag name="property_info.type_extractor" priority="-1002"/>
       <tag name="property_info.access_extractor" priority="-1000"/>
       <tag name="property_info.initializable_extractor" priority="-1000"/>
+    </service>
+    <service id="cache.rate_limiter" class="Symfony\Component\Cache\Adapter\TraceableAdapter" public="true">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.rate_limiter.recorder_inner"/>
+    </service>
+    <service id="limiter" class="Symfony\Component\RateLimiter\RateLimiterFactory" abstract="true">
+      <argument type="abstract">config</argument>
+      <argument type="abstract">storage</argument>
+      <argument>null</argument>
     </service>
     <service id=".cache_connection.MfCypIA" class="Symfony\Component\Cache\Adapter\AbstractAdapter" constructor="createConnection">
       <argument>redis://localhost</argument>
@@ -3169,6 +3195,10 @@
       <call method="addInstance">
         <argument>cache.messenger.restart_workers_signal</argument>
         <argument type="service" id="cache.messenger.restart_workers_signal"/>
+      </call>
+      <call method="addInstance">
+        <argument>cache.rate_limiter</argument>
+        <argument type="service" id="cache.rate_limiter"/>
       </call>
       <call method="addInstance">
         <argument>cache.validator_expression_language</argument>
@@ -4718,6 +4748,20 @@
         <argument>null</argument>
       </call>
       <call method="add">
+        <argument type="service" id=".security.request_matcher.6XnKgdv"/>
+        <argument type="collection">
+          <argument>PUBLIC_ACCESS</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.Vy9jNwT"/>
+        <argument type="collection">
+          <argument>PUBLIC_ACCESS</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
         <argument type="service" id=".security.request_matcher.SVK5D2B"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
@@ -5381,6 +5425,22 @@
         <argument type="service" id=".security.request_matcher.mAE4hmT"/>
       </argument>
     </service>
+    <service id=".security.request_matcher.B4SXt7_" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/admin/forgot-password</argument>
+    </service>
+    <service id=".security.request_matcher.6XnKgdv" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.B4SXt7_"/>
+      </argument>
+    </service>
+    <service id=".security.request_matcher.wXNwERd" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/admin/reset-password</argument>
+    </service>
+    <service id=".security.request_matcher.Vy9jNwT" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.wXNwERd"/>
+      </argument>
+    </service>
     <service id=".security.request_matcher.pqyCXG8" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
       <argument>^/admin</argument>
     </service>
@@ -5406,6 +5466,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AdminDashboardController" class="App\Controller\Admin\AdminDashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AdminDashboardController" class="App\Controller\Admin\AdminDashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\AdminDashboardController" class="App\Controller\Admin\AdminDashboardController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AdminForgotPasswordController" class="App\Controller\Admin\AdminForgotPasswordController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AdminForgotPasswordController" class="App\Controller\Admin\AdminForgotPasswordController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\AdminForgotPasswordController" class="App\Controller\Admin\AdminForgotPasswordController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AdminLoginController" class="App\Controller\Admin\AdminLoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AdminLoginController" class="App\Controller\Admin\AdminLoginController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\AdminLoginController" class="App\Controller\Admin\AdminLoginController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6061,17 +6124,44 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.3QECKYg" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.72mC_En" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.72mC_En.App\Controller\Admin\AdminForgotPasswordController::forgotPassword()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\AdminForgotPasswordController::forgotPassword()"/>
+      <argument>App\Controller\Admin\AdminForgotPasswordController::forgotPassword()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.72mC_En" method="withContext"/>
+    </service>
+    <service id=".service_locator.lQAlGdR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="hasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.lQAlGdR.App\Controller\Admin\AdminForgotPasswordController::resetPassword()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\AdminForgotPasswordController::resetPassword()"/>
+      <argument>App\Controller\Admin\AdminForgotPasswordController::resetPassword()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.lQAlGdR" method="withContext"/>
+    </service>
+    <service id=".service_locator.OD6HuPv" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+        <argument key="security" type="service_closure" id="security.helper"/>
       </argument>
     </service>
-    <service id=".service_locator.3QECKYg.App\Controller\Admin\AdminLoginController::login()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.OD6HuPv.App\Controller\Admin\AdminLoginController::login()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminLoginController::login()"/>
       <argument>App\Controller\Admin\AdminLoginController::login()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.3QECKYg" method="withContext"/>
+      <factory service=".service_locator.OD6HuPv" method="withContext"/>
     </service>
     <service id=".service_locator.HrQxEjs" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -6116,7 +6206,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator..8ErHJI" method="withContext"/>
     </service>
-    <service id=".service_locator.U6YV0l5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.WjLeZ9M" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -6128,7 +6218,9 @@
         <argument key="App\Controller\Admin\AdminDashboardController::showEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::showEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController::editEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::editEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController::deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::deleteEntity()"/>
-        <argument key="App\Controller\Admin\AdminLoginController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\Admin\AdminLoginController::login()"/>
+        <argument key="App\Controller\Admin\AdminForgotPasswordController::forgotPassword" type="service_closure" id=".service_locator.72mC_En.App\Controller\Admin\AdminForgotPasswordController::forgotPassword()"/>
+        <argument key="App\Controller\Admin\AdminForgotPasswordController::resetPassword" type="service_closure" id=".service_locator.lQAlGdR.App\Controller\Admin\AdminForgotPasswordController::resetPassword()"/>
+        <argument key="App\Controller\Admin\AdminLoginController::login" type="service_closure" id=".service_locator.OD6HuPv.App\Controller\Admin\AdminLoginController::login()"/>
         <argument key="App\Controller\ContactController::index" type="service_closure" id=".service_locator.HrQxEjs.App\Controller\ContactController::index()"/>
         <argument key="App\Controller\PresentationController::index" type="service_closure" id=".service_locator.egipcEH.App\Controller\PresentationController::index()"/>
         <argument key="App\Controller\SuivisController::index" type="service_closure" id=".service_locator.hU4fyru.App\Controller\SuivisController::index()"/>
@@ -6140,7 +6232,9 @@
         <argument key="App\Controller\Admin\AdminDashboardController:showEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::showEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController:editEntity" type="service_closure" id=".service_locator.mqZqLk1.App\Controller\Admin\AdminDashboardController::editEntity()"/>
         <argument key="App\Controller\Admin\AdminDashboardController:deleteEntity" type="service_closure" id=".service_locator.egipcEH.App\Controller\Admin\AdminDashboardController::deleteEntity()"/>
-        <argument key="App\Controller\Admin\AdminLoginController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\Admin\AdminLoginController::login()"/>
+        <argument key="App\Controller\Admin\AdminForgotPasswordController:forgotPassword" type="service_closure" id=".service_locator.72mC_En.App\Controller\Admin\AdminForgotPasswordController::forgotPassword()"/>
+        <argument key="App\Controller\Admin\AdminForgotPasswordController:resetPassword" type="service_closure" id=".service_locator.lQAlGdR.App\Controller\Admin\AdminForgotPasswordController::resetPassword()"/>
+        <argument key="App\Controller\Admin\AdminLoginController:login" type="service_closure" id=".service_locator.OD6HuPv.App\Controller\Admin\AdminLoginController::login()"/>
         <argument key="App\Controller\ContactController:index" type="service_closure" id=".service_locator.HrQxEjs.App\Controller\ContactController::index()"/>
         <argument key="App\Controller\PresentationController:index" type="service_closure" id=".service_locator.egipcEH.App\Controller\PresentationController::index()"/>
         <argument key="App\Controller\SuivisController:index" type="service_closure" id=".service_locator.hU4fyru.App\Controller\SuivisController::index()"/>
@@ -6409,6 +6503,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\Admin\AdminForgotPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\AdminForgotPasswordController"/>
+      <argument>App\Controller\Admin\AdminForgotPasswordController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\Admin\AdminLoginController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AdminLoginController"/>
       <argument>App\Controller\Admin\AdminLoginController</argument>
@@ -6586,6 +6686,7 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\Admin\AdminDashboardController</argument>
+          <argument>App\Controller\Admin\AdminForgotPasswordController</argument>
           <argument>App\Controller\Admin\AdminLoginController</argument>
           <argument>App\Controller\ContactController</argument>
           <argument>App\Controller\HomeController</argument>
@@ -7457,6 +7558,15 @@
         <argument type="service" id="logger" on-invalid="ignore"/>
       </call>
     </service>
+    <service id="cache.rate_limiter.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
+      <argument>ym1P3Fj8DE</argument>
+      <argument>0</argument>
+      <argument>/Applications/MAMP/htdocs/Strengthmate/var/cache/dev/pools/app</argument>
+      <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
+      <call method="setLogger">
+        <argument type="service" id="logger" on-invalid="ignore"/>
+      </call>
+    </service>
     <service id="cache.validator_expression_language.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>ldFCS1VrvV</argument>
       <argument>0</argument>
@@ -7618,7 +7728,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.U6YV0l5"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.WjLeZ9M"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
@@ -7638,7 +7748,9 @@
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
     <service id=".service_locator.cK72C9G" alias=".service_locator.mqZqLk1"/>
-    <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
+    <service id=".service_locator.vQ0vO33" alias=".service_locator.72mC_En"/>
+    <service id=".service_locator.9djdHws" alias=".service_locator.lQAlGdR"/>
+    <service id=".service_locator.tPP8Nlb" alias=".service_locator.OD6HuPv"/>
     <service id=".service_locator.lcZeO_T" alias=".service_locator.HrQxEjs"/>
     <service id=".service_locator.b8Q_TO0" alias=".service_locator.hU4fyru"/>
     <service id=".service_locator..zKQkTy" alias=".service_locator..8ErHJI"/>

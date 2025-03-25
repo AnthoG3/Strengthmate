@@ -26,7 +26,7 @@ body {
 
 .home_wall {
   position: relative;
-  width: 35vw;
+  width: 40vw;
   height: auto;
   background-attachment: fixed;
   display: block;
@@ -199,6 +199,24 @@ body {
 
 .btn-17:hover:after {
   --progress: -102%;
+}
+
+.btn-password {
+  background-color: #f8db5a; /* jaune style Bootstrap */
+  color: #000000; /* texte noir */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.btn-password:hover {
+  background-color: #f8db5a;
+  color: #000;
 }
 
 /* ==========================================================================
@@ -661,6 +679,20 @@ footer {
   margin-top: 0.5em;
 }
 
+.alert {
+  margin-bottom: 1rem; /* Ajoute un espace sous chaque message flash */
+  position: relative; /* Pour permettre un positionnement relatif */
+  z-index: 1000; /* Assure que le message flash est au-dessus des autres éléments */
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1rem;
+  color: inherit;
+}
+
 /* ==========================================================================
    Témoignages
    ========================================================================== */
@@ -970,6 +1002,11 @@ footer {
   background-color: #aaa;
 }
 
+.card-no-hover:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 /* ==========================================================================
     HOME PAGE (Styles spécifiques à la page d'accueil)
    ========================================================================== */
@@ -1039,16 +1076,75 @@ footer {
     flex-direction: column;
     text-align: center;
   }
+  .home_wall {
+    width: 100%;
+  }
   .home-image-container,
   .home-text-container {
     flex: 0 0 100%;
     padding: 1rem;
     text-align: center;
     order: unset; /* Reset order on mobile */
+    width: 70%;
   }
   .home-reverse .home-image-container {
     order: unset;
   }
+}
+.navbar-toggler .animated-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.navbar-toggler .animated-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.navbar-toggler .animated-icon span:nth-child(1) {
+  top: 0;
+}
+
+.navbar-toggler .animated-icon span:nth-child(2) {
+  top: 10px;
+}
+
+.navbar-toggler .animated-icon span:nth-child(3) {
+  top: 20px;
+}
+
+.navbar-toggler .animated-icon.open span:nth-child(1) {
+  top: 11px;
+  transform: rotate(135deg);
+}
+
+.navbar-toggler .animated-icon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.navbar-toggler .animated-icon.open span:nth-child(3) {
+  top: 11px;
+  transform: rotate(-135deg);
+}
+
+.navbar-toggler:focus, .navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */
