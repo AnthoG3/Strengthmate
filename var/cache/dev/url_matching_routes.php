@@ -21,6 +21,8 @@ return [
         '/admin/logout' => [[['_route' => 'admin_logout', '_controller' => 'App\\Controller\\Admin\\AdminLoginController::logout'], null, ['GET' => 0], null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact_index', '_controller' => 'App\\Controller\\ContactController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
+        '/mentions-legales' => [[['_route' => 'app_mentions', '_controller' => 'App\\Controller\\LegalController::mentions'], null, null, null, false, false, null]],
+        '/conditions-utilisation' => [[['_route' => 'app_cgu', '_controller' => 'App\\Controller\\LegalController::cgu'], null, null, null, false, false, null]],
         '/presentation' => [[['_route' => 'app_presentation_index', '_controller' => 'App\\Controller\\PresentationController::index'], null, ['GET' => 0], null, false, false, null]],
         '/suivis' => [[['_route' => 'app_suivis_index', '_controller' => 'App\\Controller\\SuivisController::index'], null, ['GET' => 0], null, false, false, null]],
         '/temoignages' => [[['_route' => 'app_temoignages_index', '_controller' => 'App\\Controller\\TemoignagesController::index'], null, ['GET' => 0], null, false, false, null]],

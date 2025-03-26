@@ -1602,3 +1602,58 @@ footer {
     margin-bottom: 0; /* Supprimer la marge en bas du dernier élément */
   }
 }
+.mentions-legales, .cgu {
+  font-family: 'Roboto Slab', serif;
+  line-height: 1.7;
+}
+
+.mentions-legales h1, .cgu h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #ffcc00; /* jaune */
+
+}
+
+.mentions-legales h2, .cgu h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  font-weight: 600;
+  color: #ffcc00; /* jaune */
+
+}
+
+.mentions-legales p, .cgu p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ffffff; /* jaune */
+
+}
+
+.mentions-legales a, .cgu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mentions-legales a:hover, .cgu a:hover {
+  text-decoration: underline;
+}
+
+footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+footer .footer-links a {
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+footer .footer-links a:hover {
+  text-decoration: underline;
+}

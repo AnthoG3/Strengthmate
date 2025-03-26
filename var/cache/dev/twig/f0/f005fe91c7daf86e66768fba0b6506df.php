@@ -173,25 +173,29 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         // line 75
         yield "</main>
 
-<!-- Pied de page -->
 <footer class=\"text-light py-3 mt-5\">
-    <div class=\"container\">
-        <div class=\"row align-items-center\">
-            <div class=\"col-12 text-center d-flex justify-content-center align-items-center\">
-                <p class=\"mb-0 me-3\">Copyright &copy; 2025 Strength Mate. Tous droits réservés.</p>
-                <div class=\"up\">
-                    <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\" class=\"nav-link\">
-                        <img class=\"nav-icon\" src=\"";
-        // line 85
+    <div class=\"container text-center\">
+        <p class=\"mb-2\">Copyright &copy; 2025 Strength Mate. Tous droits réservés.</p>
+        <div class=\"footer-links\">
+            <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\">
+                <img class=\"nav-icon\" src=\"";
+        // line 82
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram-new.png"), "html", null, true);
         yield "\" alt=\"instagram\" aria-hidden=\"true\">
-                        <span class=\"visually-hidden\">Instagram</span>
-                    </a>
-                </div>
-            </div>
+                <span class=\"visually-hidden\">Instagram</span>
+            </a>
+            <a href=\"";
+        // line 85
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_mentions");
+        yield "\">Mentions légales</a>
+            <a href=\"";
+        // line 86
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_cgu");
+        yield "\">CGU</a>
         </div>
     </div>
 </footer>
+
 
 <!-- Script Bootstrap -->
 <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"
@@ -298,7 +302,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  270 => 74,  257 => 73,  235 => 7,  186 => 85,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
+        return array (  274 => 74,  261 => 73,  239 => 7,  193 => 86,  189 => 85,  183 => 82,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
     }
 
     public function getSourceContext(): Source
