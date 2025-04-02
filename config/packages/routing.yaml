@@ -1,17 +1,13 @@
 framework:
     router:
-    # Définit comment les URL sont générées dans des contextes non-HTTP (par exemple, des commandes CLI).
-    # Cela est utile pour générer des liens valides même lorsqu'il n'y a pas de requête HTTP active.
-    # Exemple : une commande qui envoie un email avec des liens doit savoir quel domaine utiliser.
-    # La clé `default_uri` permet de spécifier l'URL de base à utiliser.
-    #default_uri: http://localhost  # Décommentez et remplacez par l'URL de votre application en local ou en production.
+    # Defines how URLs are generated in non-HTTP contexts (e.g., CLI commands).
+    # This is useful for generating valid links even when there is no active HTTP request.
 
 when@prod:
     framework:
         router:
-            # En production, `strict_requirements` peut être défini à `null` pour désactiver les vérifications strictes des paramètres d'URL.
-            # Cela permet d'éviter des exceptions si les paramètres requis sont manquants ou incorrects.
-            # - true : Active les vérifications strictes (exception en cas de problème).
-            # - false : Désactive les vérifications strictes (les URL incorrectes ne sont pas générées).
-            # - null : Comportement flexible, évitant les exceptions tout en journalisant les erreurs.
-            strict_requirements: null
+        # In production, `strict_requirements` can be set to `null` to disable strict URL parameter checks.
+        # This helps avoid exceptions when required parameters are missing or incorrect.
+        # - true : Enables strict checks (throws an exception if there's an issue).
+        # - false : Disables strict checks (incorrect URLs won't be generated).
+        # - null : Flexible behavior, avoids exceptions while logging errors.

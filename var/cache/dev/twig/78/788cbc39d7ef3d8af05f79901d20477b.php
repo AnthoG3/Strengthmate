@@ -60,7 +60,7 @@ class __TwigTemplate_e575d45735a41aa7c2418b03e7758ce2 extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -83,7 +83,7 @@ class __TwigTemplate_e575d45735a41aa7c2418b03e7758ce2 extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,29 +96,44 @@ class __TwigTemplate_e575d45735a41aa7c2418b03e7758ce2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <section class=\"mentions-legales container py-5\">
-        <h1 class=\"mb-4\">Mentions Légales</h1>
-        <h2>Éditeur du site</h2>
-        <p><strong>Nom :</strong> Anthony Gevers</p>
-        <p><strong>Profession :</strong> Développeur web</p>
-        <p><strong>Nom du site :</strong> Strength Mate</p>
-        <p><strong>Email de contact :</strong> strengthmates@gmail.com</p>
 
-        <h2>Hébergement</h2>
+        ";
+        // line 10
+        yield "        <h1 class=\"mb-4\">Mentions Légales</h1>
+
+        ";
+        // line 13
+        yield "        <h2>Éditeur du site</h2>
+        <p><strong>Conception et développement :</strong> Anthony Gevers</p>
+        <p><strong>Profession :</strong> Développeur web</p>
+        <p><strong>Email de contact :</strong> anthony.gevers@lapiscine.pro</p>
+
+        ";
+        // line 19
+        yield "        <h2>Hébergement</h2>
         <p><strong>Hébergeur :</strong> Hostinger</p>
         <p><strong>Site :</strong> <a href=\"https://www.strengthmate.fr\" target=\"_blank\">www.strengthmate.fr</a></p>
 
-        <h2>Propriété intellectuelle</h2>
+        ";
+        // line 24
+        yield "        <h2>Propriété intellectuelle</h2>
         <p>L’ensemble des contenus présents sur le site (textes, images, graphismes, logo, etc.) sont la propriété de Strength Mate, sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
 
-        <h2>Cookies</h2>
+        ";
+        // line 28
+        yield "        <h2>Cookies</h2>
         <p>Le site utilise des cookies à des fins de mesure d’audience et d'amélioration de l'expérience utilisateur. En continuant la navigation, vous acceptez leur utilisation.</p>
 
-        <h2>Responsabilité</h2>
+        ";
+        // line 32
+        yield "        <h2>Responsabilité</h2>
         <p>L’éditeur ne peut être tenu responsable en cas de dysfonctionnement du site, d’interruption de service ou d’erreurs techniques.</p>
 
-        <h2>Informations manquantes</h2>
+        ";
+        // line 36
+        yield "        <h2>Informations manquantes</h2>
         <p>Les informations légales obligatoires telles que l’adresse du siège social et le numéro SIRET seront ajoutées dès qu'elles seront disponibles.</p>
     </section>
 ";
@@ -152,7 +167,7 @@ class __TwigTemplate_e575d45735a41aa7c2418b03e7758ce2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  136 => 36,  131 => 32,  126 => 28,  121 => 24,  115 => 19,  108 => 13,  104 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source

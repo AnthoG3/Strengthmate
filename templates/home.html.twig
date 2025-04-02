@@ -1,15 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block metatitle %}Strength mate{% endblock %}
+{# Meta title for the home page #}
+{% block metatitle %}Strength Mate | Coaching Sportif en Ligne {% endblock %}
+
+{# Meta description for SEO #}
+{% block meta_description %}
+    <meta name="description" content="Strength Mate propose un coaching sportif en ligne personnalisé pour atteindre vos objectifs de forme et de santé. Découvrez nos suivis, témoignages et contactez-nous !">
+{% endblock %}
 
 {% block body %}
     <div class="container">
-        <img class="home_wall" src="{{ asset('assets/image/logo.png') }}" alt="logo.accueil">
+
+        {# Logo at the top of the home page #}
+        <img class="home_wall" src="{{ asset('assets/image/logo.png') }}" alt="logo Strength Mate">
 
         <div class="home-content-wrapper">
+
+            {# Section: Who we are #}
             <div class="home-content-item home-reverse">
                 <div class="home-image-container">
-                    <img src="{{ asset('assets/image/couple.jpg') }}" alt="coach" class="home-round-image">
+                    <img src="{{ asset('assets/image/coachs.png') }}" alt="coach" class="home-round-image" loading="lazy">
                 </div>
                 <div class="home-text-container">
                     <h2>Qui sommes-nous ?</h2>
@@ -18,9 +28,10 @@
                 </div>
             </div>
 
+            {# Section: Suivis (coaching) #}
             <div class="home-content-item">
                 <div class="home-image-container">
-                    <img src="{{ asset('assets/image/nutri.jpg') }}" alt="nutrition" class="home-round-image">
+                    <img src="{{ asset('assets/image/mensuel.png') }}" alt="nutrition" class="home-round-image" loading="lazy">
                 </div>
                 <div class="home-text-container">
                     <h2>Nos suivis</h2>
@@ -29,29 +40,30 @@
                 </div>
             </div>
 
+            {# Section: Testimonials #}
             <div class="home-content-item home-reverse">
                 <div class="home-image-container">
-                    <img src="{{ asset('assets/image/notes.svg') }}" alt="avis" class="home-round-image">
+                    <img src="{{ asset('assets/image/notes.png') }}" alt="avis" class="home-round-image" loading="lazy">
                 </div>
                 <div class="home-text-container">
                     <h2>Témoignages</h2>
                     <p>Nos membres partagent leur évolution avec vous ! Grâce à nos suivis et conseils, ils atteignent leurs objectifs et repoussent leurs limites. Rejoignez-nous et écrivez votre propre succès !</p>
                     <a href="{{ path('app_temoignages_index') }}" class="home-btn-primary">Lire les témoignages</a>
                 </div>
-
             </div>
 
+            {# Section: Contact #}
             <div class="home-content-item">
                 <div class="home-image-container">
-                    <img src="{{ asset('assets/image/contact.jpg') }}" alt="contact" class="home-round-image">
+                    <img src="{{ asset('assets/image/contactc.png') }}" alt="contact" class="home-round-image" loading="lazy">
                 </div>
                 <div class="home-text-container">
                     <h2>Contact</h2>
                     <p>Une question ou besoin d'un suivi ? Nous sommes à votre écoute ! Contactez-nous pour un accompagnement personnalisé et des conseils adaptés à vos objectifs.</p>
                     <a href="{{ path('app_contact_index') }}" class="home-btn-primary">Nous contacter</a>
                 </div>
-
             </div>
+
         </div>
     </div>
 {% endblock %}

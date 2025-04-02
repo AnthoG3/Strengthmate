@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Declares the file as an XML sitemap following the sitemaps.org protocol standard -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Homepage – highest priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- "About us" page – high priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/qui-sommes-nous</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- "Our coaching" page – high priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/nos-suivis</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- "Testimonials" page – medium priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/temoignages</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- "Contact" page – standard priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/contact</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- "Legal notices" page – low priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/mentions-legales</loc>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- "Terms of use" page – low priority -->
+    <url>
+        <loc>https://www.strengthmate.fr/conditions-utilisation</loc>
+        <priority>0.3</priority>
+    </url>
+
+</urlset>

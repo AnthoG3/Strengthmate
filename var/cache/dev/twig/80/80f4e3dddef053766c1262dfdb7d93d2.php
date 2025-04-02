@@ -60,7 +60,7 @@ class __TwigTemplate_4d1aef9ab5799910f329ffcbe81fd158 extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -83,7 +83,7 @@ class __TwigTemplate_4d1aef9ab5799910f329ffcbe81fd158 extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,15 +96,18 @@ class __TwigTemplate_4d1aef9ab5799910f329ffcbe81fd158 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <div class=\"container mt-5\">
         <h2>Nouveau mot de passe</h2>
 
-        <form method=\"post\">
+        ";
+        // line 11
+        yield "        <form method=\"post\">
             <div class=\"form-group\">
                 <label for=\"password\">Nouveau mot de passe :</label>
                 <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" required>
             </div>
+
             <button class=\"btn btn-success mt-3\">Changer le mot de passe</button>
         </form>
     </div>
@@ -139,7 +142,7 @@ class __TwigTemplate_4d1aef9ab5799910f329ffcbe81fd158 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  105 => 11,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source

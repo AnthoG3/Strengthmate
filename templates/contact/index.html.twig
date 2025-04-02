@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{# Page title block #}
+{% block metatitle %}Contact | Strengthmate{% endblock %}
 
 {% block body %}
+    {# Flash messages (success, error, etc.) #}
     <div class="flash-container">
         {% for label, messages in app.flashes %}
             <div class="flash flash-{{ label }}">
@@ -15,36 +17,72 @@
 
     <h1 class="contact-heading">Contact</h1>
 
+    {# Contact form container #}
     <div class="form-card1">
         <div class="form-card2">
             <form class="form" method="post" action="{{ path('app_contact_index') }}">
+
+                {# Name input field #}
                 <div class="form-field">
-                    {{ form_widget(form.name, {'attr': {'class': 'input-field', 'placeholder': 'Nom et prénom'}}) }}
+                    {{ form_widget(form.name, {
+                        'attr': {
+                            'class': 'input-field',
+                            'placeholder': 'Nom et prénom'
+                        }
+                    }) }}
                     <div class="error-message">{{ form_errors(form.name) }}</div>
                 </div>
 
+                {# Email input field #}
                 <div class="form-field">
-                    {{ form_widget(form.email, {'attr': {'class': 'input-field', 'placeholder': 'Email'}}) }}
+                    {{ form_widget(form.email, {
+                        'attr': {
+                            'class': 'input-field',
+                            'placeholder': 'Email'
+                        }
+                    }) }}
                     <div class="error-message">{{ form_errors(form.email) }}</div>
                 </div>
 
+                {# Phone input field #}
                 <div class="form-field">
-                    {{ form_widget(form.phone, {'attr': {'class': 'input-field', 'placeholder': 'Numéro de téléphone'}}) }}
+                    {{ form_widget(form.phone, {
+                        'attr': {
+                            'class': 'input-field',
+                            'placeholder': 'Numéro de téléphone'
+                        }
+                    }) }}
                     <div class="error-message">{{ form_errors(form.phone) }}</div>
                 </div>
 
+                {# Suivi type select field #}
                 <div class="form-field">
-                    {{ form_widget(form.suivi, {'attr': {'class': 'input-field', 'placeholder': 'Type de suivi'}}) }}
+                    {{ form_widget(form.suivi, {
+                        'attr': {
+                            'class': 'input-field',
+                            'placeholder': 'Type de suivi'
+                        }
+                    }) }}
                     <div class="error-message">{{ form_errors(form.suivi) }}</div>
                 </div>
 
+                {# Message textarea field #}
                 <div class="form-field">
-                    {{ form_widget(form.content, {'attr': {'class': 'input-field', 'placeholder': 'Message', 'cols': '30', 'rows': '3'}}) }}
+                    {{ form_widget(form.content, {
+                        'attr': {
+                            'class': 'input-field',
+                            'placeholder': 'Message',
+                            'cols': '30',
+                            'rows': '3'
+                        }
+                    }) }}
                     <div class="error-message">{{ form_errors(form.content) }}</div>
                 </div>
 
+                {# CSRF token field (hidden) #}
                 {{ form_widget(form._token) }}
 
+                {# Submit button #}
                 <button type="submit" class="sendMessage-btn">Envoyer la demande de contact</button>
             </form>
         </div>

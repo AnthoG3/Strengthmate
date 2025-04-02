@@ -1,29 +1,38 @@
 {% extends 'base.html.twig' %}
 
+{# Meta title for the Legal Notices page #}
 {% block metatitle %}Mentions Légales{% endblock %}
 
 {% block body %}
     <section class="mentions-legales container py-5">
-        <h1 class="mb-4">Mentions Légales</h1>
-        <h2>Éditeur du site</h2>
-        <p><strong>Nom :</strong> Anthony Gevers</p>
-        <p><strong>Profession :</strong> Développeur web</p>
-        <p><strong>Nom du site :</strong> Strength Mate</p>
-        <p><strong>Email de contact :</strong> strengthmates@gmail.com</p>
 
+        {# Page title #}
+        <h1 class="mb-4">Mentions Légales</h1>
+
+        {# Site editor / developer information #}
+        <h2>Éditeur du site</h2>
+        <p><strong>Conception et développement :</strong> Anthony Gevers</p>
+        <p><strong>Profession :</strong> Développeur web</p>
+        <p><strong>Email de contact :</strong> anthony.gevers@lapiscine.pro</p>
+
+        {# Hosting provider details #}
         <h2>Hébergement</h2>
         <p><strong>Hébergeur :</strong> Hostinger</p>
         <p><strong>Site :</strong> <a href="https://www.strengthmate.fr" target="_blank">www.strengthmate.fr</a></p>
 
+        {# Intellectual property rights notice #}
         <h2>Propriété intellectuelle</h2>
         <p>L’ensemble des contenus présents sur le site (textes, images, graphismes, logo, etc.) sont la propriété de Strength Mate, sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
 
+        {# Cookie usage disclaimer #}
         <h2>Cookies</h2>
         <p>Le site utilise des cookies à des fins de mesure d’audience et d'amélioration de l'expérience utilisateur. En continuant la navigation, vous acceptez leur utilisation.</p>
 
+        {# Legal responsibility disclaimer #}
         <h2>Responsabilité</h2>
         <p>L’éditeur ne peut être tenu responsable en cas de dysfonctionnement du site, d’interruption de service ou d’erreurs techniques.</p>
 
+        {# Placeholder for missing legal data (address, SIRET) #}
         <h2>Informations manquantes</h2>
         <p>Les informations légales obligatoires telles que l’adresse du siège social et le numéro SIRET seront ajoutées dès qu'elles seront disponibles.</p>
     </section>

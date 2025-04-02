@@ -12,15 +12,21 @@ use Symfony\Component\Validator\Constraints\File;
 
 class SuivisType extends AbstractType
 {
+    // Build the form for the Suivis entity
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // Title field (default configuration)
             ->add('title')
+
+            // Content field with a textarea
             ->add('content', TextareaType::class, [
                 'label' => 'Contenu',
             ])
-        ->add('image', FileType::class, [
-                'mapped' => false,
+
+            // Optional image upload field (not mapped to the entity)
+            ->add('image', FileType::class, [
+                'mapped' => false,  // The file is handled manually (not linked to entity property)
                 'required' => false,
                 'label' => 'Image (optionnelle)',
                 'constraints' => [
@@ -33,6 +39,7 @@ class SuivisType extends AbstractType
             ]);
     }
 
+    // Link this form to the Suivis entity
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

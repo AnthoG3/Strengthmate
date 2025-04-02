@@ -9,20 +9,20 @@ security:
                 property: email
 
     firewalls:
-        # Pas de sécurité sur les assets de dev (profiler, css, js, etc.)
+        # No security applied to dev assets (profiler, CSS, JS, etc.)
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        # Pare-feu pour toute la partie admin
+        # Firewall for the entire admin area
         admin:
             lazy: true
             provider: app_admin_provider
 
             form_login:
-                login_path: admin_login             # Route vers le formulaire de connexion
-                check_path: admin_login             # Route où les identifiants sont envoyés
-                default_target_path: app_admin_dashboard  # Redirection après connexion
+                login_path: admin_login               # Route to the login form
+                check_path: admin_login               # Route where credentials are submitted
+                default_target_path: app_admin_dashboard  # Redirect after login
                 username_parameter: email
                 password_parameter: password
 
@@ -32,18 +32,18 @@ security:
 
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800   # 7 jours
+                lifetime: 604800   # 7 days
                 path: /
 
     access_control:
-        # Autoriser l'accès public à la page de connexion
+        # Allow public access to the login page
         - { path: ^/admin/login, roles: PUBLIC_ACCESS }
 
-        # ✅ Autoriser l'accès public à la page "Mot de passe oublié"
+        # ✅ Allow public access to the "Forgot password" page
         - { path: ^/admin/forgot-password, roles: PUBLIC_ACCESS }
 
-        # ✅ Autoriser l'accès public à la page "Réinitialiser le mot de passe"
+        # ✅ Allow public access to the "Reset password" page
         - { path: ^/admin/reset-password, roles: PUBLIC_ACCESS }
 
-        # Tout le reste de /admin nécessite ROLE_ADMIN
+        # Everything else under /admin requires ROLE_ADMIN
         - { path: ^/admin, roles: ROLE_ADMIN }

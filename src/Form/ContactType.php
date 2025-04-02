@@ -15,17 +15,27 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class ContactType extends AbstractType
 {
+    // Build the contact form with fields and validation constraints
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // Name field (required)
             ->add('name', TextType::class, [
                 'label' => false,
-                'constraints' => [new NotBlank(['message' => 'Le nom et prénom ne peuvent pas être vides.'])],
+                'constraints' => [
+                    new NotBlank(['message' => 'Le nom et prénom ne peuvent pas être vides.']),
+                ],
             ])
+
+            // Email field (required)
             ->add('email', EmailType::class, [
                 'label' => false,
-                'constraints' => [new NotBlank(['message' => 'L\'email ne peut pas être vide.'])],
+                'constraints' => [
+                    new NotBlank(['message' => 'L\'email ne peut pas être vide.']),
+                ],
             ])
+
+            // Phone field (required + regex for format)
             ->add('phone', TextType::class, [
                 'label' => false,
                 'constraints' => [
@@ -36,6 +46,8 @@ class ContactType extends AbstractType
                     ]),
                 ],
             ])
+
+            // Suivi type (choice field)
             ->add('suivi', ChoiceType::class, [
                 'label' => 'Type de suivi',
                 'attr' => ['class' => 'form-control'],
@@ -46,15 +58,22 @@ class ContactType extends AbstractType
                     'Suivi hebdomadaire' => 'hebdomadaire',
                     'Suivi à définir' => 'indefini',
                 ],
-                'constraints' => [new NotBlank(['message' => 'La formule ne peut pas être vide.'])],
+                'constraints' => [
+                    new NotBlank(['message' => 'La formule ne peut pas être vide.']),
+                ],
                 'required' => true,
             ])
+
+            // Message content (textarea, required)
             ->add('content', TextareaType::class, [
                 'label' => false,
-                'constraints' => [new NotBlank(['message' => 'Le message ne peut pas être vide.'])],
+                'constraints' => [
+                    new NotBlank(['message' => 'Le message ne peut pas être vide.']),
+                ],
             ]);
     }
 
+    // Link this form to the Contact entity
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

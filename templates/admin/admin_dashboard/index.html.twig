@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{# Meta title for the admin dashboard page #}
 {% block metatitle %}Tableau de bord admin | Strengthmate{% endblock %}
 
 {% block body %}
@@ -7,13 +8,15 @@
         <div class="container mt-3 ">
             <h1 class="text-center mb-8">Tableau de bord administrateur</h1>
 
+            {# Logout button #}
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <a href="{{ path('admin_logout') }}" class="btn btn-danger">Déconnexion</a>
             </div>
 
-            <!-- Section Présentations -->
+            {# --- Presentations Section --- #}
             <h2 class="mb-3 text-start">Présentations</h2>
             <a href="{{ path('app_admin_entity_create', {'entityType': 'presentation'}) }}" class="btn btn-success mb-3">Ajouter une présentation</a>
+
             <table class="table table-dark table-striped">
                 <thead>
                 <tr>
@@ -44,9 +47,10 @@
                 </tbody>
             </table>
 
-            <!-- Section Suivis -->
+            {# --- Suivis Section --- #}
             <h2 class="mt-5 mb-3 text-start">Suivis</h2>
             <a href="{{ path('app_admin_entity_create', {'entityType': 'suivis'}) }}" class="btn btn-success mb-3">Ajouter un suivi</a>
+
             <table class="table table-dark table-striped">
                 <thead>
                 <tr>
@@ -77,9 +81,10 @@
                 </tbody>
             </table>
 
-            <!-- Section Témoignages -->
+            {# --- Testimonials Section --- #}
             <h2 class="mt-5 mb-3 text-start">Témoignages</h2>
             <a href="{{ path('app_admin_entity_create', {'entityType': 'temoignages'}) }}" class="btn btn-success mb-3">Ajouter un témoignage</a>
+
             <table class="table table-dark table-striped">
                 <thead>
                 <tr>
@@ -96,6 +101,7 @@
                         <td>{{ temoignage.content|slice(0, 50) }}...</td>
                         <td class="text-center">
                             <div class="rating">
+                                {# Display stars from 5 to 1 with current rating highlighted #}
                                 {% for i in 5..1 %}
                                     <input type="radio" id="star{{ temoignage.id }}_{{ i }}" name="rating[{{ temoignage.id }}]" value="{{ i }}" {% if i == temoignage.rating %}checked{% endif %} disabled/>
                                     <label for="star{{ temoignage.id }}_{{ i }}" title="{{ i }} stars">★</label>

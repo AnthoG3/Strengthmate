@@ -1,27 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Témoignages{% endblock %}
+{# Page title displayed in the browser tab #}
+{% block metatitle %}Témoignages | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container">
         <h1>Témoignages</h1>
 
+        {# Display the background banner image if there are any testimonials #}
         {% if temoignages|length > 0 %}
-            <img id="wall_avis" src="{{ asset('assets/image/notes.svg') }}" alt="avis">
+            <img id="wall_avis" src="{{ asset('assets/image/notes.png') }}" alt="avis">
         {% endif %}
 
         <div class="slider-temoignages">
             <div class="list-temoignages">
+                {# Loop through all testimonials and display them #}
                 {% for temoignage in temoignages %}
                     <div class="block-temoignage">
                         <h3 class="temoignage-title">{{ temoignage.title }}</h3>
                         <p class="message">{{ temoignage.content }}</p>
+
+                        {# Display star rating (★ = filled, ☆ = empty) #}
                         <div class="rating small">
-                            {% for i in 1..5 %}
+                            {% for i in 5..1 %}
                                 {% if i <= temoignage.rating %}
-                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
                                 {% else %}
-                                    <span class="star">☆</span>
+                                    <span class="star filled">☆</span>
                                 {% endif %}
                             {% endfor %}
                         </div>

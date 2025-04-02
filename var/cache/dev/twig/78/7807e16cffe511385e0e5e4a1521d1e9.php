@@ -60,7 +60,7 @@ class __TwigTemplate_600a5b83749aede5aafd79ec21f4322d extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -83,7 +83,7 @@ class __TwigTemplate_600a5b83749aede5aafd79ec21f4322d extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,26 +96,42 @@ class __TwigTemplate_600a5b83749aede5aafd79ec21f4322d extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <section class=\"cgu container py-5\">
-        <h1 class=\"mb-4\">Conditions Générales d’Utilisation</h1>
+        ";
+        // line 9
+        yield "        <h1 class=\"mb-4\">Conditions Générales d’Utilisation</h1>
 
-        <h2>Objet</h2>
-        <p>Les présentes conditions régissent l'utilisation du site Strength Mate, accessible à l'adresse <a href=\"https://www.strengthmate.fr\" target=\"_blank\">www.strengthmate.fr</a>.</p>
+        ";
+        // line 12
+        yield "        <h2>Objet</h2>
+        <p>Les présentes conditions régissent l'utilisation du site Strength Mate, accessible à l'adresse
+            <a href=\"https://www.strengthmate.fr\" target=\"_blank\">www.strengthmate.fr</a>.
+        </p>
 
-        <h2>Accès au site</h2>
+        ";
+        // line 18
+        yield "        <h2>Accès au site</h2>
         <p>Le site est accessible gratuitement à tout utilisateur disposant d’un accès à internet. Tous les frais relatifs à l’accès au service (matériel, logiciels, connexion Internet) sont à la charge de l’utilisateur.</p>
 
-        <h2>Formulaire de contact</h2>
+        ";
+        // line 22
+        yield "        <h2>Formulaire de contact</h2>
         <p>Le site propose un formulaire de contact. L’utilisateur s’engage à fournir des informations exactes et à ne pas utiliser ce service de manière abusive.</p>
 
-        <h2>Propriété intellectuelle</h2>
+        ";
+        // line 26
+        yield "        <h2>Propriété intellectuelle</h2>
         <p>Tous les contenus présents sur le site sont protégés par le droit d’auteur. Toute reproduction ou représentation totale ou partielle sans autorisation est interdite.</p>
 
-        <h2>Cookies</h2>
+        ";
+        // line 30
+        yield "        <h2>Cookies</h2>
         <p>Des cookies peuvent être installés sur le navigateur de l’utilisateur. Ces cookies servent uniquement à améliorer la navigation et à établir des statistiques d’audience.</p>
 
-        <h2>Modification des CGU</h2>
+        ";
+        // line 34
+        yield "        <h2>Modification des CGU</h2>
         <p>Strength Mate se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs sont invités à les consulter régulièrement.</p>
     </section>
 ";
@@ -149,7 +165,7 @@ class __TwigTemplate_600a5b83749aede5aafd79ec21f4322d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  134 => 34,  129 => 30,  124 => 26,  119 => 22,  114 => 18,  107 => 12,  103 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source

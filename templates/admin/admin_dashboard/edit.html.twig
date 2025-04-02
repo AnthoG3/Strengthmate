@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{# Page title for editing the entity #}
 {% block metatitle %}Modifier - {{ entity.title }} | Strengthmate{% endblock %}
 
 {% block body %}
@@ -8,22 +9,27 @@
 
         <div class="card card-large bg-dark text-white">
             <div class="card-body">
+                {# Display current entity title as a header #}
                 <h2 class="text-center mb-4">{{ entity.title }}</h2>
 
+                {# Start form without native browser validation #}
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
+                {# Title input field #}
                 <div class="mb-3">
                     {{ form_label(form.title, "Titre", {'label_attr': {'class': "form-label"}}) }}
                     {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
                     {{ form_errors(form.title) }}
                 </div>
 
+                {# Content textarea #}
                 <div class="mb-3">
                     {{ form_label(form.content, "Contenu", {'label_attr': {'class': "form-label"}}) }}
                     {{ form_widget(form.content, {'attr': {'class': "form-control", "rows": 6}}) }}
                     {{ form_errors(form.content) }}
                 </div>
 
+                {# Rating input (stars) for testimonials only #}
                 {% if entity_type == "temoignages" %}
                     <div class="mb-3 rating-container">
                         <label class="form-label">Note</label>
@@ -37,6 +43,7 @@
                     {% do form.rating.setRendered() %}
                 {% endif %}
 
+                {# Image upload field for "suivis" entities #}
                 {% if entity_type == "suivis" and form.children['image'] is defined %}
                     <div class="mb-3">
                         <label class="form-label">Image</label>
@@ -50,9 +57,10 @@
                     </div>
                 {% endif %}
 
-                <div class="d-flex justify-content-around mt-4">
-                    <button type="submit" class="btn btn-warning" style="margin-right: 1em;">Mettre à jour</button>
-                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary" style="margin-left: 1em;">Retour au tableau de bord</a>
+                {# Submit and return buttons #}
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <button type="submit" class="btn btn-warning">Mettre à jour</button>
+                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
                 </div>
 
                 {{ form_end(form) }}
@@ -61,6 +69,7 @@
     </div>
 {% endblock %}
 
+{# Include JavaScript for rating behavior (stars) #}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/js/rating.js') }}"></script>

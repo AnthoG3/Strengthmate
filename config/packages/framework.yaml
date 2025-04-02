@@ -1,8 +1,8 @@
 framework:
-    # Définition du secret de l'application.
+    # Defines the application secret.
     secret: '%env(APP_SECRET)%'
 
-    # Configuration de la session
+    # Session configuration
     session:
         enabled: true
         handler_id: null
@@ -12,12 +12,11 @@ framework:
         gc_maxlifetime: 3600  # 20 minutes.
         cookie_lifetime: 3600  # 20 minutes.
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-        metadata_update_threshold: 0  # Mise à jour des métadonnées à chaque requête
+        metadata_update_threshold: 0  # Metadata updated on every request.
 
-    # Activer la validation (annotations activées automatiquement si doctrine/annotations est installé)
     validation:
         auto_mapping:
-            App\Entity\: [] # Active la validation automatique pour les entités
+            App\Entity\: []  # Enables automatic validation for entities.
 
 when@test:
     framework:

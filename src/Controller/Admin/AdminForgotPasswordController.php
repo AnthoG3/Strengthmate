@@ -11,61 +11,72 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
 class AdminForgotPasswordController extends AbstractController
 {
-    #[Route('/admin/forgot-password', name: 'admin_forgot_password')]
-    public function forgotPassword(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
-    {
-        if ($request->isMethod('POST')) {
-            $email = $request->request->get('email');
-            $admin = $em->getRepository(Admin::class)->findOneBy(['email' => $email]);
+// Route for displaying and handling the "forgot password" form
+#[Route('/admin/forgot-password', name: 'admin_forgot_password')]
+public function forgotPassword(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
+{
+// Handle form submission
+if ($request->isMethod('POST')) {
+$email = $request->request->get('email');
+$admin = $em->getRepository(Admin::class)->findOneBy(['email' => $email]);
 
-            if ($admin) {
-                $token = bin2hex(random_bytes(32));
-                $admin->setResetToken($token);
-                $em->flush();
+// If the admin account exists for the provided email
+if ($admin) {
+// Generate a secure reset token and store it in the database
+$token = bin2hex(random_bytes(32));
+$admin->setResetToken($token);
+$em->flush();
 
-                $resetUrl = $this->generateUrl('admin_reset_password', ['token' => $token], 0);
-                // ✅ Envoi de l'email (prod)
-                $emailMessage = (new Email())
-                    ->from('no-reply@tonsite.fr')
-                    ->to($email)
-                    ->subject('Réinitialisation de mot de passe')
-                    ->text("Cliquez sur ce lien pour réinitialiser votre mot de passe : $resetUrl");
+// Generate the reset password URL
+$resetUrl = $this->generateUrl('admin_reset_password', ['token' => $token], 0);
 
-                $mailer->send($emailMessage);
-                $this->addFlash('success', 'Un lien de réinitialisation a été envoyé à votre adresse email.');
-            } else {
-                $this->addFlash('error', 'Email non reconnu.');
-            }
+// ✅ Send the reset email (production)
+$emailMessage = (new Email())
+->from('no-reply@tonsite.fr')
+->to($email)
+->subject('Password Reset')
+->text("Click this link to reset your password: $resetUrl");
 
-            return $this->redirectToRoute('admin_forgot_password');
-        }
+$mailer->send($emailMessage);
 
-        return $this->render('admin/admin_login/forgot_password.html.twig');
-    }
+$this->addFlash('success', 'A reset link has been sent to your email address.');
+} else {
+$this->addFlash('error', 'Email not recognized.');
+}
 
-    #[Route('/admin/reset-password/{token}', name: 'admin_reset_password')]
-    public function resetPassword(string $token, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
-    {
-        $admin = $em->getRepository(Admin::class)->findOneBy(['resetToken' => $token]);
+return $this->redirectToRoute('admin_forgot_password');
+}
 
-        if (!$admin) {
-            throw $this->createNotFoundException('Token invalide.');
-        }
+// Render the forgot password form
+return $this->render('admin/admin_login/forgot_password.html.twig');
+}
 
-        if ($request->isMethod('POST')) {
-            $newPassword = $request->request->get('password');
-            $hashed = $hasher->hashPassword($admin, $newPassword);
-            $admin->setPassword($hashed);
-            $admin->setResetToken(null);
-            $em->flush();
+// Route for resetting the password using the token
+#[Route('/admin/reset-password/{token}', name: 'admin_reset_password')]
+public function resetPassword(string $token, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
+{
+$admin = $em->getRepository(Admin::class)->findOneBy(['resetToken' => $token]);
 
-            $this->addFlash('success', 'Mot de passe modifié avec succès.');
-            return $this->redirectToRoute('admin_login');
-        }
+// If the token is invalid or does not match any admin
+if (!$admin) {
+throw $this->createNotFoundException('Invalid token.');
+}
 
-        return $this->render('admin/admin_login/reset_password.html.twig');
-    }
+// Handle password reset form submission
+if ($request->isMethod('POST')) {
+$newPassword = $request->request->get('password');
+$hashed = $hasher->hashPassword($admin, $newPassword);
+$admin->setPassword($hashed);
+$admin->setResetToken(null); // Clear the token after use
+$em->flush();
+
+$this->addFlash('success', 'Password successfully updated.');
+return $this->redirectToRoute('admin_login');
+}
+
+// Render the password reset form
+return $this->render('admin/admin_login/reset_password.html.twig');
+}
 }

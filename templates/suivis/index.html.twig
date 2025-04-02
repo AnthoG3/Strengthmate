@@ -1,28 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Suivis{% endblock %}
+{# Page title shown in the browser tab #}
+{% block metatitle %}Suivis | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container mt-5">
         <h1 class="text-center mb-4">Suivis</h1>
 
+        {# Loop through all "suivis" items #}
         {% for suivi in suivis %}
             <div class="card mt-4 suivi-card">
+
+                {# Show the image if available #}
                 {% if suivi.image %}
-                    <img src="{{ asset(suivi.image) }}" class="card-img-top" alt="{{ suivi.title }}">
+                    <div class="image-container">
+                        <!-- Display the image from its path -->
+                        <img src="{{ asset(suivi.image) }}" class="card-img-top" alt="{{ suivi.title }}">
+                    </div>
                 {% endif %}
+
                 <div class="card-body">
-                    <!-- Conteneur défilable pour le titre -->
+                    {# Scrollable container for long titles #}
                     <div class="scrollable-title">
                         <h5 class="card-title">{{ suivi.title }}</h5>
                     </div>
-                    <!-- Contenu principal -->
+
+                    {# Scrollable content section (supports HTML content) #}
                     <div class="scrollable-content">
                         <p class="card-text formatted-content">{{ suivi.content|raw }}</p>
                     </div>
-                    </div>
+                </div>
             </div>
         {% else %}
+            {# Display if no "suivis" are found #}
             <p class="text-center mt-4">Aucun suivi disponible pour le moment.</p>
         {% endfor %}
     </div>

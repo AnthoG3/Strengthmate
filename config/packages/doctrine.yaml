@@ -1,88 +1,81 @@
 doctrine:
     dbal:
-        # URL de connexion à la base de données, configurée via une variable d'environnement.
-        # Le préfixe '%env(resolve:DATABASE_URL)%' permet de résoudre dynamiquement l'URL.
+        # Database connection URL, configured via an environment variable.
+        # The '%env(resolve:DATABASE_URL)%' prefix allows dynamic resolution of the URL.
         url: '%env(resolve:DATABASE_URL)%'
 
-        # IMPORTANT : La version du serveur de base de données doit être configurée ici
-        # ou dans la variable d'environnement `DATABASE_URL` pour assurer la compatibilité.
-        #server_version: '16'  # Décommentez et spécifiez la version si nécessaire.
-
-        # Active la collecte des traces de profilage pour déboguer les requêtes SQL.
+        # Enables collection of profiling traces to debug SQL queries.
         profiling_collect_backtrace: '%kernel.debug%'
 
-        # Utilisation de savepoints pour permettre un rollback partiel des transactions imbriquées.
+        # Enables the use of savepoints to allow partial rollbacks in nested transactions.
         use_savepoints: true
 
     orm:
-        # Génération automatique des classes de proxy. Idéal pour le développement, mais peut être désactivé en production.
         auto_generate_proxy_classes: true
 
-        # Active les objets fantômes paresseux (lazy ghost objects) pour une meilleure gestion des relations.
+        # Enables lazy ghost objects for better relationship management.
         enable_lazy_ghost_objects: true
-
-        # Rapporte les champs dans l'entité où ils sont déclarés, utile pour le débogage.
+        # Reports fields in the entity where they are declared, useful for debugging.
         report_fields_where_declared: true
-
-        # Valide le mapping XML des entités pour éviter des erreurs de configuration.
+        # Validates the XML mapping of entities to prevent configuration errors.
         validate_xml_mapping: true
 
-        # Utilise une stratégie de nommage qui convertit les noms en underscore (par exemple : `camelCase` → `snake_case`).
+        # Uses a naming strategy that converts names to underscore format (e.g., `camelCase` → `snake_case`).
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
 
-        # Définit des préférences pour la génération d'identifiants dans les bases de données spécifiques.
+        # Defines preferences for identity generation in specific database platforms.
         identity_generation_preferences:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
 
-        # Active le mappage automatique des entités pour éviter une configuration explicite.
+        # Enables automatic mapping of entities to avoid explicit configuration.
         auto_mapping: true
 
-        # Déclare les mappings pour le namespace `App`.
+        # Declares the mappings for the `App` namespace.
         mappings:
             App:
-                type: attribute               # Utilise les attributs PHP (annotations modernes).
-                is_bundle: false              # Indique que ce n'est pas un bundle Symfony.
-                dir: '%kernel.project_dir%/src/Entity'  # Répertoire contenant les entités.
-                prefix: 'App\Entity'          # Namespace par défaut des entités.
-                alias: App                    # Alias utilisé dans les requêtes DQL.
+                type: attribute               # Uses PHP attributes (modern annotations).
+                is_bundle: false              # Indicates this is not a Symfony bundle.
+                dir: '%kernel.project_dir%/src/Entity'  # Directory containing entity classes.
+                prefix: 'App\Entity'          # Default namespace for entities.
+                alias: App                    # Alias used in DQL queries.
 
-        # Résolution des contrôleurs (option avancée).
+        # Controller resolution (advanced option).
         controller_resolver:
-            auto_mapping: false  # Désactive le mappage automatique pour les contrôleurs.
+            auto_mapping: false  # Disables automatic mapping for controllers.
 
-# Configuration spécifique pour l'environnement de test.
+# Specific configuration for the test environment.
 when@test:
     doctrine:
         dbal:
-            # Ajout d'un suffixe `_test` au nom de la base pour éviter de modifier la base de production.
-            # Le "TEST_TOKEN" est souvent utilisé par ParaTest pour différencier les tests parallèles.
+            # Adds a `_test` suffix to the database name to avoid modifying the production database.
+            # The "TEST_TOKEN" is often used by ParaTest to differentiate parallel test instances.
             dbname_suffix: '_test%env(default::TEST_TOKEN)%'
 
-# Configuration spécifique pour l'environnement de production.
+# Specific configuration for the production environment.
 when@prod:
     doctrine:
         orm:
-            # Désactive la génération automatique des classes proxy pour améliorer les performances.
+            # Disables automatic proxy class generation to improve performance.
             auto_generate_proxy_classes: false
 
-            # Répertoire où les classes proxy sont stockées en production.
+            # Directory where proxy classes are stored in production.
             proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
 
-            # Configuration du cache des requêtes pour des performances optimales.
+            # Configures query caching for optimal performance.
             query_cache_driver:
-                type: pool  # Utilise un pool de cache défini dans `framework.cache.pools`.
+                type: pool  # Uses a cache pool defined in `framework.cache.pools`.
                 pool: doctrine.system_cache_pool
 
-            # Configuration du cache des résultats pour améliorer l'efficacité des requêtes répétées.
+            # Configures result caching to improve efficiency of repeated queries.
             result_cache_driver:
-                type: pool  # Utilise également un pool de cache.
+                type: pool  # Also uses a cache pool.
                 pool: doctrine.result_cache_pool
 
     framework:
         cache:
-            # Déclare des pools de cache pour Doctrine.
+            # Declares cache pools for Doctrine.
             pools:
-                doctrine.result_cache_pool:    # Pool de cache pour les résultats des requêtes.
-                    adapter: cache.app         # Utilise l'adaptateur cache d'application.
-                doctrine.system_cache_pool:    # Pool de cache pour les métadonnées système.
-                    adapter: cache.system      # Utilise l'adaptateur cache système.
+                doctrine.result_cache_pool:    # Cache pool for query results.
+                    adapter: cache.app         # Uses the application cache adapter.
+                doctrine.system_cache_pool:    # Cache pool for system metadata.
+                    adapter: cache.system      # Uses the system cache adapter.

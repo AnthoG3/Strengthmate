@@ -53,72 +53,81 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
-    <title>";
-        // line 7
+
+    ";
+        // line 9
+        yield "    <title>";
         yield from $this->unwrap()->yieldBlock('metatitle', $context, $blocks);
         yield "</title>
 
-    <!-- Intégration de Bootstrap -->
-    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
+    ";
+        // line 12
+        yield "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
           integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
 
-    <!-- Google Fonts -->
-    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+    ";
+        // line 16
+        yield "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
     <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
     <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap\" rel=\"stylesheet\">
     <link href=\"https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab:wght@100..900&display=swap\" rel=\"stylesheet\">
 
-    <!-- CSS personnalisé -->
-    <link rel=\"stylesheet\" href=\"";
-        // line 20
+    ";
+        // line 22
+        yield "    <link rel=\"stylesheet\" href=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/style.css"), "html", null, true);
         yield "\">
 
-    <!-- Favicon -->
-    <link rel=\"shortcut icon\" type=\"image\" href=\"";
-        // line 23
+    ";
+        // line 25
+        yield "    <link rel=\"shortcut icon\" type=\"image\" href=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/logo.png"), "html", null, true);
         yield "\"/>
 </head>
 <body>
+
 <header>
     <nav class=\"navbar navbar-expand-lg navbar-dark bg-transparent\">
         <div class=\"container-fluid\">
-            <!-- Bouton burger animé pour petits écrans -->
-            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\"
+
+            ";
+        // line 34
+        yield "            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\"
                     aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                 <div class=\"animated-icon\"><span></span><span></span><span></span></div>
             </button>
-            <!-- Menu de navigation -->
-            <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+
+            ";
+        // line 40
+        yield "            <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
                 <ul class=\"navbar-nav w-100 justify-content-center custom-nav\">
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 38
+        // line 43
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" id=\"accueil\">Accueil</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 41
+        // line 46
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_presentation_index");
         yield "\">Qui sommes-nous ?</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 44
+        // line 49
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_suivis_index");
         yield "\">Nos suivis</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 47
+        // line 52
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_temoignages_index");
         yield "\">Témoignages</a>
                     </li>
                     <li class=\"nav-item\">
                         <button class=\"btn-17\" onclick=\"window.location.href='";
-        // line 50
+        // line 55
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact_index");
         yield "'\">
                           <span class=\"text-container\">
@@ -132,24 +141,26 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
     </nav>
 </header>
 
-<!-- Contenu principal -->
-<main class=\"container my-0\">
+";
+        // line 68
+        yield "<main class=\"container my-0\">
     ";
-        // line 64
+        // line 70
+        yield "    ";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 64, $this->source); })()), "flashes", [], "any", false, false, false, 64));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 70, $this->source); })()), "flashes", [], "any", false, false, false, 70));
         foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
-            // line 65
+            // line 71
             yield "        ";
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 66
+                // line 72
                 yield "            <div class=\"alert alert-";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
                 yield " alert-dismissible fade show\" role=\"alert\">
                 ";
-                // line 67
+                // line 73
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
                 yield "
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
@@ -159,52 +170,55 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 71
+            // line 77
             yield "    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 72
+        // line 78
         yield "
     ";
-        // line 73
+        // line 80
+        yield "    ";
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 75
+        // line 81
         yield "</main>
 
-<footer class=\"text-light py-3 mt-5\">
+";
+        // line 84
+        yield "<footer class=\"text-light py-3 mt-5\">
     <div class=\"container text-center\">
         <p class=\"mb-2\">Copyright &copy; 2025 Strength Mate. Tous droits réservés.</p>
         <div class=\"footer-links\">
             <a href=\"https://www.instagram.com/strength__mate/\" target=\"_blank\">
                 <img class=\"nav-icon\" src=\"";
-        // line 82
+        // line 89
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/image/instagram-new.png"), "html", null, true);
         yield "\" alt=\"instagram\" aria-hidden=\"true\">
                 <span class=\"visually-hidden\">Instagram</span>
             </a>
             <a href=\"";
-        // line 85
+        // line 92
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_mentions");
         yield "\">Mentions légales</a>
             <a href=\"";
-        // line 86
+        // line 93
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_cgu");
         yield "\">CGU</a>
         </div>
     </div>
 </footer>
 
-
-<!-- Script Bootstrap -->
-<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"
+";
+        // line 99
+        yield "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"
         integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\"
         crossorigin=\"anonymous\"></script>
 
-<!-- Script pour faire disparaître les messages flash -->
-<script>
-    // Fait disparaître les messages flash après 5 secondes
+";
+        // line 104
+        yield "<script>
     setTimeout(function() {
         var alerts = document.querySelectorAll('.alert');
         alerts.forEach(function(alert) {
@@ -213,7 +227,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         });
     }, 5000);
 
-    // Script pour l'animation du menu burger
+    // Toggle hamburger icon animation
     document.addEventListener('DOMContentLoaded', function() {
         const navbarToggler = document.querySelector('.navbar-toggler');
         const animatedIcon = document.querySelector('.animated-icon');
@@ -223,6 +237,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         });
     });
 </script>
+
 </body>
 </html>
 ";
@@ -235,7 +250,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         yield from [];
     }
 
-    // line 7
+    // line 9
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -257,7 +272,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         yield from [];
     }
 
-    // line 73
+    // line 80
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -270,8 +285,6 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 74
-        yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -302,7 +315,7 @@ class __TwigTemplate_9a624ff53b8ad352be6ffc10f5d79de7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  274 => 74,  261 => 73,  239 => 7,  193 => 86,  189 => 85,  183 => 82,  174 => 75,  172 => 73,  169 => 72,  163 => 71,  153 => 67,  148 => 66,  143 => 65,  139 => 64,  122 => 50,  116 => 47,  110 => 44,  104 => 41,  98 => 38,  80 => 23,  74 => 20,  58 => 7,  50 => 1,);
+        return array (  276 => 80,  254 => 9,  221 => 104,  215 => 99,  207 => 93,  203 => 92,  197 => 89,  190 => 84,  186 => 81,  183 => 80,  180 => 78,  174 => 77,  164 => 73,  159 => 72,  154 => 71,  149 => 70,  146 => 68,  131 => 55,  125 => 52,  119 => 49,  113 => 46,  107 => 43,  102 => 40,  95 => 34,  83 => 25,  77 => 22,  70 => 16,  65 => 12,  59 => 9,  50 => 1,);
     }
 
     public function getSourceContext(): Source

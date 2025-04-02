@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{# Meta title using the entity title #}
 {% block metatitle %}Détails - {{ entity.title }} | Strengthmate{% endblock %}
 
 {% block body %}
@@ -8,8 +9,10 @@
 
         <div class="card card-large bg-dark text-white card-no-hover">
             <div class="card-body">
+                {# Display the entity title as a header #}
                 <h2 class="text-center mb-4">{{ entity.title }}</h2>
 
+                {# If the entity is of type "suivis", optionally show the image #}
                 {% if entity_type == 'suivis' %}
                     {% if entity.image and image_exists %}
                         <img src="{{ asset(entity.image) }}"
@@ -20,16 +23,19 @@
                     {% endif %}
                 {% endif %}
 
+                {# Read-only title field #}
                 <div class="mb-3">
                     <label class="form-label">Titre</label>
                     <input type="text" class="form-control" value="{{ entity.title }}" readonly>
                 </div>
 
+                {# Read-only content displayed with preserved line breaks #}
                 <div class="mb-3">
                     <label class="form-label">Contenu</label>
                     <div class="form-control" style="white-space: pre-line;" readonly>{{ entity.content }}</div>
                 </div>
 
+                {# Display star rating for testimonials #}
                 {% if entity_type == 'temoignages' %}
                     <div class="mb-3 rating-container">
                         <label class="form-label">Note</label>
@@ -41,17 +47,18 @@
                     </div>
                 {% endif %}
 
-                <div class="d-flex justify-content-around mt-4">
-                    <a href="{{ path('app_admin_entity_edit', {'entityType': entity_type, 'id': entity.id}) }}" class="btn btn-warning mx-3">Modifier</a>
+                {# Action buttons: Edit, Delete (with confirmation), Back #}
+                <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                    <a href="{{ path('app_admin_entity_edit', {'entityType': entity_type, 'id': entity.id}) }}" class="btn btn-warning">Modifier</a>
 
                     <form action="{{ path('app_admin_entity_delete', {'entityType': entity_type, 'id': entity.id}) }}" method="post"
                           onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entity.id) }}">
-                        <button class="btn btn-danger mx-3">Supprimer</button>
+                        <button class="btn btn-danger">Supprimer</button>
                     </form>
 
-                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mx-3">Retour au tableau de bord</a>
+                    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
                 </div>
             </div>
         </div>

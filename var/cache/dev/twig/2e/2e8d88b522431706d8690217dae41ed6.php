@@ -60,7 +60,7 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -83,7 +83,7 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,28 +96,29 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <div class=\"container d-flex justify-content-center align-items-center\" style=\"height: 80vh;\">
         <div class=\"card admin-login-card p-4 w-50\">
             <div class=\"card-body\">
                 <div class=\"container\">
+
                     ";
-        // line 11
+        // line 13
         yield "                    ";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "flashes", [], "any", false, false, false, 11));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "flashes", [], "any", false, false, false, 13));
         foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
-            // line 12
+            // line 14
             yield "                        ";
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 13
+                // line 15
                 yield "                            <div class=\"alert alert-";
                 yield ((($context["label"] == "error")) ? ("danger") : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true)));
                 yield " alert-dismissible fade show\" role=\"alert\">
                                 ";
-                // line 14
+                // line 16
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
                 yield "
                                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
@@ -127,24 +128,26 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 18
+            // line 20
             yield "                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
+        // line 21
         yield "
                     <div class=\"row\">
                         <h2 class=\"text-center\">Connexion Admin</h2>
                         <div class=\"col\">
-                            <form method=\"post\">
+                            ";
+        // line 26
+        yield "                            <form method=\"post\">
                                 <div class=\"form-group\">
                                     <label for=\"email\">Email:</label>
                                     <input type=\"email\" id=\"email\" name=\"email\" class=\"form-control\"
                                            value=\"";
-        // line 27
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 27, $this->source); })()), "html", null, true);
+        // line 30
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 30, $this->source); })()), "html", null, true);
         yield "\" required autofocus>
                                 </div>
 
@@ -153,21 +156,24 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
                                     <input type=\"password\" id=\"password\" name=\"password\" class=\"form-control\" required>
                                 </div>
 
-                                <input type=\"hidden\" name=\"_csrf_token\" value=\"";
-        // line 35
+                                ";
+        // line 39
+        yield "                                <input type=\"hidden\" name=\"_csrf_token\" value=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("authenticate"), "html", null, true);
         yield "\">
 
                                 <button type=\"submit\" class=\"btn btn-primary d-block mx-auto mt-3\">
                                     Se connecter
                                 </button>
-                                <div class=\"text-center mt-3\">
+
+                                ";
+        // line 46
+        yield "                                <div class=\"text-center mt-3\">
                                     <a href=\"";
-        // line 41
+        // line 47
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_forgot_password");
         yield "\" class=\"text-dark\">Mot de passe oublié ?</a>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -206,7 +212,7 @@ class __TwigTemplate_ea48d908175f67df861eeb90d06345b9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  167 => 41,  158 => 35,  147 => 27,  137 => 19,  131 => 18,  121 => 14,  116 => 13,  111 => 12,  106 => 11,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  174 => 47,  171 => 46,  161 => 39,  150 => 30,  144 => 26,  138 => 21,  132 => 20,  122 => 16,  117 => 15,  112 => 14,  107 => 13,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source

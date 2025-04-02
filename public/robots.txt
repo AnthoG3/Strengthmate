@@ -1,0 +1,8 @@
+# Indicates that the following rules apply to all crawlers (Googlebot, Bingbot, etc.)
+User-agent: *
+
+# No restrictions: all crawlers are allowed to access the entire site
+Disallow:
+
+# Location of the XML sitemap, allowing search engines to discover the site's URLs
+Sitemap: https://www.strengthmate.fr/sitemap.xml

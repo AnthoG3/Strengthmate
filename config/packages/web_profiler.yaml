@@ -1,41 +1,41 @@
 when@dev:
     web_profiler:
-        # Active la barre d'outils de débogage dans l'environnement de développement.
-        # Cette barre d'outils s'affiche en bas de chaque page et fournit des informations utiles,
-        # telles que les logs, les requêtes SQL, le temps d'exécution, l'utilisation mémoire, etc.
+        # Enables the debug toolbar in the development environment.
+        # This toolbar appears at the bottom of each page and provides useful information,
+        # such as logs, SQL queries, execution time, memory usage, etc.
         toolbar: false
 
-        # Désactive l'interception automatique des redirections HTTP.
-        # Si défini sur `true`, Symfony intercepte les redirections pour afficher une page intermédiaire,
-        # ce qui permet de déboguer les redirections.
+        # Disables automatic interception of HTTP redirects.
+        # If set to `true`, Symfony intercepts redirects to display an intermediate page,
+        # which helps with debugging redirections.
         intercept_redirects: false
 
     framework:
         profiler:
-            # Collecte les données pour toutes les requêtes, y compris celles qui réussissent.
-            # Lorsque défini sur `true`, le profiler collecte les données même si aucune erreur n'a été générée,
-            # ce qui est utile pour analyser les performances et les comportements des requêtes réussies.
+            # Collects data for all requests, including successful ones.
+            # When set to `true`, the profiler collects data even if no error occurred,
+            # which is useful for analyzing performance and request behavior.
             only_exceptions: false
 
-            # Active la collecte des données relatives au sérialiseur.
-            # Cela permet de déboguer les opérations de sérialisation ou de désérialisation,
-            # notamment lorsque des objets ou des données JSON/XML sont manipulés.
+            # Enables data collection related to the serializer.
+            # This helps debug serialization or deserialization operations,
+            # especially when working with objects or JSON/XML data.
             collect_serializer_data: true
 
 when@test:
     web_profiler:
-        # Désactive la barre d'outils de débogage dans l'environnement de test.
-        # Cela évite le rendu inutile de la barre d'outils et réduit les ressources utilisées,
-        # accélérant ainsi les tests automatisés.
+        # Disables the debug toolbar in the test environment.
+        # This avoids rendering the toolbar unnecessarily and reduces resource usage,
+        # thereby speeding up automated tests.
         toolbar: false
 
-        # Désactive également l'interception des redirections dans l'environnement de test.
-        # Les redirections s'exécutent normalement, ce qui est essentiel pour garantir
-        # que les tests ne sont pas affectés par des fonctionnalités de débogage inutiles.
+        # Also disables redirect interception in the test environment.
+        # Redirects occur normally, which is essential to ensure
+        # tests are not affected by unnecessary debugging features.
         intercept_redirects: false
 
     framework:
         profiler:
-            # Désactive complètement la collecte des données du profiler dans l'environnement de test.
-            # Cela réduit la consommation de mémoire et améliore les performances des tests.
+            # Completely disables profiler data collection in the test environment.
+            # This reduces memory usage and improves test performance.
             collect: false

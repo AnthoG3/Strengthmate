@@ -1,27 +1,25 @@
-# Configuration du framework pour activer la protection CSRF sans état.
+# Framework configuration to enable stateless CSRF protection.
 framework:
     form:
         csrf_protection:
-            token_id: submit  # Déclare un identifiant de jeton CSRF pour les formulaires (par exemple, "submit").
+            token_id: submit  # Declares a CSRF token identifier for forms (e.g., "submit").
 
     csrf_protection:
-        # Liste des identifiants de jeton CSRF utilisés dans des contextes sans état.
+        # List of CSRF token identifiers used in stateless contexts.
         stateless_token_ids:
-            - submit         # Jeton CSRF pour les soumissions de formulaires.
-            - authenticate   # Jeton CSRF utilisé pour les processus d'authentification.
-            - logout         # Jeton CSRF pour sécuriser les actions de déconnexion.
+            - submit         # CSRF token for form submissions.
+            - authenticate   # CSRF token used for authentication processes.
+            - logout         # CSRF token to secure logout actions.
 
+    # CSRF protection is a security measure that prevents malicious requests
+    # from being made by third parties on behalf of a legitimate user.
+    # This file configures that protection in a framework (Symfony).
 
+    # The "form" key and its "csrf_protection" sub-element:
+    # Defines a specific CSRF token to secure forms.
+    # The option token_id: submit assigns an identifier to this token.
 
-    # La protection CSRF est une mesure de sécurité qui empêche des requêtes malveillantes d'être effectuées par des tiers au nom d'un utilisateur légitime.
-    # Ici, le fichier configure cette protection dans un framework (probablement Symfony).
-
-    # Clé form et son sous-élément csrf_protection:
-
-    # Définit un jeton CSRF spécifique pour sécuriser les formulaires.
-    # L'option token_id: submit associe un identifiant à ce jeton.
-
-    # Clé csrf_protection et ses jetons sans état:
-
-    # Les identifiants spécifiés dans stateless_token_ids sont utilisés dans des scénarios où il n'y a pas de session persistante (comme les API REST).
-    # Chaque action critique (comme submit, authenticate ou logout) est protégée par un jeton dédié.
+    # The "csrf_protection" key and its stateless tokens:
+    # The identifiers listed in "stateless_token_ids" are used in scenarios
+    # where no persistent session is present (such as REST APIs).
+    # Each critical action (like submit, authenticate, or logout) is protected by a dedicated token.

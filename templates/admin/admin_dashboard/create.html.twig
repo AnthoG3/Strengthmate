@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{# Set the entity type name for display, fallback to "Entité" if not defined #}
 {% set entity_type_display = entity_type is defined ? entity_type : 'Entité' %}
 
+{# Page title block #}
 {% block metatitle %}Créer - {{ entity_type_display }} | Strengthmate{% endblock %}
 
 {% block body %}
@@ -10,14 +12,17 @@
 
         <div class="card card-large bg-dark text-white">
             <div class="card-body">
+                {# Start the form without HTML5 validation #}
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
+                {# Title field #}
                 <div class="mb-3">
                     {{ form_label(form.title, "Titre", {'label_attr': {'class': "form-label"}}) }}
                     {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
                     {{ form_errors(form.title) }}
                 </div>
 
+                {# Content field with styling for large text areas #}
                 <div class="mb-3">
                     {{ form_label(form.content, "Contenu", {'label_attr': {'class': "form-label"}}) }}
                     {{ form_widget(form.content, {'attr': {
@@ -28,6 +33,7 @@
                     {{ form_errors(form.content) }}
                 </div>
 
+                {# Custom star rating field for testimonials #}
                 {% if entity_type == "temoignages" %}
                     <div class="mb-3 rating-container">
                         <label class="form-label">Note</label>
@@ -38,15 +44,16 @@
                             {% endfor %}
                         </div>
                     </div>
-                    {% do form.rating.setRendered() %}
+                    {% do form.rating.setRendered() %} {# Prevents Symfony from rendering the field again #}
                 {% endif %}
 
+                {# Custom image upload field for "suivis" entity #}
                 {% if entity_type == "suivis" and form.children['image'] is defined %}
                     <div class="mb-3">
                         <label class="form-label">Image</label>
                         <div class="custom-file-upload">
                             <label for="{{ entity_type }}_image" class="custom-file-label">
-                                <span>📷 Cliquez pour ajouter une image</span>
+                                <span>📷 Click to upload an image</span>
                             </label>
                             {{ form_widget(form.image, {'attr': {'class': 'd-none', 'id': entity_type ~ '_image'}}) }}
                         </div>
@@ -54,6 +61,7 @@
                     </div>
                 {% endif %}
 
+                {# Submit and return buttons #}
                 <div class="d-flex justify-content-center mt-4">
                     <button type="submit" class="btn btn-create mx-2">Créer</button>
                     <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mx-2">Retour au tableau de bord</a>
@@ -65,6 +73,7 @@
     </div>
 {% endblock %}
 
+{# JavaScript block if needed (extends parent) #}
 {% block javascripts %}
     {{ parent() }}
 {% endblock %}

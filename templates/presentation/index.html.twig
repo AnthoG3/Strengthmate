@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block metatitle %}Présentations | Strengthmate{% endblock %}
+{# Meta title for the presentation page #}
+{% block metatitle %}Qui sommes-nous ? | Strengthmate{% endblock %}
 
 {% block body %}
     <div class="container-fluid mt-5">
         <h1 class="text-center mb-5">Qui sommes-nous ?</h1>
+
         <div class="presentation-container">
-            <img id="wall-presentation" src="{{ asset('assets/image/couple.jpg') }}" alt="Présentation">
+
+            {# Background image for the presentation section #}
+            <img id="wall-presentation" src="{{ asset('assets/image/coachs.png') }}" alt="Présentation">
+
             <div class="presentation-content">
+                {# Message if there are no presentations available #}
                 {% if presentations is empty %}
                     <p class="text-center">Aucune présentation disponible pour le moment.</p>
                 {% else %}
+                    {# Loop through each presentation and display it #}
                     {% for presentation in presentations %}
                         <div class="presentation-card mb-5">
                             <h2 class="presentation-title">{{ presentation.title }}</h2>
@@ -23,6 +30,7 @@
     </div>
 {% endblock %}
 
+{# Include specific CSS for this page #}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/presentation.css') }}">

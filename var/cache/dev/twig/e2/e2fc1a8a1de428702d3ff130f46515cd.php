@@ -30,7 +30,7 @@ class __TwigTemplate_72c65d3c719d2eba1bbf8dbbcdce6604 extends Template
         $this->source = $this->getSourceContext();
 
         $this->blocks = [
-            'title' => [$this, 'block_title'],
+            'metatitle' => [$this, 'block_metatitle'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -60,20 +60,20 @@ class __TwigTemplate_72c65d3c719d2eba1bbf8dbbcdce6604 extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
-    public function block_title(array $context, array $blocks = []): iterable
+    public function block_metatitle(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "metatitle"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "metatitle"));
 
-        yield "Suivis";
+        yield "Suivis | Strengthmate";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -83,7 +83,7 @@ class __TwigTemplate_72c65d3c719d2eba1bbf8dbbcdce6604 extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,60 +96,73 @@ class __TwigTemplate_72c65d3c719d2eba1bbf8dbbcdce6604 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <div class=\"container mt-5\">
         <h1 class=\"text-center mb-4\">Suivis</h1>
 
         ";
-        // line 9
+        // line 11
+        yield "        ";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["suivis"]) || array_key_exists("suivis", $context) ? $context["suivis"] : (function () { throw new RuntimeError('Variable "suivis" does not exist.', 9, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["suivis"]) || array_key_exists("suivis", $context) ? $context["suivis"] : (function () { throw new RuntimeError('Variable "suivis" does not exist.', 11, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["suivi"]) {
-            // line 10
+            // line 12
             yield "            <div class=\"card mt-4 suivi-card\">
+
                 ";
-            // line 11
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "image", [], "any", false, false, false, 11)) {
-                // line 12
-                yield "                    <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "image", [], "any", false, false, false, 12)), "html", null, true);
+            // line 15
+            yield "                ";
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "image", [], "any", false, false, false, 15)) {
+                // line 16
+                yield "                    <div class=\"image-container\">
+                        <!-- Display the image from its path -->
+                        <img src=\"";
+                // line 18
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "image", [], "any", false, false, false, 18)), "html", null, true);
                 yield "\" class=\"card-img-top\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "title", [], "any", false, false, false, 12), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "title", [], "any", false, false, false, 18), "html", null, true);
                 yield "\">
+                    </div>
                 ";
             }
-            // line 14
-            yield "                <div class=\"card-body\">
-                    <!-- Conteneur défilable pour le titre -->
-                    <div class=\"scrollable-title\">
+            // line 21
+            yield "
+                <div class=\"card-body\">
+                    ";
+            // line 24
+            yield "                    <div class=\"scrollable-title\">
                         <h5 class=\"card-title\">";
-            // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "title", [], "any", false, false, false, 17), "html", null, true);
+            // line 25
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "title", [], "any", false, false, false, 25), "html", null, true);
             yield "</h5>
                     </div>
-                    <!-- Contenu principal -->
-                    <div class=\"scrollable-content\">
+
+                    ";
+            // line 29
+            yield "                    <div class=\"scrollable-content\">
                         <p class=\"card-text formatted-content\">";
-            // line 21
-            yield CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "content", [], "any", false, false, false, 21);
+            // line 30
+            yield CoreExtension::getAttribute($this->env, $this->source, $context["suivi"], "content", [], "any", false, false, false, 30);
             yield "</p>
                     </div>
-                    </div>
+                </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 25
+        // line 34
         if (!$context['_iterated']) {
-            // line 26
+            // line 35
+            yield "            ";
+            // line 36
             yield "            <p class=\"text-center mt-4\">Aucun suivi disponible pour le moment.</p>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['suivi'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 38
         yield "    </div>
 ";
         
@@ -182,7 +195,7 @@ class __TwigTemplate_72c65d3c719d2eba1bbf8dbbcdce6604 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  153 => 28,  146 => 26,  144 => 25,  135 => 21,  128 => 17,  123 => 14,  115 => 12,  113 => 11,  110 => 10,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  166 => 38,  159 => 36,  157 => 35,  155 => 34,  146 => 30,  143 => 29,  137 => 25,  134 => 24,  130 => 21,  122 => 18,  118 => 16,  115 => 15,  111 => 12,  105 => 11,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source

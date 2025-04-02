@@ -1,16 +1,16 @@
 framework:
     validation:
-    # Active le support de l'auto-mapping des contraintes de validation.
-    # Avec cette option activée, Symfony peut automatiquement déduire les contraintes de validation
-    # à partir des métadonnées (par exemple, annotations ou configuration Doctrine).
+    # Enables support for auto-mapping of validation constraints.
+    # When this option is enabled, Symfony can automatically infer validation constraints
+    # from metadata (e.g., annotations or Doctrine configuration).
     #auto_mapping:
-    #    App\Entity\: []  # Active l'auto-mapping pour toutes les entités du namespace App\Entity.
+    #    App\Entity\: []  # Enables auto-mapping for all entities in the App\Entity namespace.
 
 when@test:
     framework:
         validation:
-            # Désactive la vérification des mots de passe compromis dans l'environnement de test.
-            # Cela signifie que la contrainte `NotCompromisedPassword` ne sera pas appliquée pendant les tests.
-            # Utile pour accélérer les tests ou éviter des requêtes réseau inutiles à des services tiers
-            # comme haveibeenpwned.com.
+            # Disables the check for compromised passwords in the test environment.
+            # This means the `NotCompromisedPassword` constraint will not be applied during tests.
+            # Useful to speed up tests or avoid unnecessary network requests to third-party services
+            # such as haveibeenpwned.com.
             not_compromised_password: false

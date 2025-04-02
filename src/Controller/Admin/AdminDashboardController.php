@@ -18,195 +18,232 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Doctrine\DBAL\Exception\DriverException;
 use Symfony\Component\Filesystem\Filesystem;
 
+// Main admin controller to manage Presentation, Suivis, and Temoignages entities
 #[Route('/admin')]
 class AdminDashboardController extends AbstractController
 {
-    private const ENTITY_MAP = [
-        'presentation' => [Presentation::class, PresentationType::class],
-        'suivis' => [Suivis::class, SuivisType::class],
-        'temoignages' => [Temoignages::class, TemoignagesType::class]
-    ];
+// Mapping of entity types to their corresponding class and form type
+private const ENTITY_MAP = [
+'presentation' => [Presentation::class, PresentationType::class],
+'suivis' => [Suivis::class, SuivisType::class],
+'temoignages' => [Temoignages::class, TemoignagesType::class]
+];
 
-    #[Route('', name: 'app_admin_dashboard')]
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        return $this->render('admin/admin_dashboard/index.html.twig', [
-            'presentations' => $entityManager->getRepository(Presentation::class)->findAll(),
-            'suivis' => $entityManager->getRepository(Suivis::class)->findAll(),
-            'temoignages' => $entityManager->getRepository(Temoignages::class)->findAll(),
-        ]);
-    }
+// Displays the admin dashboard with all entity records
+#[Route('', name: 'app_admin_dashboard')]
+public function index(EntityManagerInterface $entityManager): Response
+{
+return $this->render('admin/admin_dashboard/index.html.twig', [
+'presentations' => $entityManager->getRepository(Presentation::class)->findAll(),
+'suivis' => $entityManager->getRepository(Suivis::class)->findAll(),
+'temoignages' => $entityManager->getRepository(Temoignages::class)->findAll(),
+]);
+}
 
-    #[Route('/{entityType}/create', name: 'app_admin_entity_create', methods: ['GET', 'POST'])]
-    public function createEntity(string $entityType, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
-        if (!isset(self::ENTITY_MAP[$entityType])) {
-            throw $this->createNotFoundException("Type d'entité invalide.");
-        }
+// Creates a new entity dynamically based on its type
+#[Route('/{entityType}/create', name: 'app_admin_entity_create', methods: ['GET', 'POST'])]
+public function createEntity(string $entityType, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+{
+// Check if the entity type is valid
+if (!isset(self::ENTITY_MAP[$entityType])) {
+throw $this->createNotFoundException("Invalid entity type.");
+}
 
-        [$entityClass, $formClass] = self::ENTITY_MAP[$entityType];
-        $entity = new $entityClass();
-        $form = $this->createForm($formClass, $entity);
+// Get corresponding class and form
+[$entityClass, $formClass] = self::ENTITY_MAP[$entityType];
+$entity = new $entityClass();
+$form = $this->createForm($formClass, $entity);
 
-        if ($entityType === 'presentation') {
-            $form->remove('image');
-        }
+// For "presentation", remove the image field
+if ($entityType === 'presentation') {
+$form->remove('image');
+}
 
-        $form->handleRequest($request);
+$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                if ($entityType === 'suivis') {
-                    $imageFile = $form->get('image')->getData();
-                    if ($imageFile) {
-                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                        $safeFilename = $slugger->slug($originalFilename);
-                        $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+if ($form->isSubmitted() && $form->isValid()) {
+try {
+// Handle image upload if the entity is "suivis"
+if ($entityType === 'suivis') {
+$imageFile = $form->get('image')->getData();
+if ($imageFile) {
+$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+$safeFilename = $slugger->slug($originalFilename);
+$newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                        try {
-                            $imageFile->move(
-                                $this->getParameter('uploads_suivis_dir'),
-                                $newFilename
-                            );
-                            $entity->setImage('uploads/suivis/' . $newFilename);
-                        } catch (FileException $e) {
-                            $this->addFlash('error', 'Erreur lors du téléchargement de l\'image.');
-                        }
-                    }
-                }
+try {
+$imageFile->move(
+$this->getParameter('uploads_suivis_dir'),
+$newFilename
+);
+$entity->setImage('uploads/suivis/' . $newFilename);
+} catch (FileException $e) {
+$this->addFlash('error', 'Error during image upload.');
+}
+}
+}
 
-                $entityManager->persist($entity);
-                $entityManager->flush();
+$entityManager->persist($entity);
+$entityManager->flush();
+$this->addFlash('success', ucfirst($entityType) . " successfully added.");
+return $this->redirectToRoute('app_admin_dashboard');
 
-                $this->addFlash('success', ucfirst($entityType) . " ajouté avec succès.");
-                return $this->redirectToRoute('app_admin_dashboard');
+} catch (DriverException $e) {
+if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
+$this->addFlash('error', 'Content is too long to be saved.');
+} else {
+$this->addFlash('error', 'An error occurred while creating the ' . $entityType . '.');
+}
+return $this->redirectToRoute('app_admin_dashboard');
+}
+}
 
-            } catch (DriverException $e) {
-                if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
-                    $this->addFlash('error', 'Le contenu est trop long pour être enregistré.');
-                } else {
-                    $this->addFlash('error', 'Une erreur est survenue lors de la création de ' . $entityType . '.');
-                }
+return $this->render('admin/admin_dashboard/create.html.twig', [
+'form' => $form->createView(),
+'entity_type' => $entityType,
+]);
+}
 
-                return $this->redirectToRoute('app_admin_dashboard');
-            }
-        }
+// Displays a specific entity
+#[Route('/{entityType}/{id}/show', name: 'app_admin_entity_show', methods: ['GET'])]
+public function showEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
+{
+if (!isset(self::ENTITY_MAP[$entityType])) {
+throw $this->createNotFoundException("Invalid entity type.");
+}
 
-        return $this->render('admin/admin_dashboard/create.html.twig', [
-            'form' => $form->createView(),
-            'entity_type' => $entityType,
-        ]);
-    }
+[$entityClass, ] = self::ENTITY_MAP[$entityType];
+$entity = $entityManager->getRepository($entityClass)->find($id);
 
-    #[Route('/{entityType}/{id}/show', name: 'app_admin_entity_show', methods: ['GET'])]
-    public function showEntity(string $entityType, int $id, EntityManagerInterface $entityManager): Response
-    {
-        if (!isset(self::ENTITY_MAP[$entityType])) {
-            throw $this->createNotFoundException("Type d'entité invalide.");
-        }
+if (!$entity) {
+throw $this->createNotFoundException("Entity not found.");
+}
 
-        [$entityClass, ] = self::ENTITY_MAP[$entityType];
-        $entity = $entityManager->getRepository($entityClass)->find($id);
+// Check if the image exists (for "suivis" entity)
+$imageExists = false;
+if ($entityType === 'suivis' && method_exists($entity, 'getImage')) {
+$image = $entity->getImage();
+if ($image) {
+$filesystem = new Filesystem();
+$projectDir = $this->getParameter('kernel.project_dir');
+$imagePath = $projectDir . '/public/' . $image;
+$imageExists = $filesystem->exists($imagePath);
+}
+}
 
-        if (!$entity) {
-            throw $this->createNotFoundException("Entité non trouvée.");
-        }
+return $this->render('admin/admin_dashboard/show.html.twig', [
+'entity_type' => $entityType,
+'entity' => $entity,
+'image_exists' => $imageExists,
+]);
+}
 
-        // Vérification de l'existence physique de l'image (pour les suivis uniquement)
-        $imageExists = false;
-        if ($entityType === 'suivis' && method_exists($entity, 'getImage')) {
-            $image = $entity->getImage();
-            if ($image) {
-                $filesystem = new Filesystem();
-                $projectDir = $this->getParameter('kernel.project_dir');
-                $imagePath = $projectDir . '/public/' . $image;
-                $imageExists = $filesystem->exists($imagePath);
-            }
-        }
+// Edits an existing entity
+#[Route('/{entityType}/{id}/edit', name: 'app_admin_entity_edit', methods: ['GET', 'POST'])]
+public function editEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+{
+if (!isset(self::ENTITY_MAP[$entityType])) {
+throw $this->createNotFoundException("Invalid entity type.");
+}
 
-        return $this->render('admin/admin_dashboard/show.html.twig', [
-            'entity_type' => $entityType,
-            'entity' => $entity,
-            'image_exists' => $imageExists,
-        ]);
-    }
+[$entityClass, $formClass] = self::ENTITY_MAP[$entityType];
+$entity = $entityManager->getRepository($entityClass)->find($id);
 
-    #[Route('/{entityType}/{id}/edit', name: 'app_admin_entity_edit', methods: ['GET', 'POST'])]
-    public function editEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
-        if (!isset(self::ENTITY_MAP[$entityType])) {
-            throw $this->createNotFoundException("Type d'entité invalide.");
-        }
+if (!$entity) {
+throw $this->createNotFoundException("Entity not found.");
+}
 
-        [$entityClass, $formClass] = self::ENTITY_MAP[$entityType];
-        $entity = $entityManager->getRepository($entityClass)->find($id);
+$form = $this->createForm($formClass, $entity);
 
-        if (!$entity) {
-            throw $this->createNotFoundException("Entité non trouvée.");
-        }
+if ($entityType === 'presentation') {
+$form->remove('image');
+}
 
-        $form = $this->createForm($formClass, $entity);
+$form->handleRequest($request);
 
-        if ($entityType === 'presentation') {
-            $form->remove('image');
-        }
+if ($form->isSubmitted() && $form->isValid()) {
+try {
+// Handle new image upload if needed
+if ($entityType === 'suivis') {
+$imageFile = $form->get('image')->getData();
+if ($imageFile) {
+$filesystem = new Filesystem();
+$oldImagePath = $this->getParameter('kernel.project_dir') . '/public/' . $entity->getImage();
+if ($filesystem->exists($oldImagePath)) {
+$filesystem->remove($oldImagePath);
+}
 
-        $form->handleRequest($request);
+$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+$safeFilename = $slugger->slug($originalFilename);
+$newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $entityManager->flush();
-                $this->addFlash('success', ucfirst($entityType) . " mis à jour avec succès.");
-                return $this->redirectToRoute('app_admin_entity_show', [
-                    'entityType' => $entityType,
-                    'id' => $id
-                ]);
-            } catch (DriverException $e) {
-                if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
-                    $this->addFlash('error', 'Le contenu est trop long pour être enregistré.');
-                } else {
-                    $this->addFlash('error', 'Une erreur est survenue lors de la modification de ' . $entityType . '.');
-                }
+try {
+$imageFile->move(
+$this->getParameter('uploads_suivis_dir'),
+$newFilename
+);
+$entity->setImage('uploads/suivis/' . $newFilename);
+} catch (FileException $e) {
+$this->addFlash('error', 'Error uploading new image.');
+}
+}
+}
 
-                return $this->redirectToRoute('app_admin_dashboard');
-            }
-        }
+$entityManager->flush();
+$this->addFlash('success', ucfirst($entityType) . " successfully updated.");
+return $this->redirectToRoute('app_admin_entity_show', [
+'entityType' => $entityType,
+'id' => $id
+]);
+} catch (DriverException $e) {
+if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
+$this->addFlash('error', 'Content is too long to be saved.');
+} else {
+$this->addFlash('error', 'An error occurred while editing the ' . $entityType . '.');
+}
 
-        return $this->render('admin/admin_dashboard/edit.html.twig', [
-            'form' => $form->createView(),
-            'entity_type' => $entityType,
-            'entity' => $entity,
-        ]);
-    }
+return $this->redirectToRoute('app_admin_dashboard');
+}
+}
 
-    #[Route('/{entityType}/{id}/delete', name: 'app_admin_entity_delete', methods: ['POST'])]
-    public function deleteEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        if (!isset(self::ENTITY_MAP[$entityType])) {
-            throw $this->createNotFoundException("Type d'entité invalide.");
-        }
+return $this->render('admin/admin_dashboard/edit.html.twig', [
+'form' => $form->createView(),
+'entity_type' => $entityType,
+'entity' => $entity,
+]);
+}
 
-        [$entityClass, ] = self::ENTITY_MAP[$entityType];
-        $entity = $entityManager->getRepository($entityClass)->find($id);
+// Deletes an entity after CSRF validation
+#[Route('/{entityType}/{id}/delete', name: 'app_admin_entity_delete', methods: ['POST'])]
+public function deleteEntity(string $entityType, int $id, Request $request, EntityManagerInterface $entityManager): Response
+{
+if (!isset(self::ENTITY_MAP[$entityType])) {
+throw $this->createNotFoundException("Invalid entity type.");
+}
 
-        if (!$entity) {
-            throw $this->createNotFoundException("Entité non trouvée.");
-        }
+[$entityClass, ] = self::ENTITY_MAP[$entityType];
+$entity = $entityManager->getRepository($entityClass)->find($id);
 
-        if ($this->isCsrfTokenValid('delete' . $id, (string) $request->request->get('_token'))) {
-            $entityManager->remove($entity);
-            $entityManager->flush();
-            $this->addFlash('danger', ucfirst($entityType) . " supprimé avec succès.");
-        } else {
-            $this->addFlash('error', "Échec de la suppression : token CSRF invalide.");
-        }
+if (!$entity) {
+throw $this->createNotFoundException("Entity not found.");
+}
 
-        return $this->redirectToRoute('app_admin_dashboard');
-    }
+// Validate CSRF token before deleting
+if ($this->isCsrfTokenValid('delete' . $id, (string) $request->request->get('_token'))) {
+$entityManager->remove($entity);
+$entityManager->flush();
+$this->addFlash('danger', ucfirst($entityType) . " successfully deleted.");
+} else {
+$this->addFlash('error', "Deletion failed: invalid CSRF token.");
+}
 
-    #[Route('/logout', name: 'admin_logout', methods: ['GET'])]
-    public function logout(): Response
-    {
-        throw new \Exception('This should never be reached!');
-    }
+return $this->redirectToRoute('app_admin_dashboard');
+}
+
+// Logout method (never reached – handled by Symfony security)
+#[Route('/logout', name: 'admin_logout', methods: ['GET'])]
+public function logout(): Response
+{
+throw new \Exception('This should never be reached!');
+}
 }

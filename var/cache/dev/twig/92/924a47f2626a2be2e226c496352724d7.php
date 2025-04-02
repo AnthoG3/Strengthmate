@@ -60,7 +60,7 @@ class __TwigTemplate_d35e5af4da150a5c279f739a11bc978d extends Template
 
     }
 
-    // line 3
+    // line 4
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -83,7 +83,7 @@ class __TwigTemplate_d35e5af4da150a5c279f739a11bc978d extends Template
         yield from [];
     }
 
-    // line 5
+    // line 6
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,21 +96,22 @@ class __TwigTemplate_d35e5af4da150a5c279f739a11bc978d extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 7
         yield "    <div class=\"container mt-5\">
         <h2 class=\"text-center mb-4\">Réinitialiser le mot de passe</h2>
 
         ";
-        // line 9
+        // line 11
+        yield "        ";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 9, $this->source); })()), "flashes", [], "any", false, false, false, 9));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "flashes", [], "any", false, false, false, 11));
         foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
-            // line 10
+            // line 12
             yield "            ";
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 11
+                // line 13
                 yield "                <div class=\"alert alert-";
                 yield ((($context["label"] == "error")) ? ("danger") : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true)));
                 yield "\">";
@@ -121,15 +122,17 @@ class __TwigTemplate_d35e5af4da150a5c279f739a11bc978d extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 13
+            // line 15
             yield "        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
+        // line 16
         yield "
-        <form method=\"post\" class=\"w-50 mx-auto\">
+        ";
+        // line 18
+        yield "        <form method=\"post\" class=\"w-50 mx-auto\">
             <div class=\"form-group mb-3\">
                 <label for=\"email\">Votre adresse email :</label>
                 <input type=\"email\" name=\"email\" id=\"email\" class=\"form-control\" required>
@@ -170,7 +173,7 @@ class __TwigTemplate_d35e5af4da150a5c279f739a11bc978d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  131 => 14,  125 => 13,  114 => 11,  109 => 10,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  135 => 18,  132 => 16,  126 => 15,  115 => 13,  110 => 12,  105 => 11,  100 => 7,  87 => 6,  64 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source
