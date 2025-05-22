@@ -78,21 +78,21 @@ $newFilename
 );
 $entity->setImage('uploads/suivis/' . $newFilename);
 } catch (FileException $e) {
-$this->addFlash('error', 'Error during image upload.');
+$this->addFlash('error', 'Erreur du chargement de l\'image');
 }
 }
 }
 
 $entityManager->persist($entity);
 $entityManager->flush();
-$this->addFlash('success', ucfirst($entityType) . " successfully added.");
+$this->addFlash('success', ucfirst($entityType) . " ajouté avec succés.");
 return $this->redirectToRoute('app_admin_dashboard');
 
 } catch (DriverException $e) {
 if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
-$this->addFlash('error', 'Content is too long to be saved.');
+$this->addFlash('error', 'Contenu trop long pour être enregistré');
 } else {
-$this->addFlash('error', 'An error occurred while creating the ' . $entityType . '.');
+$this->addFlash('error', 'Une erreur s\'est produite lors de la création de ' . $entityType . '.');
 }
 return $this->redirectToRoute('app_admin_dashboard');
 }
@@ -190,16 +190,16 @@ $this->addFlash('error', 'Error uploading new image.');
 }
 
 $entityManager->flush();
-$this->addFlash('success', ucfirst($entityType) . " successfully updated.");
+$this->addFlash('success', ucfirst($entityType) . " mis à jour avec succés");
 return $this->redirectToRoute('app_admin_entity_show', [
 'entityType' => $entityType,
 'id' => $id
 ]);
 } catch (DriverException $e) {
 if (strpos($e->getMessage(), 'SQLSTATE[22001]') !== false) {
-$this->addFlash('error', 'Content is too long to be saved.');
+$this->addFlash('error', 'Contenue trop long pour être enregistré');
 } else {
-$this->addFlash('error', 'An error occurred while editing the ' . $entityType . '.');
+$this->addFlash('error', 'Un erreur s\'est produite lors de la modification' . $entityType . '.');
 }
 
 return $this->redirectToRoute('app_admin_dashboard');
@@ -232,9 +232,9 @@ throw $this->createNotFoundException("Entity not found.");
 if ($this->isCsrfTokenValid('delete' . $id, (string) $request->request->get('_token'))) {
 $entityManager->remove($entity);
 $entityManager->flush();
-$this->addFlash('danger', ucfirst($entityType) . " successfully deleted.");
+$this->addFlash('danger', ucfirst($entityType) . " Supprimé avec succés");
 } else {
-$this->addFlash('error', "Deletion failed: invalid CSRF token.");
+$this->addFlash('error', "Erreur de suppression: CSRF token invalide.");
 }
 
 return $this->redirectToRoute('app_admin_dashboard');

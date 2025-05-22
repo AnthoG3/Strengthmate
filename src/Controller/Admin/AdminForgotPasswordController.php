@@ -41,9 +41,9 @@ $emailMessage = (new Email())
 
 $mailer->send($emailMessage);
 
-$this->addFlash('success', 'A reset link has been sent to your email address.');
+$this->addFlash('success', 'Un lien de réinitialisation a été envoyé sur votre adresse email.');
 } else {
-$this->addFlash('error', 'Email not recognized.');
+$this->addFlash('error', 'Email non reconnue.');
 }
 
 return $this->redirectToRoute('admin_forgot_password');

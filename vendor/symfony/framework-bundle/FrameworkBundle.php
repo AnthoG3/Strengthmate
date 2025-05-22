@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\FrameworkBundle;
 
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddAnnotationsCachedReaderPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddDebugLogProcessorPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AssetsContextPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\ContainerBuilderDebugDumpPass;
@@ -19,7 +20,6 @@ use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\ProfilerPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\RemoveUnusedSessionMarshallingHandlerPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TestServiceContainerRealRefPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TestServiceContainerWeakRefPass;
-use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TranslationLintCommandPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TranslationUpdateCommandPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\UnusedTagsPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\VirtualRequestStackPass;
@@ -94,7 +94,10 @@ class_exists(Registry::class);
  */
 class FrameworkBundle extends Bundle
 {
-    public function boot(): void
+    /**
+     * @return void
+     */
+    public function boot()
     {
         $_ENV['DOCTRINE_DEPRECATIONS'] = $_SERVER['DOCTRINE_DEPRECATIONS'] ??= 'trigger';
 
@@ -105,7 +108,11 @@ class FrameworkBundle extends Bundle
             $handler = [ErrorHandler::register(null, false)];
         }
 
-        if (\is_array($handler) && $handler[0] instanceof ErrorHandler) {
+        if (!$this->container->has('debug.error_handler_configurator')) {
+            // When upgrading an existing Symfony application from 6.2 to 6.3, and
+            // the cache is warmed up, the service is not available yet, so we need
+            // to check if it exists.
+        } elseif (\is_array($handler) && $handler[0] instanceof ErrorHandler) {
             $this->container->get('debug.error_handler_configurator')->configure($handler[0]);
         }
 
@@ -118,7 +125,10 @@ class FrameworkBundle extends Bundle
         }
     }
 
-    public function build(ContainerBuilder $container): void
+    /**
+     * @return void
+     */
+    public function build(ContainerBuilder $container)
     {
         parent::build($container);
 
@@ -149,10 +159,9 @@ class FrameworkBundle extends Bundle
         // but as late as possible to get resolved parameters
         $container->addCompilerPass($registerListenersPass, PassConfig::TYPE_BEFORE_REMOVING);
         $this->addCompilerPassIfExists($container, AddConstraintValidatorsPass::class);
+        $container->addCompilerPass(new AddAnnotationsCachedReaderPass(), PassConfig::TYPE_AFTER_REMOVING, -255);
         $this->addCompilerPassIfExists($container, AddValidatorInitializersPass::class);
         $this->addCompilerPassIfExists($container, AddConsoleCommandPass::class, PassConfig::TYPE_BEFORE_REMOVING);
-        // must be registered before the AddConsoleCommandPass
-        $container->addCompilerPass(new TranslationLintCommandPass(), PassConfig::TYPE_BEFORE_REMOVING, 10);
         // must be registered as late as possible to get access to all Twig paths registered in
         // twig.template_iterator definition
         $this->addCompilerPassIfExists($container, TranslatorPass::class, PassConfig::TYPE_BEFORE_OPTIMIZATION, -32);

@@ -33,7 +33,6 @@ use Symfony\Bundle\FrameworkBundle\Command\SecretsEncryptFromLocalCommand;
 use Symfony\Bundle\FrameworkBundle\Command\SecretsGenerateKeysCommand;
 use Symfony\Bundle\FrameworkBundle\Command\SecretsListCommand;
 use Symfony\Bundle\FrameworkBundle\Command\SecretsRemoveCommand;
-use Symfony\Bundle\FrameworkBundle\Command\SecretsRevealCommand;
 use Symfony\Bundle\FrameworkBundle\Command\SecretsSetCommand;
 use Symfony\Bundle\FrameworkBundle\Command\TranslationDebugCommand;
 use Symfony\Bundle\FrameworkBundle\Command\TranslationUpdateCommand;
@@ -54,7 +53,6 @@ use Symfony\Component\Messenger\Command\StatsCommand;
 use Symfony\Component\Messenger\Command\StopWorkersCommand;
 use Symfony\Component\Scheduler\Command\DebugCommand as SchedulerDebugCommand;
 use Symfony\Component\Serializer\Command\DebugCommand as SerializerDebugCommand;
-use Symfony\Component\Translation\Command\TranslationLintCommand;
 use Symfony\Component\Translation\Command\TranslationPullCommand;
 use Symfony\Component\Translation\Command\TranslationPushCommand;
 use Symfony\Component\Translation\Command\XliffLintCommand;
@@ -318,13 +316,6 @@ return static function (ContainerConfigurator $container) {
         ->set('console.command.yaml_lint', YamlLintCommand::class)
             ->tag('console.command')
 
-        ->set('console.command.translation_lint', TranslationLintCommand::class)
-            ->args([
-                service('translator'),
-                param('kernel.enabled_locales'),
-            ])
-            ->tag('console.command')
-
         ->set('console.command.form_debug', \Symfony\Component\Form\Command\DebugCommand::class)
             ->args([
                 service('form.registry'),
@@ -358,13 +349,6 @@ return static function (ContainerConfigurator $container) {
             ->tag('console.command')
 
         ->set('console.command.secrets_list', SecretsListCommand::class)
-            ->args([
-                service('secrets.vault'),
-                service('secrets.local_vault')->ignoreOnInvalid(),
-            ])
-            ->tag('console.command')
-
-        ->set('console.command.secrets_reveal', SecretsRevealCommand::class)
             ->args([
                 service('secrets.vault'),
                 service('secrets.local_vault')->ignoreOnInvalid(),

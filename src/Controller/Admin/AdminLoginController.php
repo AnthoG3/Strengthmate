@@ -28,13 +28,13 @@ class AdminLoginController extends AbstractController
 
         // Check if the user has just successfully logged in
         if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash('success', 'Successfully logged in!');
+            $this->addFlash('success', 'Connecté avec succés');
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
         // If there was an authentication error, show a flash message
         if ($error) {
-            $this->addFlash('error', 'Invalid credentials. Please check your email and password.');
+            $this->addFlash('error', 'Identifiants invalides. Vérifiez votre email ou votre mot de passe.');
         }
 
         // Render the login form with the last entered username and error (if any)

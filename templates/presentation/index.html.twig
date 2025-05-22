@@ -21,7 +21,7 @@
                     {% for presentation in presentations %}
                         <div class="presentation-card mb-5">
                             <h2 class="presentation-title">{{ presentation.title }}</h2>
-                            <p class="presentation-text">{{ presentation.content }}</p>
+                            <p class="presentation-text">{{ presentation.content|nl2br }}</p>
                         </div>
                     {% endfor %}
                 {% endif %}

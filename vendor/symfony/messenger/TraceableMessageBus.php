@@ -16,11 +16,12 @@ namespace Symfony\Component\Messenger;
  */
 class TraceableMessageBus implements MessageBusInterface
 {
+    private MessageBusInterface $decoratedBus;
     private array $dispatchedMessages = [];
 
-    public function __construct(
-        private MessageBusInterface $decoratedBus,
-    ) {
+    public function __construct(MessageBusInterface $decoratedBus)
+    {
+        $this->decoratedBus = $decoratedBus;
     }
 
     public function dispatch(object $message, array $stamps = []): Envelope
@@ -49,7 +50,10 @@ class TraceableMessageBus implements MessageBusInterface
         return $this->dispatchedMessages;
     }
 
-    public function reset(): void
+    /**
+     * @return void
+     */
+    public function reset()
     {
         $this->dispatchedMessages = [];
     }

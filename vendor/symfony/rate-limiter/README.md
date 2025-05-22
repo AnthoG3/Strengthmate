@@ -7,8 +7,8 @@ rate limit input and output in your application.
 Getting Started
 ---------------
 
-```bash
-composer require symfony/rate-limiter
+```
+$ composer require symfony/rate-limiter
 ```
 
 ```php

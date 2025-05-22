@@ -20,10 +20,13 @@ use Symfony\Component\RateLimiter\Util\TimeUtil;
  */
 final class Rate
 {
-    public function __construct(
-        private \DateInterval $refillTime,
-        private int $refillAmount = 1,
-    ) {
+    private \DateInterval $refillTime;
+    private int $refillAmount;
+
+    public function __construct(\DateInterval $refillTime, int $refillAmount = 1)
+    {
+        $this->refillTime = $refillTime;
+        $this->refillAmount = $refillAmount;
     }
 
     public static function perSecond(int $rate = 1): self

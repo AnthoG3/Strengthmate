@@ -31,9 +31,9 @@ final class ContactController extends AbstractController
             try {
                 // Construct the HTML email with contact information
                 $email = (new Email())
-                    ->from('contact@strength.fr')
-                    ->to('anthony.gevers@lapiscine.pro')
-                    ->subject('New Contact Request')
+                    ->from('contact@strengthmate.fr')
+                    ->to('strengthmates@gmail.com')
+                    ->subject('Hey ! Tu a un nouveau message')
                     ->html(
                         '<html>
                             <head>
@@ -88,10 +88,10 @@ final class ContactController extends AbstractController
                             <body>
                                 <div class="email-wrapper">
                                     <div class="email-container">
-                                        <h2>New Contact Message</h2>
+                                        <h2>Nouveau message !</h2>
                                         <table>
                                             <tr>
-                                                <td class="label">Name:</td>
+                                                <td class="label">Nom:</td>
                                                 <td>' . htmlspecialchars($contact->getName()) . '</td>
                                             </tr>
                                             <tr>
@@ -99,7 +99,7 @@ final class ContactController extends AbstractController
                                                 <td>' . htmlspecialchars($contact->getEmail()) . '</td>
                                             </tr>
                                             <tr>
-                                                <td class="label">Phone:</td>
+                                                <td class="label">Téléphone:</td>
                                                 <td>' . htmlspecialchars($contact->getPhone()) . '</td>
                                             </tr>
                                             <tr>
@@ -115,16 +115,16 @@ final class ContactController extends AbstractController
 
                 // Send the email
                 $mailer->send($email);
-                $logger->info('Email successfully sent.');
+                $logger->info('Email envoyé');
 
                 // Add a flash message and redirect
-                $this->addFlash('success', 'Your message has been sent successfully.');
+                $this->addFlash('success', 'Votre message a bien été envoyé');
                 return $this->redirectToRoute('app_contact_index');
 
             } catch (\Exception $e) {
                 // Log and show error flash message
-                $logger->error('Error while sending email: ' . $e->getMessage());
-                $this->addFlash('error', 'An error occurred while sending your message.');
+                $logger->error('Erreur pendant l\'envoi du message ' . $e->getMessage());
+                $this->addFlash('error', 'Une erreur s\'est produite lors de l\'envoi du message');
                 return $this->redirectToRoute('app_contact_index');
             }
         }

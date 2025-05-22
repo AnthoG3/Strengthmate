@@ -21,23 +21,24 @@ use Twig\Error\Error;
  * Generates the Twig cache for all templates.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- *
- * @final since Symfony 7.1
  */
 class TemplateCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInterface
 {
+    private ContainerInterface $container;
     private Environment $twig;
+    private iterable $iterator;
 
-    /**
-     * As this cache warmer is optional, dependencies should be lazy-loaded, that's why a container should be injected.
-     */
-    public function __construct(
-        private ContainerInterface $container,
-        private iterable $iterator,
-    ) {
+    public function __construct(ContainerInterface $container, iterable $iterator)
+    {
+        // As this cache warmer is optional, dependencies should be lazy-loaded, that's why a container should be injected.
+        $this->container = $container;
+        $this->iterator = $iterator;
     }
 
-    public function warmUp(string $cacheDir, ?string $buildDir = null): array
+    /**
+     * @param string|null $buildDir
+     */
+    public function warmUp(string $cacheDir /* , string $buildDir = null */): array
     {
         $this->twig ??= $this->container->get('twig');
 
